@@ -82,3 +82,5 @@ buck-out/
 
 Build
 *.xcbkptlist
+
+ReactNative/android/app/.cxx/*
