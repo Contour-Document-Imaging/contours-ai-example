@@ -1,8 +1,7 @@
+import 'package:contour_ai_sdk/scan-check.dart';
+import 'package:contour_ai_sdk/scan-id.dart';
+import 'package:contour_ai_sdk/scan-passport.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-import 'package:flutter/services.dart';
-import 'package:contouraisdk/contouraisdk.dart';
-import 'dart:io';
 
 void main() {
   runApp(const MyApp());
@@ -22,91 +21,33 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    Contouraisdk.registerCallbacks(onDataReceived, onEventCaptured, onContourClosed);
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> callContour(String face) async {
-    try {
-      await Contouraisdk.startContourSDK("", face, "both", false);
-    } on PlatformException catch (e) {
-      print(e.message);
-    }
-  }
-
-  void onDataReceived(Map<String, String> data) {
-    String? croppedFront = data['croppedFrontUri'];
-    String? croppedRear = data['croppedRearUri'];
-    if (croppedFront != null) {
-      setState(() {
-        frontImageUri = data['croppedFrontUri']!;
-      });
-    }
-    if (croppedRear != null) {
-      setState(() {
-        rearImageUri = data['croppedRearUri']!;
-      });
-    }
-  }
-
-  void onEventCaptured(String data) {
-    print('Received data in onEventCaptured: $data');
-  }
-
-  void onContourClosed() {
-    print('Received data in onContourClosed');
-  }
-
-  Widget _buildImageWidget(
-      String uri, double width, double height, String face) {
-    if (uri.isNotEmpty) {
-      return GestureDetector(
-        onTap: () {
-          callContour(face);
-        }, // Define the click handler function
-        child: Image.file(
-          File(uri),
-          width: width,
-          height: height,
-        ),
-      );
-    } else {
-      return GestureDetector(
-        onTap: () {
-          callContour(face);
-        },
-        child: Image.asset(
-          'assets/placeholder.png',
-          width: width,
-          height: height,
-        ),
-      );
-    }
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
           appBar: AppBar(
-            title: const Text('Contour example'),
+            title: const Text('Contour Demo'),
+            bottom: const TabBar(
+              tabs: [
+                Tab(text: 'Check'),
+                Tab(text: 'ID'),
+                Tab(text: 'Passport'),
+              ],
+            ),
           ),
-          body: Center(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(height: 24),
-              const Text("Front",
-                  style: TextStyle(fontSize: 16, color: Colors.black87)),
-              const SizedBox(height: 16),
-              _buildImageWidget(frontImageUri, 400, 200, 'front'),
-              const SizedBox(height: 30),
-              const Text("Back",
-                  style: TextStyle(fontSize: 16, color: Colors.black87)),
-              const SizedBox(height: 16),
-              _buildImageWidget(rearImageUri, 400, 200, 'back'),
+          body: const TabBarView(
+            children: [
+              Center(child: ScanCheck()),
+              Center(child: ScanID()),
+              Center(child: ScanPassport()),
             ],
-          ))),
+          ),
+        ),
+      ),
     );
   }
 }
