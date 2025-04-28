@@ -1,3 +1,4 @@
+import 'package:contouraisdk/contouraisdk_contours_model.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
@@ -23,7 +24,8 @@ class _ScanPassportState extends State<ScanPassport> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> callContour(String face) async {
     try {
-      await Contouraisdk.startContourSDK("", face, "both", false);
+      var contoursModel = ContoursModel(clientID: "<CLIENT_ID>", type: "passport", captureSide: face, captureType: "both", enableMultipleCapturing: false);
+      await Contouraisdk.startContour(contoursModel);
     } on PlatformException catch (e) {
       print(e.message);
     }
