@@ -1,15 +1,22 @@
 import React from 'react';
 import { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
-import { startContourSDK, onContourClosed, onEventCaptured } from 'contour-ai-sdk';
+import { startContour, onContourClosed, ContourModel, onEventCaptured } from 'contour-ai-sdk';
 
 export default function ScanCheck() {
   const [frontImageUri, setFrontImageUri] = useState<string>('');
   const [rearImageUri, setRearImageUri] = useState<string>('');
 
-  const startSDK = (checkSide: string) => {
-    startContourSDK(checkSide, '<CLIENT_ID>', 'both', false, updateState);
-  }
+   const startSDK = (checkSide: string) => {
+      const contoursModel: ContourModel = {
+        clientId: '<CLIENT_ID>',
+        captureType: 'both',
+        enableMultipleCapturing: false,
+        type: 'check',
+        capturingSide: checkSide
+      };
+      startContour(contoursModel, updateState);
+    };
 
   onContourClosed(() => {
     console.log('SDK closed')
