@@ -13,6 +13,8 @@ struct ContoursSDK: UIViewControllerRepresentable {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var captureSide = DocumentSide.front.rawValue
+    var docType = ScanType.check.rawValue
+
     @Binding  var frontImage: UIImage?
     @Binding  var rearImage: UIImage?
     
@@ -23,9 +25,13 @@ struct ContoursSDK: UIViewControllerRepresentable {
      * Param delegate - You Need to confirm delegate to get callback from Contour SDK
      */
     func makeUIViewController(context: Context) -> UIViewController {
-        ContoursAIFramework.shared.isLandscape = true
-        let contourSDK = ContoursAIFramework().initializeSDK(checkCapturingSide: captureSide , clientId: "<YOUR CLIENT ID>", captureType: CaptureType.both.rawValue, enableMultipleCheckCapturing: false, delegate: ContourCallback(self))
-        let navVC = UINavigationController(rootViewController: contourSDK)
+        let configModel = ContoursModel(clientId: "<YOUR CLIENT ID>",
+                                        captureType: CaptureType.both.rawValue,
+                                        type: docType,
+                                        capturingSide: DocumentSide.front.rawValue,
+                                        delegate: ContourCallback(self))
+        let contourSDKVC = ContoursAIFramework().startContour(configModel: configModel)
+        let navVC = UINavigationController(rootViewController: contourSDKVC)
         navVC.modalPresentationStyle = .fullScreen
         return navVC
     }
