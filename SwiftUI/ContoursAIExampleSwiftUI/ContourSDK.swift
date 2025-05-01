@@ -18,11 +18,14 @@ struct ContoursSDK: UIViewControllerRepresentable {
     @Binding  var frontImage: UIImage?
     @Binding  var rearImage: UIImage?
     
-    /* contourSDK.initializeSDK is for initializing the Contour SDK.
-     * Param checkCapturingSide - Check side(Front/Rear) which you want to capture.
-     * Param clientId - Id Provide to you by the UrbanFT
-     * Param captureType - With what type of capturing you want to start your Contour SDK Auto/Manual/Both
-     * Param delegate - You Need to confirm delegate to get callback from Contour SDK
+    /**
+     * Initializes the Contour SDK using ContoursAIFramework().startContour.
+     * @param configModel         The model containing the SDK configuration.
+     * @param configModel.checkCapturingSide  Specifies the side (Front/Rear) to capture.
+     * @param configModel.clientId            The client ID provided by UrbanFT.
+     * @param configModel. captureType         The capture mode: Auto, Manual, or Both.
+     * @param configModel.delegate            The delegate to receive callbacks from the Contour SDK.
+     * @param configModel.type                The type of document to capture: Check, ID, or Passport.
      */
     func makeUIViewController(context: Context) -> UIViewController {
         let configModel = ContoursModel(clientId: "<YOUR CLIENT ID>",
