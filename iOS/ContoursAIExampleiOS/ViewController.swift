@@ -15,19 +15,32 @@ class ViewController: UIViewController,CheckCaptureDelegate{
     @IBOutlet var backImageView : UIImageView!
     @IBOutlet var frontImagebutton : UIButton!
     @IBOutlet var backImagebutton : UIButton!
-    
+    @IBOutlet weak var buttonCheckScan: TabButton!{
+        didSet {
+            buttonCheckScan.isSelected = true
+        }
+    }
+    @IBOutlet weak var buttonIdScan: TabButton!{
+        didSet {
+            buttonIdScan.isSelected = false
+        }
+    }
+    @IBOutlet weak var passport: TabButton!{
+        didSet {
+            passport.isSelected = false
+        }
+    }
+   
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     let contoursSDK = ContoursAIFramework()
-    
+    var selectedDocumentType : ScanType = .check
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
     }
-    @IBAction func confirmButtonClicked(_ sender: Any) {
-        let button =  sender as? UIButton
-        openContoursSDKConcept(checkSide: button?.tag ?? 0)  //Function to  open Contours SDK
-    }
     
+  
+    // MARK: - Intrenals function
     func openContoursSDKConcept(checkSide:Int) {
         ContoursAIFramework.shared.isLandscape = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
@@ -43,14 +56,24 @@ class ViewController: UIViewController,CheckCaptureDelegate{
     }
     
     func openFrontOfCheck(){
-        let imageVC = contoursSDK.initializeSDK(checkCapturingSide:DocumentSide.front.rawValue ,clientId: "<YOUR CLIENT ID>", captureType: CaptureType.both.rawValue,  enableMultipleCheckCapturing: false ,delegate: self)
+        let configModel = ContoursModel(clientId: "<YOUR CLIENT ID>",
+                                        captureType: CaptureType.both.rawValue,
+                                        type: selectedDocumentType.rawValue,
+                                        capturingSide: DocumentSide.front.rawValue,
+                                        delegate: self)
+        let imageVC = contoursSDK.startContour(configModel: configModel,enableMultipleCapturing: true)
         let navigationController = UINavigationController(rootViewController: imageVC)
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: false)
     }
     
     func openRearOfCheck() {
-        let imageVC = contoursSDK.initializeSDK(checkCapturingSide: DocumentSide.back.rawValue, clientId: "<YOUR CLIENT ID>", captureType: CaptureType.both.rawValue, enableMultipleCheckCapturing: false, delegate: self)
+        let configModel = ContoursModel(clientId: "<YOUR CLIENT ID>",
+                                        captureType: CaptureType.both.rawValue,
+                                        type: selectedDocumentType.rawValue,
+                                        capturingSide: DocumentSide.front.rawValue,
+                                        delegate: self)
+        let imageVC = contoursSDK.startContour(configModel: configModel)
         let navigationController = UINavigationController(rootViewController: imageVC)
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: false)
@@ -71,5 +94,63 @@ class ViewController: UIViewController,CheckCaptureDelegate{
     }
     
     func eventCaptured(data: [String : Any]?) {
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction func documentButtonClicked(_ sender: Any) {
+        let button =  sender as? UIButton
+        openContoursSDKConcept(checkSide: button?.tag ?? 0)  //Function to  open Contours SDK
+    }
+    
+    @IBAction func selectScanType(_ sender: UIButton) {
+        self.frontImageView.image = nil
+        self.backImageView.image = nil
+        let button =  sender
+        switch button.tag {
+        case 101:
+            selectedDocumentType = .check
+            self.frontImagebutton.isHidden = false
+            self.frontImageView.isHidden = false
+            self.backImagebutton.isHidden = false
+            self.backImageView.isHidden = false
+            buttonIdScan.isSelected = false
+            buttonCheckScan.isSelected =  true
+            passport.isSelected =  false
+
+        case 102:
+            selectedDocumentType = .id
+            buttonCheckScan.isSelected = false
+            buttonIdScan.isSelected = true
+            passport.isSelected =  false
+            self.frontImagebutton.isHidden = false
+            self.frontImageView.isHidden = false
+            self.backImagebutton.isHidden = false
+            self.backImageView.isHidden = false
+
+        case 103:
+            selectedDocumentType = .passport
+            buttonCheckScan.isSelected = false
+            buttonIdScan.isSelected = false
+            passport.isSelected =  true
+
+            self.frontImagebutton.isHidden = false
+            self.frontImageView.isHidden = false
+            self.backImagebutton.isHidden = true
+            self.backImageView.isHidden = true
+        case 104:
+            buttonCheckScan.isSelected = false
+            buttonIdScan.isSelected = false
+            passport.isSelected =  false
+            
+            self.frontImagebutton.isHidden = false
+            self.frontImageView.isHidden = false
+            self.backImagebutton.isHidden = true
+            self.backImageView.isHidden = true
+            
+        default:
+            break
+        }
+    
     }
 }
