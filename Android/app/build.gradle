@@ -48,5 +48,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'com.github.Contour-Document-Imaging:contours-ai-android-sdk:1.10.5'
+    implementation 'com.github.Contour-Document-Imaging:contours-ai-android-sdk:Debug1.10.19'
 }

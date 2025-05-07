@@ -2,4 +2,9 @@
     <string name="app_name">ContoursAIExampleAndroid</string>
     <string name="front_check">Front check</string>
     <string name="back_check">Rear check</string>
+    <string name="check">CHECK</string>
+    <string name="id">ID</string>
+    <string name="passport">PASSPORT</string>
+    <string name="front_id">Front ID</string>
+    <string name="back_id">Rear ID</string>
 </resources>
