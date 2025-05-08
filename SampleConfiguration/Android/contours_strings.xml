@@ -9,6 +9,14 @@
     <string name="contours_font_file_extension">.ttf</string>
     <!--END-->
 
+    <!--Loading UI-->
+    <string name="contours_oops">Oops!</string>
+    <string name="contours_something_went_wrong">Something went wrong. Please try again.</string>
+    <string name="contours_warning_storage">You do not have enough storage to continue scanning.</string>
+    <string name="contours_got_it_loading">Got it</string>
+    <string name="contours_loading_hang_tight">Loading… Hang tight</string>
+    <!--END-->
+
     <!--Manual Capture-->
     <string name="contours_auto_on">Auto Capture ON</string>
     <string name="contours_auto_off">Auto Capture OFF</string>
@@ -16,44 +24,21 @@
     <string name="contours_back_of_check">Back of check</string>
     <string name="contours_dialog_title_to_position_check">Position check within the frame</string>
     <string name="contours_dialog_message_to_position_check">Please ensure that all four corners of the check are inside the frame and use a contrasting background.</string>
-    <string name="contours_confirm_the_four_dots">Confirm the four dots are aligned to the corners of the check. Adjust using the drag handles and corner dots.</string>
     <string name="contours_check_captured_successfully">Check capture successful</string>
-    <string name="contours_cancel">Cancel</string>
     <string name="contours_manual">Try Manual Capture</string>
     <string name="contours_alert_title_to_capture_manual">This is taking longer than expected</string>
     <string name="contours_alert_msg_to_capture_manual">Try manual capture instead to take a picture of your check faster.</string>
     <string name="contours_ok">OK</string>
-    <string name="contours_alert">Alert</string>
-    <string name="contours_retry">Retry</string>
-    <string name="contours_use_manually">Use manually</string>
     <string name="contours_please_endorse_here">ENDORSE HERE</string>
-    <string name="contours_dialog_title_manual">Could not capture check</string>
-    <string name="contours_dialog_message_manual">Auto capturing taking too much time. Switch to manual capturing</string>
     <string name="contours_micr_format">*********   **********   ****</string>
-    <!--END-->
-
-    <!--Loading UI-->
-    <string name="contours_oops">Oops!</string>
-    <string name="contours_something_went_wrong">Something went wrong. Please try again.</string>
-    <string name="contours_got_it_loading">Got it</string>
-    <string name="loading_hang_tight">Loading… Hang tight</string>
     <!--END-->
 
     <!--pop up dialog-->
     <string name="contours_retake_popup">@string/contours_retake</string>
     <!--END-->
 
-    <!--Keys Four corner selection screen-->
-    <string name="contours_use">Use</string>
-    <string name="contours_retake">Retake</string>
-    <string name="contours_adjust_frame">Adjust frame</string>
-    <string name="contours_ensure_the_four_dots_are_aligned">Ensure the four dots are aligned to the corners of the check &amp; check is inside the frame.</string>
-    <string name="contours_ensure_check_inside">Ensure the check is inside the frame.</string>
-    <!--END-->
-
     <!--Hint messages customization-->
     <string name="contours_hold_camera_steady">Hold steady</string>
-    <string name="contours_hold_camera_steady_capture_now">Hold steady and capture now</string>
     <string name="contours_flip_check_over">Flip check over</string>
     <string name="contours_invert_check">Invert the check</string>
     <string name="contours_rotate_check">Rotate check to correct position</string>
@@ -66,6 +51,14 @@
     <string name="contours_move_camera_down">Move camera down</string>
     <string name="contours_move_camera_away">Move camera away</string>
     <string name="contours_move_camera_closer">Move camera closer to the check</string>
+    <!--END-->
+
+    <!--Keys Four corner selection screen-->
+    <string name="contours_use">Use</string>
+    <string name="contours_retake">Retake</string>
+    <string name="contours_adjust_frame">Adjust frame</string>
+    <string name="contours_ensure_the_four_dots_are_aligned">Ensure the four dots are aligned to the corners of the check &amp; check is inside the frame.</string>
+    <string name="contours_ensure_check_inside">Ensure the check is inside the frame.</string>
     <!--END-->
 
     <!--Keys used for text on tips intro screen  START-->
@@ -86,6 +79,7 @@
     <string name="contours_got_it">Got it</string>
     <string name="contours_four_corners_don_t_show_again">Don\'t show again</string>
     <!--END-->
+
     <!--Keys used for text on endorsement intro screen  START-->
     <string name="contours_endorse_intro_back_check_text">Endorse the back of your check and write:</string>
     <string name="contours_endorse_intro_electronic_deposit_text"><![CDATA[“For electronic deposit at %1s only.”]]></string>
@@ -101,4 +95,38 @@
     <string name="contours_camera_permission_is_denied">Camera permission is denied</string>
     <string name="contours_settings">Settings</string>
     <!--END-->
+
+    <!--Strings for ID and Passport-->
+    <string name="contours_rotate_id">Rotate the ID to correct position</string>
+    <string name="contours_flip_id_over">Flip the ID over</string>
+    <string name="contours_id_captured_successfully">ID capture successful</string>
+    <string name="contours_move_camera_closer_id">Move camera closer to the ID</string>
+    <string name="contours_invert_id">Invert the ID</string>
+
+    <string name="contours_passport_captured_successfully">Passport captured successful</string>
+    <string name="contours_rotate_passport">Rotate Passport to correct position</string>
+    <string name="contours_invert_passport">Invert the Passport</string>
+
+    <string name="contours_auto_on_id">Auto ON</string>
+    <string name="contours_auto_off_id">Auto OFF</string>
+
+    <string name="contours_dialog_title_wrong_face_id">Flip the ID over</string>
+    <string name="contours_dialog_message_wrong_face_id">You are trying to capture wrong face of the ID. Please flip the ID over.</string>
+
+    <string name="contours_dialog_title_to_position_id">Position the ID within the frame</string>
+    <string name="contours_dialog_message_to_position_id">Please ensure that all four corners of the ID are inside the frame and use a contrasting background.</string>
+    <string name="contours_dialog_title_to_position_passport">Position passport within the frame</string>
+    <string name="contours_dialog_message_to_position_passport">Please ensure that all four corners of the passport are inside the frame and use a contrasting background.</string>
+
+    <string name="contours_alert_msg_to_capture_manual_id">Try manual capture instead to take a picture of your ID faster.</string>
+    <string name="contours_alert_msg_to_capture_manual_passport">Try manual capture instead to take a picture of your passport faster.</string>
+
+    <string name="contours_passport">Passport</string>
+    <string name="contours_id_front">Front of ID</string>
+    <string name="contours_id_back">Back of ID</string>
+
+    <string name="contours_message_camera_permission_required_id">To capture an ID image with this app, you first need to allow camera access from Settings.</string>
+    <string name="contours_message_camera_permission_required_passport">To capture a passport image with this app, you first need to allow camera access from Settings.</string>
+    <!--END-->
+
 </resources>

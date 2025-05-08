@@ -20,6 +20,7 @@
     <!--Default color of CTA background and checkbox text-->
     <color name="color_intro_screen_checkbox_text">@color/color_contours_text</color>
     <color name="color_intro_screen_CTA_background">@color/color_contours_CTA_primary_background</color>
+    <color name="color_close_icon_background">#33F4F5F7</color>
     <color name="color_intro_screen_checkbox_solid">@color/color_contours_CTA_secondary_background</color>
     <color name="color_intro_screen_checkbox_border">#767676</color>
     <color name="color_intro_screen_checkbox_tick">#2E3D5F</color>
@@ -56,6 +57,8 @@
     <color name="color_title_check_face_of_capture">@color/color_contours_text</color>
     <color name="color_text_auto_on_off">@color/color_contours_CTA_secondary_background</color>
     <color name="color_background_title_check_face">#cc2a2a2a</color>
+    <color name="color_background_auto_off_CTA">#802a2a2a</color>
+    <color name="color_background_auto_on_CTA">@color/color_contours_CTA_primary_background</color>
     <color name="color_background_auto_on_off">#cc2a2a2a</color>
     <color name="color_switch_thumb_active">#346DE9</color>
     <color name="color_switch_track_inactive">#E5E5E5</color>
@@ -70,6 +73,10 @@
     <color name="color_success_hint_bg">#2E3D5F</color>
     <color name="color_success_icon_bg">#098743</color>
     <color name="color_success_text">#FFFFFFFF</color>
+    <color name="color_arrow_icon_up">#2a2a2a</color>
+    <color name="color_arrow_icon_down">#2a2a2a</color>
+    <color name="color_arrow_icon_left">#2a2a2a</color>
+    <color name="color_arrow_icon_right">#2a2a2a</color>
     <!--END-->
 
     <!--Color config for four corner selection-->
