@@ -38,8 +38,8 @@
 "contoursRetake" = "Retake";
 "contoursMicrOverlayText" = "********* ********* ****";
 "contoursEndorseOverlayText" = "ENDORSE HERE";
-"contoursAutoOn" = "Auto Capture On";
-"contoursAutoOff" = "Auto Capture Off";
+"contoursAutoCaptureOn" = "Auto Capture On";
+"contoursAutoCaptureOff" = "Auto Capture Off";
 //Dialog View
 "contoursCameraAccessDeniedTitle" = "Camera access is off";
 "contoursCameraAccessDeniedDesc" = "To capture a check image with this app, you first need to allow camera access from Settings.";
@@ -54,7 +54,6 @@
 "contoursLoadingProgressMessage" = "Loading... Hang tight.";
 "contoursLoadingFailureMessage" = "Something went wrong. Please try again.";
 "contoursLoadingFailureTitle" = "Oops!";
-"contoursTryAgain" = "Try again";
 "contoursFlipCheckOver" = "Flip the check over";
 "contoursFlipCheckOverDesc" = "You are trying to capture wrong face of the check. Please flip the check over.";
 "contoursMoveCheckCloser" = "Move camera closer to the check";
@@ -62,3 +61,28 @@
 "contoursAdjustFrame" = "Adjust frame";
 "contoursImproveLighting" = "Please improve the lighting.";
 "contoursInsufficientStorageError" = "You do not have enough storage to continue scanning.";
+
+// ID
+"contoursFlipIDOver" = "Flip the ID over";
+"contoursIDCaptureSuccessful" = "ID capture successful";
+"contoursIDCaptureTitleFront" = " Front of ID ";
+"contoursIDCaptureTitleBack" = "Back of ID ";
+"contoursPassportCaptureTitleFront" = "Front of Passport";
+"contoursFlipIDOverDesc" = "You are trying to capture wrong face of the ID. Please flip the ID over.";
+"contoursManualAlertIDDialogDesc" = "Try manual capture instead to take a picture of your ID faster.";
+"contoursPositionIDWithinTheFrame" = "Position ID within the frame";
+"contoursEnsureAllFourCornerID" = "Please ensure that all four corners of the ID are inside the frame and use a contrasting background.";
+"contoursIDCameraAccessDeniedDesc" = "To capture an ID image with this app, you first need to allow camera access from Settings.";
+"contoursMoveIDCloser" = "Move camera closer to the ID";
+"contoursRotateID" = "Rotate the ID to correct position";
+"contoursAutoOn" = "Auto On";
+"contoursAutoOff" = "Auto Off";
+// Passport
+"contoursPassportCaptureSuccessful" = "Passport capture successful";
+"contoursPassportCaptureTitleFront" = "Passport ";
+"contoursPassportManualAlertDialogDesc" = "Try manual capture instead to take a picture of your Passport faster.";
+"contoursPassportPositionWithinTheFrame" = "Position Passport within the frame";
+"contoursPassportEnsureAllFourCorner" = "Please ensure that all four corners of the Passport are inside the frame and use a contrasting background.";
+"contoursPassportMoveCloser" = "Move camera closer to the Passport";
+"contoursPassportRotate" = "Rotate the Passport to correct position";
+"contoursPassportCameraAccessDeniedDesc" = "To capture a Passport image with this app, you first need to allow camera access from Settings.";
