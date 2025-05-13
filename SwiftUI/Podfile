@@ -4,6 +4,6 @@
 target 'ContoursAIExampleSwiftUI' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
- pod 'ContoursAISDK' , '~> 1.10.8'
+ pod 'ContoursAISDK' , '~> 1.11.0'
 end
 
