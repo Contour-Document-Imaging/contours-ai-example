@@ -33,7 +33,7 @@ struct ContoursSDK: UIViewControllerRepresentable {
                                         type: docType,
                                         capturingSide: DocumentSide.front.rawValue,
                                         delegate: ContourCallback(self))
-        let contourSDKVC = ContoursAIFramework().startContour(configModel: configModel)
+        let contourSDKVC = ContoursAIFramework().startContour(configModel: configModel,enableMultipleCapturing: false)
         let navVC = UINavigationController(rootViewController: contourSDKVC)
         navVC.modalPresentationStyle = .fullScreen
         return navVC

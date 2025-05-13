@@ -61,7 +61,7 @@ class ViewController: UIViewController,CheckCaptureDelegate{
                                         type: selectedDocumentType.rawValue,
                                         capturingSide: DocumentSide.front.rawValue,
                                         delegate: self)
-        let imageVC = contoursSDK.startContour(configModel: configModel,enableMultipleCapturing: true)
+        let imageVC = contoursSDK.startContour(configModel: configModel,enableMultipleCapturing: false)
         let navigationController = UINavigationController(rootViewController: imageVC)
         navigationController.modalPresentationStyle = .fullScreen
         self.present(navigationController, animated: false)
