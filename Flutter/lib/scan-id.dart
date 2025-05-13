@@ -25,7 +25,7 @@ class _ScanIDState extends State<ScanID> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> callContour(String face) async {
     try {
-      var contoursModel = ContoursModel(clientID: "<CLIENT_ID>", type: "ID", captureSide: face, captureType: "both", enableMultipleCapturing: false);
+      var contoursModel = ContoursModel(clientID: "<CLIENT_ID>", type: "id", captureSide: face, captureType: "both", enableMultipleCapturing: false);
       await Contouraisdk.startContour(contoursModel);
     } on PlatformException catch (e) {
       print(e.message);
