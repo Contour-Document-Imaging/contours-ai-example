@@ -9,4 +9,8 @@
 - [Install using Swift Package Manager](https://docs.fttoolbox.com/contoursai/ios/installation/#steps-to-integrate-contour-ai-sdk-using-swift-package-managerspm)
 - [Install using XCFramework file](https://docs.fttoolbox.com/contoursai/ios/installation/#steps-to-integrate-contour-ai-sdk-using-a-xcframework-file)
 
+## React Native 
+- [Install using npm](https://docs.fttoolbox.com/contoursai/react-native/installation/)
 
+## Flutter
+- [Install](https://docs.fttoolbox.com/contoursai/flutter/installation)
