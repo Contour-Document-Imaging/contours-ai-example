@@ -9,5 +9,4 @@ target 'ContoursAIExampleiOS' do
 
 pod 'ContoursAISDK' , '~> 1.13.0'
 
-
 end
