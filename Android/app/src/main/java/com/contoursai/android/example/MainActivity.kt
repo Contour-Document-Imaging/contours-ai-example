@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        ContoursStarterActivity.initialize(applicationContext, clientId)
         StatusBarUtils.updateStatusBarColor(this)
         tvFront = findViewById<View>(R.id.tvFront) as TextView
         tvBack = findViewById<View>(R.id.tvBack) as TextView
