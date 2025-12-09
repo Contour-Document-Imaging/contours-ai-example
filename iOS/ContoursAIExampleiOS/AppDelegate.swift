@@ -10,8 +10,10 @@ import ContoursAI_SDK
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    let contoursSDK = ContoursAIFramework()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        contoursSDK.initialize(clientID: "<YOUR CLIENT ID>")
         // Override point for customization after application launch.
         return true
     }
