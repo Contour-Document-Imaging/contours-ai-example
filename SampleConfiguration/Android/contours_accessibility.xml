@@ -16,7 +16,9 @@
     <string name="contours_accessibility_flash_on">Flash on</string>
     <string name="contours_accessibility_flash_off">Flash off</string>
     <string name="contours_accessibility_info_icon">Info</string>
-    <string name="contours_accessibility_popup_close_icon">Close pop up</string>
+
+    <string name="contours_accessibility_popup_screen">Pop up screen</string>
+    <string name="contours_accessibility_popup_close_icon">Close</string>
     <string name="contours_accessibility_auto_capture_toggle_button_on">Auto Capture, toggle button, On</string>
     <string name="contours_accessibility_auto_capture_toggle_button_off">Auto Capture, toggle button, Off</string>
 

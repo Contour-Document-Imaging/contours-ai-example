@@ -8,6 +8,13 @@
 		<dict>
 			<key>popupScreen</key>
 			<dict>
+				<key>closeButton</key>
+				<dict>
+					<key>isPositionTopLeft</key>
+					<true/>
+					<key>enableCloseButton</key>
+					<true/>
+				</dict>
 				<key>popupBackgroundColorHexCode</key>
 				<string>252525</string>
 				<key>backgroundColorHexCode</key>
@@ -351,6 +358,13 @@
 			</dict>
 			<key>popupScreen</key>
 			<dict>
+				<key>closeButton</key>
+				<dict>
+					<key>isPositionTopLeft</key>
+					<true/>
+					<key>enableCloseButton</key>
+					<true/>
+				</dict>
 				<key>popupBackgroundColorHexCode</key>
 				<string>252525</string>
 				<key>backgroundColorHexCode</key>

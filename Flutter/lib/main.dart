@@ -1,6 +1,7 @@
 import 'package:contour_ai_sdk/scan-check.dart';
 import 'package:contour_ai_sdk/scan-id.dart';
 import 'package:contour_ai_sdk/scan-passport.dart';
+import 'package:contouraisdk/contouraisdk.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -21,6 +22,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    Contouraisdk.initialize("<CLIENT_ID>");
   }
 
   @override

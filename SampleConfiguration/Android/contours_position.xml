@@ -8,12 +8,18 @@
     <!--Position exchange capture view and four corners action items-->
     <bool name="contours_capture_close_icon_position_left">true</bool>
     <bool name="contours_capture_retake_button_position_left">true</bool>
+
+    <!--Position exchange close icon on pop-up screen-->
+    <bool name="contours_popup_close_icon_position_left">true</bool>
     <!--END-->
 
     <!--ID/Passport-->
     <!--Position exchange capture view and four corners action items-->
     <bool name="contours_id_capture_close_icon_position_left">true</bool>
     <bool name="contours_id_capture_retake_button_position_left">true</bool>
+
+    <!--Position exchange close icon on pop-up screen-->
+    <bool name="contours_id_popup_close_icon_position_left">true</bool>
     <!--END-->
     <!--END ID/Passport-->
 </resources>

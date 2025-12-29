@@ -11,6 +11,9 @@
     <bool name="contours_adjust_frame_button_visibility">true</bool>
     <!--END-->
 
+    <!--Config to close button on dialog-->
+    <bool name="contours_close_dialog_button_visibility">true</bool>
+
     <!--Overlay views-->
     <bool name="contours_micr_view_overlay_visibility">true</bool>
     <bool name="contours_endorse_view_overlay_visibility">true</bool>
@@ -63,6 +66,9 @@
 
     <!--Config to handle Preview visibility-->
     <bool name="contours_id_preview_visibility">true</bool>
+
+    <!--Config to close button on dialog-->
+    <bool name="contours_id_close_dialog_button_visibility">true</bool>
 
     <!--Four corners selection screen config-->
     <bool name="contours_id_retake_button_visibility">true</bool>
