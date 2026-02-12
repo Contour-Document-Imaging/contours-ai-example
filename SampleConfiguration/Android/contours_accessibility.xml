@@ -1,5 +1,5 @@
 <resources>
-    <string name="contours_accessibility_capturing_started">Capturing screen</string>
+    <string name="contours_accessibility_capturing_started">Check Capturing screen</string>
     <string name="contours_accessibility_loading_started">Loading started</string>
     <string name="contours_accessibility_loading_completed">Loading completed</string>
     <string name="contours_accessibility_capture">Capture</string>
@@ -24,4 +24,12 @@
 
     <string name="contours_accessibility_heading">%1s, Heading</string>
     <string name="contours_accessibility_point">Point %1s, %2s</string>
+
+    <string name="contours_accessibility_capturing_started_id">ID Capturing screen</string>
+    <string name="contours_accessibility_capturing_started_passport">Passport Capturing screen</string>
+    <string name="contours_accessibility_tips_intro">Tips intro screen</string>
+    <string name="contours_accessibility_four_corner_intro">Four corners intro screen</string>
+    <string name="contours_accessibility_four_corner_selection">Four corners selection screen</string>
+    <string name="contours_accessibility_endorse_intro">Endorsement intro screen</string>
+    <string name="contours_accessibility_preview_screen">Preview Screen</string>
 </resources>
