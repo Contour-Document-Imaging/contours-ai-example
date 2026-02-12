@@ -62,7 +62,7 @@
 "contoursEnsureCheck" = "Ensure the check is inside the frame";
 "contoursAdjustFrame" = "Adjust frame";
 "contoursInsufficientStorageError" = "You do not have enough storage to continue scanning.";
-
+"contourLoadingStarted" = "Loading started";
 // ID
 "contoursFlipIDOver" = "Flip the ID over";
 "contoursIDCaptureSuccessful" = "ID capture successful";
@@ -107,5 +107,18 @@
 "contoursAutoCaptureONAccessbility" = "Auto Capture, toggle button, ON";
 "contoursAutoCaptureOFFAccessbility" = "Auto Capture, toggle button, OFF";
 "contourHelpButtonAccessibility" = "help";
-
+"contoursManualCaptureAlertAccessibility" = "Manual Capture pop-up screen";
+"contourtipsIntroScreenAccessibility" = "tips intro screen";
+"contourtipPreviewScreenAccessibility" = "preview screen";
+"contourIDCaptureScreenAccessibility" = "ID Capturing screen";
+"contourPassportCaptureScreenAccessibility" = "Passport Capturing screen";
+"contourIDPreviewScreenAccessibility" = "preview screen";
+"contourCheckCaptureScreenAccessibility" = "Check Capturing screen";
+"contourPassportPreviewScreenAccessibility" = "preview screen";
+"contourEndorseIntroScreenAccessibility" = "Endorsement intro screen";
+"contourtAdjustCoreneScreenScreenAccessibility" = "Four corner selection screen";
+"contourtLoadingCompletedAccessibility" = "Loading completed";
+"contourtAdjustCornerIntroScreenAccessibility" = "Four corner intro screen";
+"contourtLoadingFailedAccessibility" = "Loading Failed";
+ 
 
