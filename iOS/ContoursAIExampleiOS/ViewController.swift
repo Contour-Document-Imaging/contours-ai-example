@@ -30,7 +30,11 @@ class ViewController: UIViewController,CheckCaptureDelegate{
             passport.isSelected = false
         }
     }
-   
+    @IBOutlet weak var selfie: TabButton!{
+        didSet {
+            selfie.isSelected = false
+        }
+    }
     let appDelegate = UIApplication.shared.delegate as? AppDelegate
     let contoursSDK = ContoursAIFramework()
     var selectedDocumentType : ScanType = .check
@@ -123,6 +127,7 @@ class ViewController: UIViewController,CheckCaptureDelegate{
             buttonCheckScan.isSelected = false
             buttonIdScan.isSelected = true
             passport.isSelected =  false
+            selfie.isSelected =  false
             self.frontImagebutton.isHidden = false
             self.frontImageView.isHidden = false
             self.backImagebutton.isHidden = false
@@ -133,6 +138,7 @@ class ViewController: UIViewController,CheckCaptureDelegate{
             buttonCheckScan.isSelected = false
             buttonIdScan.isSelected = false
             passport.isSelected =  true
+            selfie.isSelected =  false
 
             self.frontImagebutton.isHidden = false
             self.frontImageView.isHidden = false
@@ -142,7 +148,9 @@ class ViewController: UIViewController,CheckCaptureDelegate{
             buttonCheckScan.isSelected = false
             buttonIdScan.isSelected = false
             passport.isSelected =  false
-            
+            selfie.isSelected =  true
+            selectedDocumentType = .selfie
+
             self.frontImagebutton.isHidden = false
             self.frontImageView.isHidden = false
             self.backImagebutton.isHidden = true
