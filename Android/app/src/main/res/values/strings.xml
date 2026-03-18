@@ -7,4 +7,5 @@
     <string name="passport">PASSPORT</string>
     <string name="front_id">Front ID</string>
     <string name="back_id">Rear ID</string>
+    <string name="selfie">Selfie</string>
 </resources>
