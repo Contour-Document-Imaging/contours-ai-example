@@ -1,6 +1,7 @@
 import 'package:contour_ai_sdk/scan-check.dart';
 import 'package:contour_ai_sdk/scan-id.dart';
 import 'package:contour_ai_sdk/scan-passport.dart';
+import 'package:contour_ai_sdk/capture-selfie.dart';
 import 'package:contouraisdk/contouraisdk.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: DefaultTabController(
-        length: 3,
+        length: 4,
         child: Scaffold(
           appBar: AppBar(
             title: const Text('Contour Demo'),
@@ -38,6 +39,7 @@ class _MyAppState extends State<MyApp> {
                 Tab(text: 'Check'),
                 Tab(text: 'ID'),
                 Tab(text: 'Passport'),
+                Tab(text: 'Selfie')
               ],
             ),
           ),
@@ -46,6 +48,7 @@ class _MyAppState extends State<MyApp> {
               Center(child: ScanCheck()),
               Center(child: ScanID()),
               Center(child: ScanPassport()),
+              Center(child: Selfie()),
             ],
           ),
         ),

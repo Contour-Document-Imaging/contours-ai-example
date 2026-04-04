@@ -18,7 +18,7 @@ class _ScanPassportState extends State<ScanPassport> {
   @override
   void initState() {
     super.initState();
-    Contouraisdk.registerCallbacks(onDataReceived, onEventCaptured, onContourClosed);
+    Contouraisdk.registerCallbacks(onDataReceived, onEventCaptured, onContourClosed, null);
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.

@@ -5,45 +5,29 @@ import 'package:flutter/services.dart';
 import 'package:contouraisdk/contouraisdk.dart';
 import 'dart:io';
 
-class ScanCheck extends StatefulWidget {
-  const ScanCheck({super.key});
+class Selfie extends StatefulWidget {
+  const Selfie({super.key});
 
   @override
-  State<ScanCheck> createState() => _ScanCheckState();
+  State<Selfie> createState() => _SelfieState();
 }
 
-class _ScanCheckState extends State<ScanCheck> {
+class _SelfieState extends State<Selfie> {
   String frontImageUri = '';
-  String rearImageUri = '';
 
   @override
   void initState() {
     super.initState();
-    Contouraisdk.registerCallbacks(onDataReceived, onEventCaptured, onContourClosed, null);
+    Contouraisdk.registerCallbacks(null, onEventCaptured, onContourClosed, onSelfieCaptured);
   }
 
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> callContour(String face) async {
     try {
-      var contoursModel = ContoursModel(clientID: "<CLIENT_ID>", type: "check", captureSide: face, captureType: "both", enableMultipleCapturing: false);
+      var contoursModel = ContoursModel(clientID: "<CLIENT_ID>", type: "Selfie", captureSide: face, captureType: "both", enableMultipleCapturing: false);
       await Contouraisdk.startContour(contoursModel);
     } on PlatformException catch (e) {
       print(e.message);
-    }
-  }
-
-  void onDataReceived(Map<String, String> data) {
-    String? croppedFront = data['croppedFrontUri'];
-    String? croppedRear = data['croppedRearUri'];
-    if (croppedFront != null) {
-      setState(() {
-        frontImageUri = data['croppedFrontUri']!;
-      });
-    }
-    if (croppedRear != null) {
-      setState(() {
-        rearImageUri = data['croppedRearUri']!;
-      });
     }
   }
 
@@ -55,13 +39,22 @@ class _ScanCheckState extends State<ScanCheck> {
     print('Received data in onContourClosed');
   }
 
+  void onSelfieCaptured(String? capturedSelfie) {
+    print('Received data in onSelfieCaptured: $capturedSelfie');
+    if (capturedSelfie != null) {
+      setState(() {
+        frontImageUri = capturedSelfie;
+      });
+    }
+  }
+
   Widget _buildImageWidget(
       String uri, double width, double height, String face) {
     if (uri.isNotEmpty) {
       return GestureDetector(
         onTap: () {
           callContour(face);
-        }, 
+        }, // Define the click handler function
         child: Image.file(
           File(uri),
           width: width,
@@ -92,15 +85,10 @@ class _ScanCheckState extends State<ScanCheck> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           const SizedBox(height: 24),
-          const Text("Front",
+          const Text("Selfie",
               style: TextStyle(fontSize: 16, color: Colors.black87)),
           const SizedBox(height: 16),
           _buildImageWidget(frontImageUri, 400, 200, 'front'),
-          const SizedBox(height: 30),
-          const Text("Back",
-              style: TextStyle(fontSize: 16, color: Colors.black87)),
-          const SizedBox(height: 16),
-          _buildImageWidget(rearImageUri, 400, 200, 'back'),
         ],
       ))),
     );
