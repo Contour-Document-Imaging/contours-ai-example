@@ -13,7 +13,7 @@ enum DocumentSide: String {
 
 struct ContentView: View {
     @State private var selectedTab = 0
-    let tabTitles = ["Check", "ID", "Passport"]
+    let tabTitles = ["Check", "ID", "Passport" , "Selfie"]
     @State private var isShowingSDK = false
 
     @State var frontImage: UIImage?
@@ -65,6 +65,13 @@ struct ContentView: View {
                     isShowingSDK: $isShowingSDK,
                     viewModel: viewModel
                 ).tag(2)
+                
+                SelfieView(
+                    title: "selfie",
+                    frontImage: $frontImage,
+                    isShowingSDK: $isShowingSDK,
+                    viewModel: viewModel
+                ).tag(3)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         }.fullScreenCover(isPresented: $isShowingSDK) {
@@ -158,6 +165,38 @@ struct PassportView: View {
                 .onTapGesture {
                     viewModel.docType = title
                     viewModel.captureSide = DocumentSide.front.rawValue
+                    isShowingSDK = true
+                }
+                .padding()
+            }
+        }.background(.white)
+    }
+}
+struct SelfieView: View {
+    var title: String
+    @Binding var frontImage: UIImage?
+    @Binding var isShowingSDK: Bool
+    var viewModel: ViewModel
+    
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 20) {
+                Text("")
+                    .font(.headline)
+                
+                ZStack {
+                    if let image = frontImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    } else {
+                        Rectangle()
+                            .fill(Color.gray)
+                            .frame(height: 200)
+                    }
+                }
+                .onTapGesture {
+                    viewModel.docType = title
                     isShowingSDK = true
                 }
                 .padding()
