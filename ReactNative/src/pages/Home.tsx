@@ -5,6 +5,7 @@ import { TabsLabel } from '../constants/constants';
 import ScanPassport from './ScanPassport';
 import ScanCheck from './ScanCheck';
 import ScanID from './ScanID';
+import SelfieCapture from './SelfieCapture';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -22,6 +23,7 @@ export default function Home() {
         <Tab.Screen name={TabsLabel.Check} children={() => <ScanCheck />} />
         <Tab.Screen name={TabsLabel.ID} children={() => <ScanID />} />
         <Tab.Screen name={TabsLabel.Passport} children={() => <ScanPassport />} />
+       <Tab.Screen name={TabsLabel.Selfie} children={() => <SelfieCapture />} />
       </Tab.Navigator>
     </SafeAreaView>
   );
