@@ -24,7 +24,7 @@ class _SelfieState extends State<Selfie> {
   // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> callContour(String face) async {
     try {
-      var contoursModel = ContoursModel(clientID: "<CLIENT_ID>", type: "Selfie", captureSide: face, captureType: "both", enableMultipleCapturing: false);
+      var contoursModel = ContoursModel(clientID: "<CLIENT_ID>", type: "Selfie");
       await Contouraisdk.startContour(contoursModel);
     } on PlatformException catch (e) {
       print(e.message);
