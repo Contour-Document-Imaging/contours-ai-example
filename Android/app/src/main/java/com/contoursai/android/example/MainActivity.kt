@@ -152,7 +152,7 @@ class MainActivity : AppCompatActivity() {
                 println("---------- SDK closed")
             }
 
-            override fun selfieCaptured(imageCropped: String?) {
+            override fun onSelfieCaptured(imageCropped: String?) {
                 showCapturedImage(imageCropped, ivFront, tvFront, true)
             }
         })

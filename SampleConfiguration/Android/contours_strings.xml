@@ -2,6 +2,9 @@
 
     <string name="contours_fi_name">custom_FI_name</string>
 
+    <!--CheckBox-->
+    <string name="contours_don_t_show_again">Don\'t show again</string>
+
     <!--Fonts config-->
     <string name="contours_font_bold">Poppins-Bold</string>
     <string name="contours_font_semi_bold">Poppins-SemiBold</string>
@@ -131,5 +134,36 @@
     <string name="contours_message_camera_permission_required_id">To capture an ID image with this app, you first need to allow camera access from Settings.</string>
     <string name="contours_message_camera_permission_required_passport">To capture a passport image with this app, you first need to allow camera access from Settings.</string>
     <!--END-->
+
+    <!--Check Capture border area-->
+    <string name="captureBorderArea">@string/captureBorderAreaDefault</string>
+    <!--END-->
+
+    <!--Selfie-->
+    <string name="contours_privacy_title">Privacy disclosure</string>
+    <string name="contours_privacy_description">This experience requires the capture and processing of your facial image, which may constitute biometric data under applicable law. By selecting “I Agree,” you provide your informed, written consent to the collection, use, storage, and deletion of your facial image and derived biometric identifiers solely for the purposes disclosed to you.\n\nYour biometric data will be retained only for as long as necessary to fulfill these purposes or as required by law and will be securely deleted thereafter. We do not sell or disclose biometric data to third parties except service providers acting on our behalf or where legally required.\n\nYou understand that you may decline or withdraw consent at any time without penalty, though doing so may prevent access to this feature.</string>
+    <string name="contours_more">More</string>
+    <string name="contours_selfie_agree">I Agree</string>
+    <string name="contours_selfie_tips_title">For taking a clear selfie</string>
+    <string name="contours_selfie_tips_1">Ensure you are in a well-lit area.</string>
+    <string name="contours_selfie_tips_2">Don’t stand behind bright light.</string>
+    <string name="contours_selfie_tips_3">Remove glasses, hat, mask or anything else that may prevent to see your face.</string>
+    <string name="contours_selfie_instruction_title">Selfie capture instructions</string>
+    <string name="contours_selfie_instruction_1">Look directly at the camera and center your face within the frame.</string>
+    <string name="contours_selfie_instruction_2">Then follow prompts on the screen and move your head up and down.</string>
+    <string name="contours_selfie_face_out_of_view">Your face is out of view</string>
+    <string name="contours_selfie_center_face_within_frame">Center your face within the frame</string>
+    <string name="contours_selfie_bring_camera_closer">Bring camera closer</string>
+    <string name="contours_selfie_move_camera_left">Move camera to the left</string>
+    <string name="contours_selfie_move_camera_right">Move camera to the right</string>
+    <string name="contours_selfie_look_straight">Look straight at the front camera</string>
+    <string name="contours_selfie_head_up">Move your head up and down</string>
+    <string name="contours_selfie_head_down">Move your head up and down</string>
+    <string name="contours_selfie_face_multiple">Make sure only one face is in the frame</string>
+    <string name="contours_selfie_face_cant_detected">Your face can\'t be detected</string>
+    <string name="contours_selfie_success">Success!</string>
+    <string name="contours_message_camera_permission_not_allowed_selfie">To capture a selfie with this app, you first need to allow camera access from settings.</string>
+    <!--selfie end-->
+
 
 </resources>
