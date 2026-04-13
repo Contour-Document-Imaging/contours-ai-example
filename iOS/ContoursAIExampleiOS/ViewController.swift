@@ -100,6 +100,12 @@ class ViewController: UIViewController,CheckCaptureDelegate{
     func eventCaptured(data: [String : Any]?) {
     }
     
+    func selfieCaptured(image: UIImage?) {
+        if image != nil {
+            frontImageView.image = image
+        }
+    }
+    
     // MARK: - Actions
     
     @IBAction func documentButtonClicked(_ sender: Any) {
