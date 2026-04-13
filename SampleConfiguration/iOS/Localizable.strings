@@ -62,7 +62,7 @@
 "contoursEnsureCheck" = "Ensure the check is inside the frame";
 "contoursAdjustFrame" = "Adjust frame";
 "contoursInsufficientStorageError" = "You do not have enough storage to continue scanning.";
-"contourLoadingStarted" = "Loading started";
+
 // ID
 "contoursFlipIDOver" = "Flip the ID over";
 "contoursIDCaptureSuccessful" = "ID capture successful";
@@ -90,8 +90,33 @@
 "contoursPassportCameraAccessDeniedDesc" = "To capture a passport image with this app, you first need to allow camera access from settings.";
 "contoursInvertPassport" = "Invert the passport";
 
-// MARK: - Accessibility
+// Selfie
+"contourLegalPrivacyTitle" = "Privacy disclosure";
+"contourLegalPrivacyDescription" = "This experience requires the capture and processing of your facial image, which may constitute biometric data under applicable law. By selecting “I Agree,” you provide your informed, written consent to the collection, use, storage, and deletion of your facial image and derived biometric identifiers solely for the purposes disclosed to you.
 
+Your biometric data will be retained only for as long as necessary to fulfill these purposes or as required by law and will be securely deleted thereafter. We do not sell or disclose biometric data to third parties except service providers acting on our behalf or where legally required.
+
+You understand that you may decline or withdraw consent at any time without penalty, though doing so may prevent access to this feature.";
+"contourIAgree" = "I Agree";
+"contourMore" = "More";
+"contourSelfieTipsTitle" = "For taking a clear selfie";
+"contourSelfieTips1" = "Ensure you are in a well-lit area.";
+"contourSelfieTips2" = "Don’t stand behind bright light.";
+"contourSelfieTips3" = "Remove glasses, hat, mask or anything else that may prevent to see your face.";
+"contourSelfieInstructionsTitle" = "Selfie capture instructions";
+"contourSelfieInstructions1" = "Look directly at the camera and center your face within the frame.";
+"contourSelfieInstructions2" = "Then follow prompts on the screen and move your head up and down.";
+"contoursSelfieCameraAccessDeniedDesc" = "To capture a selfie with this app, you first need to allow camera access from settings.";
+"contoursbringCameraCloser" = "Bring camera closer";
+"contourYourFaceNotDtected" = "Your face can’t be detected";
+"contourMoveHeadUpDown" = "Move your head up and down";
+"contourFaceOutOfView" = "Your face is out of view";
+"contoursMoveCameraToTheLeft" = "Move camera to the left";
+"contoursMoveCameraToTheRight" = "Move camera to the right";
+"contourCenterYourWithinFrame" = "Center your face within the frame";
+"contourSuccess" = "Success!";
+"contourNofaceDetected" = "No face detected";
+// MARK: - Accessibility
 "contoursCloseButtonAccessibility" = "Close";
 "contoursCheckBoxSelectedAccessibility" = "Check box";
 "contoursCheckBoxUnSelectedAccessibility" = "Check box";
@@ -120,5 +145,10 @@
 "contourtLoadingCompletedAccessibility" = "Loading completed";
 "contourtAdjustCornerIntroScreenAccessibility" = "Four corner intro screen";
 "contourtLoadingFailedAccessibility" = "Loading Failed";
- 
+"contourLoadingStarted" = "Loading started";
+"contourSelfieCaptureScreenAccessibility" = "Selfie capture screen";
+"contourSelfieCaptureInstructionScreenAccessibility" = "Selfie capture instructions screen";
+"contourSelfieCaptureTipsScreenAccessibility" = "Selfie capture tips screen";
+"contourSelfieCapturePrivacyScreenAccessibility" = "Privacy disclosure screen";
+
 

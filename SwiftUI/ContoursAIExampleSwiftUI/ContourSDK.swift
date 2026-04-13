@@ -68,6 +68,13 @@ struct ContoursSDK: UIViewControllerRepresentable {
                 parent.rearImage = uiImage
             }
         }
+        
+        func selfieCaptured(image: UIImage?) {
+            if let selfieImage = image {
+                parent.frontImage = selfieImage
+            }
+        }
+        
     }
 }
 

@@ -486,6 +486,8 @@
 			</dict>
 			<key>imageCapturingScreen</key>
 			<dict>
+				<key>captureBorderArea</key>
+				<string>default</string>
 				<key>previewGradient</key>
 				<dict>
 					<key>gradientColor</key>
@@ -668,7 +670,7 @@
 				<key>flashIcon</key>
 				<dict>
 					<key>isFlashDefaultOn</key>
-					<true/>
+					<false/>
 					<key>showFlashButton</key>
 					<true/>
 					<key>flashOnImage</key>

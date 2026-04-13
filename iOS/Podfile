@@ -6,7 +6,7 @@ target 'ContoursAIExampleiOS' do
   use_frameworks!
 
   # Pods for ContoursAIExampleiOS
-pod 'ContoursAISDK' , '~> 1.16.1'
+pod 'ContoursAISDK' , '~> 1.17.0'
 
 
 end

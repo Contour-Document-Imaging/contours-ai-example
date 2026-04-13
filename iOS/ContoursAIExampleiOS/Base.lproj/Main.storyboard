@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QmJ-Mi-VnQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QmJ-Mi-VnQ">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +14,7 @@
             <objects>
                 <navigationController id="QmJ-Mi-VnQ" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hQI-bA-pES">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="96" width="414" height="54"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -34,10 +34,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faO-E3-SlO">
-                                <rect key="frame" x="13" y="95" width="390" height="34.5"/>
+                                <rect key="frame" x="13" y="95" width="390" height="54.5"/>
                                 <subviews>
                                     <button opaque="NO" tag="101" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f3M-ep-zLI" customClass="TabButton" customModule="ContoursAIExampleiOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="130" height="34.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="97.5" height="54.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Check Scan"/>
                                         <connections>
@@ -45,7 +45,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4HB-1t-BT6" customClass="TabButton" customModule="ContoursAIExampleiOS" customModuleProvider="target">
-                                        <rect key="frame" x="130" y="0.0" width="130" height="34.5"/>
+                                        <rect key="frame" x="97.5" y="0.0" width="97.5" height="54.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="ID Scan"/>
                                         <connections>
@@ -53,17 +53,25 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Urp-ze-6sC" customClass="TabButton" customModule="ContoursAIExampleiOS" customModuleProvider="target">
-                                        <rect key="frame" x="260" y="0.0" width="130" height="34.5"/>
+                                        <rect key="frame" x="195" y="0.0" width="97.5" height="54.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Passport"/>
                                         <connections>
                                             <action selector="selectScanType:" destination="uJG-8w-xhg" eventType="touchUpInside" id="OGo-lu-mnX"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LOg-xQ-J88" customClass="TabButton" customModule="ContoursAIExampleiOS" customModuleProvider="target">
+                                        <rect key="frame" x="292.5" y="0.0" width="97.5" height="54.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Selfie"/>
+                                        <connections>
+                                            <action selector="selectScanType:" destination="uJG-8w-xhg" eventType="touchUpInside" id="wMb-xC-MAk"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="95" translatesAutoresizingMaskIntoConstraints="NO" id="xeh-FM-hbn">
-                                <rect key="frame" x="32.5" y="179.5" width="349" height="494"/>
+                                <rect key="frame" x="32.5" y="199.5" width="349" height="494"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2DU-uB-8bQ">
                                         <rect key="frame" x="0.0" y="0.0" width="349" height="199.5"/>
@@ -80,7 +88,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="94" translatesAutoresizingMaskIntoConstraints="NO" id="raX-PU-Ucv">
-                                <rect key="frame" x="57" y="179.5" width="300" height="492"/>
+                                <rect key="frame" x="57" y="199.5" width="300" height="492"/>
                                 <subviews>
                                     <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7B-y7-vLS">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="199"/>
@@ -107,7 +115,7 @@
                                 </subviews>
                             </stackView>
                             <button hidden="YES" opaque="NO" tag="101" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6H-Yf-dUB">
-                                <rect key="frame" x="162" y="385" width="69" height="30"/>
+                                <rect key="frame" x="162" y="405" width="69" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="mp4-dK-PGG"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="vIS-OA-MGc"/>
@@ -117,7 +125,7 @@
                                 </state>
                             </button>
                             <button hidden="YES" opaque="NO" tag="102" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4rG-Xq-tch">
-                                <rect key="frame" x="162" y="675.5" width="69" height="30"/>
+                                <rect key="frame" x="162" y="695.5" width="69" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="dZj-BB-tVr"/>
                                 </constraints>
@@ -147,6 +155,7 @@
                         <outlet property="frontImageView" destination="2DU-uB-8bQ" id="cFs-FT-csW"/>
                         <outlet property="frontImagebutton" destination="S7B-y7-vLS" id="a5G-Fj-G69"/>
                         <outlet property="passport" destination="Urp-ze-6sC" id="IEg-2f-TQ1"/>
+                        <outlet property="selfie" destination="LOg-xQ-J88" id="eH0-6a-CFT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eak-3H-h8d" sceneMemberID="firstResponder"/>

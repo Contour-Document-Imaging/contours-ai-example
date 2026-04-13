@@ -4,8 +4,8 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
@@ -13,7 +13,9 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.contourdocumentimaging.android.contours_ai.ContoursStarterActivity
 import com.contourdocumentimaging.android.contours_ai.callback.IContoursResultListener
 import com.contourdocumentimaging.android.contours_ai.constants.ContoursConstants
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     //Here, We will collect all events by appending new line char
     private var events: String = "";
     private var docType: ContoursScanType = ContoursScanType.CHECK
+    private val tabs = arrayOf(R.id.check, R.id.id, R.id.passport, R.id.selfie)
 
     private val clientId: String = ""
 
@@ -71,12 +74,14 @@ class MainActivity : AppCompatActivity() {
             tvFront?.text = getString(R.string.front_id)
             tvBack?.text = getString(R.string.back_id)
             findViewById<RelativeLayout>(R.id.layoutBack).visibility = View.VISIBLE
+            handleSelection(it.id)
         }
         findViewById<TextView>(R.id.passport).setOnClickListener {
             docType = ContoursScanType.PASSPORT
             tvFront?.text = getString(R.string.passport)
             resetView()
             findViewById<RelativeLayout>(R.id.layoutBack).visibility = View.INVISIBLE
+            handleSelection(it.id)
         }
         findViewById<TextView>(R.id.check).setOnClickListener {
             docType = ContoursScanType.CHECK
@@ -84,7 +89,16 @@ class MainActivity : AppCompatActivity() {
             tvFront?.text = getString(R.string.front_check)
             tvBack?.text = getString(R.string.back_check)
             findViewById<RelativeLayout>(R.id.layoutBack).visibility = View.VISIBLE
+            handleSelection(it.id)
         }
+        findViewById<TextView>(R.id.selfie).setOnClickListener {
+            docType = ContoursScanType.SELFIE
+            tvFront?.text = getString(R.string.selfie)
+            resetView()
+            findViewById<RelativeLayout>(R.id.layoutBack).visibility = View.INVISIBLE
+            handleSelection(it.id)
+        }
+        handleSelection(R.id.check)
 
     }
 
@@ -136,6 +150,10 @@ class MainActivity : AppCompatActivity() {
 
             override fun onContourClosed() {
                 println("---------- SDK closed")
+            }
+
+            override fun onSelfieCaptured(imageCropped: String?) {
+                showCapturedImage(imageCropped, ivFront, tvFront, true)
             }
         })
         //SDK initialization process complete
@@ -194,6 +212,19 @@ class MainActivity : AppCompatActivity() {
         ivBack?.setImageResource(android.R.color.transparent)
         findViewById<View>(R.id.tvDownloadFront).visibility = View.INVISIBLE
         findViewById<View>(R.id.tvDownloadBack).visibility = View.INVISIBLE
+    }
+
+    private fun handleSelection(selectedId: Int) {
+        tabs.forEach { id ->
+            val textView = findViewById<TextView>(id)
+            if (id == selectedId) {
+                textView.setBackgroundColor(ContextCompat.getColor(this, R.color.purple_500))
+                textView.setTextColor(Color.WHITE)
+            } else {
+                textView.setBackgroundColor(Color.TRANSPARENT)
+                textView.setTextColor(Color.BLACK)
+            }
+        }
     }
 
     companion object {
