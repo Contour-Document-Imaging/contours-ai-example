@@ -26,6 +26,7 @@
     <dimen name="text_size_cta_popup">@dimen/sp_14</dimen>
     <!--END-->
 
+
     <!--Dots and line width config-->
     <dimen name="radius_dot_four_corner">@dimen/dp_10</dimen>
     <dimen name="thickness_line_four_corner">@dimen/dp_3</dimen>
@@ -37,7 +38,7 @@
     <!--Text size of inline message-->
     <dimen name="text_size_inline_message">@dimen/sp_16</dimen>
     <dimen name="thickness_inline_message_border">@dimen/dp_3</dimen>
-    <dimen name="corner_radius_inline_message_border">@dimen/dp_6</dimen>
+<!--    <dimen name="corner_radius_inline_message_border">@dimen/dp_6</dimen>-->
 
     <!--TIPS INTRO: Config for text size and CTA button size and width-->
     <dimen name="text_size_tips_intro_screen_heading">@dimen/sp_18</dimen>
@@ -79,7 +80,7 @@
 
     <!--Text size of inline message-->
     <dimen name="text_size_inline_message_id">@dimen/sp_16</dimen>
-    <dimen name="corner_radius_inline_message_border_id">@dimen/dp_6</dimen>
+<!--    <dimen name="corner_radius_inline_message_border_id">@dimen/dp_6</dimen>-->
 
     <!--Use and Retake CTA config-->
     <dimen name="width_CTA_retake_id">@dimen/dp_160</dimen>
@@ -102,11 +103,46 @@
     <integer name="contours_check_corner_percentage_hint_bg">@integer/contours_corner_percentage</integer>
 
     <!--ID/Password percentage round corner-->
+
     <integer name="contours_id_corner_percentage_title_bg">@integer/contours_corner_percentage</integer>
     <integer name="contours_id_corner_percentage_hint_bg">@integer/contours_corner_percentage</integer>
     <integer name="contours_id_corner_percentage_retake_CTA">@integer/contours_corner_percentage</integer>
     <integer name="contours_id_corner_percentage_use_CTA">@integer/contours_corner_percentage</integer>
     <integer name="contours_id_corner_percentage_dialog_CTA">@integer/contours_corner_percentage</integer>
     <!--END-->
+
+    <!--Selfie-->
+    <integer name="contours_selfie_corner_percentage_more_CTA">100</integer>
+    <integer name="contours_selfie_corner_percentage_hint_bg">100</integer>
+    <integer name="contours_selfie_corner_percentage_privacy_CTA_btn">@integer/contours_corner_percentage</integer>
+    <integer name="contours_selfie_corner_percentage_continue_CTA_btn">@integer/contours_corner_percentage</integer>
+    <integer name="contours_selfie_corner_percentage_begin_CTA_btn">@integer/contours_corner_percentage</integer>
+
+    <dimen name="text_size_privacy_title">20sp</dimen>
+    <dimen name="text_size_privacy_description">16sp</dimen>
+    <dimen name="text_size_privacy_CTA_btn">@dimen/sp_14</dimen>
+    <dimen name="text_size_privacy_more_CTA_btn">@dimen/sp_14</dimen>
+    <dimen name="text_size_privacy_checkbox">@dimen/sp_14</dimen>
+    <dimen name="text_size_selfie_tips_checkbox">@dimen/sp_14</dimen>
+
+    <dimen name="text_size_selfie_tips_title">@dimen/sp_20</dimen>
+    <dimen name="text_size_selfie_tips_description">@dimen/sp_16</dimen>
+    <dimen name="text_size_selfie_instructions_title">@dimen/sp_20</dimen>
+    <dimen name="text_size_selfie_instructions_description">@dimen/sp_16</dimen>
+
+    <dimen name="text_size_selfie_hint">@dimen/sp_12</dimen>
+    <dimen name="border_thickness_selfie_hint">1dp</dimen>
+
+    <dimen name="text_size_selfie_percentage">34sp</dimen>
+    <dimen name="text_size_selfie_feedback">20sp</dimen>
+
+    <dimen name="text_size_selfie_begin_CTA_btn">@dimen/sp_14</dimen>
+    <dimen name="text_size_selfie_continue_CTA_btn">@dimen/sp_14</dimen>
+    <dimen name="text_size_selfie_success">@dimen/sp_34</dimen>
+
+    <dimen name="border_thickness_selfie_circle">15f</dimen>
+    <dimen name="border_thickness_selfie_corner_brackets">10f</dimen>
+
+    <!--Selfie END-->
 
 </resources>

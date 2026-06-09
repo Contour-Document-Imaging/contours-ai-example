@@ -4,10 +4,409 @@
 <dict>
 	<key>Configuration</key>
 	<dict>
+		<key>selfie</key>
+		<dict>
+			<key>progressScreen</key>
+			<dict>
+				<key>failureImage</key>
+				<string>contours_oops_icon</string>
+				<key>progressBarColor</key>
+				<string>346DE9</string>
+				<key>progressScreenBackgroundColor</key>
+				<string>252525</string>
+				<key>tryAgainButton</key>
+				<dict>
+					<key>cornerRadius</key>
+					<integer>30</integer>
+					<key>buttonBackgroundColor</key>
+					<string>346DE9</string>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontSize</key>
+					<integer>15</integer>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>progressHeading</key>
+				<dict>
+					<key>fontSize</key>
+					<integer>36</integer>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>progressDescription</key>
+				<dict>
+					<key>fontName</key>
+					<string>Poppins-Regular</string>
+					<key>fontSize</key>
+					<integer>17</integer>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+			</dict>
+			<key>popupScreen</key>
+			<dict>
+				<key>popupWidth</key>
+				<integer>300</integer>
+				<key>closeButton</key>
+				<dict>
+					<key>isPositionTopLeft</key>
+					<true/>
+					<key>enableCloseButton</key>
+					<true/>
+				</dict>
+				<key>popupBackgroundColorHexCode</key>
+				<string>252525</string>
+				<key>backgroundColorHexCode</key>
+				<string>FFFFFF</string>
+				<key>buttonCTA</key>
+				<dict>
+					<key>cornerRadius</key>
+					<integer>30</integer>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>buttonBackgroundColor</key>
+					<string>346DE9</string>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+					<key>fontSize</key>
+					<integer>15</integer>
+				</dict>
+				<key>description</key>
+				<dict>
+					<key>fontName</key>
+					<string>Poppins-Regular</string>
+					<key>fontSize</key>
+					<integer>15</integer>
+					<key>fontColorHexCode</key>
+					<string>767676</string>
+				</dict>
+				<key>title</key>
+				<dict>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontColorHexCode</key>
+					<string>2a2a2a</string>
+					<key>fontSize</key>
+					<integer>17</integer>
+				</dict>
+			</dict>
+			<key>privacyDisclosureScreen</key>
+			<dict>
+				<key>checkBox</key>
+				<dict>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+					<key>fontSize</key>
+					<integer>17</integer>
+					<key>fontName</key>
+					<string>Poppins-Regular</string>
+				</dict>
+				<key>moreButton</key>
+				<dict>
+					<key>cornerRadius</key>
+					<integer>100</integer>
+					<key>buttonBackgroundColor</key>
+					<string>346DE9</string>
+					<key>showMoreButton</key>
+					<true/>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontSize</key>
+					<integer>15</integer>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>confirmationButton</key>
+				<dict>
+					<key>disableFontColorHexCode</key>
+					<string>FFFFFF</string>
+					<key>disableButtonBackgroundColor</key>
+					<string>E5E5E5</string>
+					<key>cornerRadius</key>
+					<integer>30</integer>
+					<key>buttonBackgroundColor</key>
+					<string>346DE9</string>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontSize</key>
+					<integer>15</integer>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>textBlobBody</key>
+				<dict>
+					<key>showBlobBody</key>
+					<true/>
+					<key>fontName</key>
+					<string>Poppins-Regular</string>
+					<key>fontSize</key>
+					<integer>17</integer>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>textBlobHeader</key>
+				<dict>
+					<key>showBlobHeader</key>
+					<true/>
+					<key>fontSize</key>
+					<integer>21</integer>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>closeButton</key>
+				<dict>
+					<key>showCloseButton</key>
+					<true/>
+					<key>isPositionTopLeft</key>
+					<true/>
+				</dict>
+				<key>backgroundColor</key>
+				<dict>
+					<key>opacity</key>
+					<integer>1</integer>
+					<key>colorHexCode</key>
+					<string>252525</string>
+				</dict>
+				<key>showPrivacyScreen</key>
+				<true/>
+			</dict>
+			<key>tipsScreen</key>
+			<dict>
+				<key>confirmationButton</key>
+				<dict>
+					<key>cornerRadius</key>
+					<integer>30</integer>
+					<key>buttonBackgroundColor</key>
+					<string>346DE9</string>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontSize</key>
+					<integer>15</integer>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>checkBox</key>
+				<dict>
+					<key>enableCheckBox</key>
+					<true/>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+					<key>fontSize</key>
+					<integer>17</integer>
+					<key>fontName</key>
+					<string>Poppins-Regular</string>
+				</dict>
+				<key>textBlobBody</key>
+				<dict>
+					<key>showBlobBody</key>
+					<true/>
+					<key>fontName</key>
+					<string>Poppins-Regular</string>
+					<key>fontSize</key>
+					<integer>17</integer>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>textBlobHeader</key>
+				<dict>
+					<key>showBlobHeader</key>
+					<true/>
+					<key>fontSize</key>
+					<integer>21</integer>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>closeButton</key>
+				<dict>
+					<key>showCloseButton</key>
+					<true/>
+					<key>isPositionTopLeft</key>
+					<true/>
+				</dict>
+				<key>showTipsScreen</key>
+				<true/>
+				<key>backgroundColor</key>
+				<dict>
+					<key>opacity</key>
+					<integer>1</integer>
+					<key>colorHexCode</key>
+					<string>252525</string>
+				</dict>
+			</dict>
+			<key>instructionsScreen</key>
+			<dict>
+				<key>confirmationButton</key>
+				<dict>
+					<key>cornerRadius</key>
+					<integer>30</integer>
+					<key>buttonBackgroundColor</key>
+					<string>346DE9</string>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontSize</key>
+					<integer>15</integer>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>textBlobBody</key>
+				<dict>
+					<key>showBlobBody</key>
+					<true/>
+					<key>fontName</key>
+					<string>Poppins-Regular</string>
+					<key>fontSize</key>
+					<integer>17</integer>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>textBlobHeader</key>
+				<dict>
+					<key>showBlobHeader</key>
+					<true/>
+					<key>fontSize</key>
+					<integer>21</integer>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+				</dict>
+				<key>closeButton</key>
+				<dict>
+					<key>showCloseButton</key>
+					<true/>
+					<key>isPositionTopLeft</key>
+					<true/>
+				</dict>
+				<key>showInstructionScreen</key>
+				<true/>
+				<key>backgroundColor</key>
+				<dict>
+					<key>opacity</key>
+					<integer>1</integer>
+					<key>colorHexCode</key>
+					<string>252525</string>
+				</dict>
+			</dict>
+			<key>capturingScreen</key>
+			<dict>
+				<key>chevronDownArrows</key>
+				<string>contours_animatedDownArrow</string>
+				<key>chevronUpArrows </key>
+				<string>contours_animatedUpArrow</string>
+				<key>errorMessage</key>
+				<dict>
+					<key>showErrorMessage</key>
+					<true/>
+					<key>fontSize</key>
+					<integer>26</integer>
+					<key>fontName</key>
+					<string>Poppins-Bold</string>
+					<key>fontColorHexCode</key>
+					<string>ffffff</string>
+				</dict>
+				<key>success</key>
+				<dict>
+					<key>successIcon</key>
+					<string>contour_Selfie_Success</string>
+					<key>successMessage</key>
+					<dict>
+						<key>showSuccessMessage</key>
+						<true/>
+						<key>fontSize</key>
+						<integer>26</integer>
+						<key>fontName</key>
+						<string>Poppins-Bold</string>
+						<key>fontColorHexCode</key>
+						<string>ffffff</string>
+						<key>enableHapticEffect</key>
+						<true/>
+					</dict>
+				</dict>
+				<key>guidedFeedbackMessage</key>
+				<dict>
+					<key>cornerRadius</key>
+					<integer>100</integer>
+					<key>borderThickness</key>
+					<integer>1</integer>
+					<key>showFeedbackMessage</key>
+					<true/>
+					<key>showGuidedMessage</key>
+					<true/>
+					<key>enableHapticEffect</key>
+					<true/>
+					<key>fontSize</key>
+					<integer>13</integer>
+					<key>fontName</key>
+					<string>Poppins-Regular</string>
+					<key>fontColorHexCode</key>
+					<string>ffffff</string>
+					<key>guidedBackgroundColorHexCode</key>
+					<string>FF6A5B</string>
+					<key>guidedBorderColorHexCode</key>
+					<string>ffffff</string>
+					<key>feedBackBackgroundColorHexCode</key>
+					<string>BA200F</string>
+					<key>feedbackBorderColorHexCode</key>
+					<string>DD200C</string>
+				</dict>
+				<key>circleProgressFrame</key>
+				<dict>
+					<key>borderWidth</key>
+					<integer>6</integer>
+					<key>frameColorHexCode</key>
+					<string>ffffff</string>
+					<key>progressFrameColorHexCode</key>
+					<string>1CC765</string>
+				</dict>
+				<key>squareFrameBracketIndicator</key>
+				<dict>
+					<key>colorHexCode</key>
+					<string>ffffff</string>
+					<key>opacity</key>
+					<integer>1</integer>
+					<key>borderWidth</key>
+					<integer>4</integer>
+				</dict>
+				<key>progressPercentageText</key>
+				<dict>
+					<key>fontColorHexCode</key>
+					<string>FFFFFF</string>
+					<key>fontSize</key>
+					<integer>26</integer>
+					<key>fontName</key>
+					<string>Poppins-Medium</string>
+					<key>showPercentageText</key>
+					<true/>
+				</dict>
+				<key>closeButton</key>
+				<dict>
+					<key>showCloseButton</key>
+					<true/>
+					<key>isPositionTopLeft</key>
+					<true/>
+				</dict>
+				<key>backgroundColor</key>
+				<dict>
+					<key>opacity</key>
+					<integer>1</integer>
+					<key>colorHexCode</key>
+					<string>252525</string>
+				</dict>
+			</dict>
+		</dict>
 		<key>ID</key>
 		<dict>
 			<key>popupScreen</key>
 			<dict>
+				<key>popupWidth</key>
+				<integer>300</integer>
 				<key>closeButton</key>
 				<dict>
 					<key>isPositionTopLeft</key>
@@ -50,8 +449,6 @@
 					<key>fontSize</key>
 					<integer>17</integer>
 				</dict>
-				<key>popupWidth</key>
-				<integer>300</integer>
 			</dict>
 			<key>progressScreen</key>
 			<dict>
@@ -73,13 +470,6 @@
 					<integer>15</integer>
 					<key>fontColorHexCode</key>
 					<string>FFFFFF</string>
-					<key>buttonSize</key>
-					<dict>
-						<key>height</key>
-						<integer>46</integer>
-						<key>width</key>
-						<integer>180</integer>
-					</dict>
 				</dict>
 				<key>progressHeading</key>
 				<dict>
@@ -167,7 +557,7 @@
 					<string>contours_camera_capture_btn</string>
 				</dict>
 				<key>imageHoldTime</key>
-				<integer>6</integer>
+				<integer>2</integer>
 				<key>blurThreshould</key>
 				<integer>250</integer>
 				<key>successInlineMessage</key>
@@ -329,13 +719,6 @@
 					<integer>15</integer>
 					<key>fontColorHexCode</key>
 					<string>FFFFFF</string>
-					<key>buttonSize</key>
-					<dict>
-						<key>height</key>
-						<integer>46</integer>
-						<key>width</key>
-						<integer>180</integer>
-					</dict>
 				</dict>
 				<key>progressHeading</key>
 				<dict>
@@ -487,7 +870,7 @@
 			<key>imageCapturingScreen</key>
 			<dict>
 				<key>captureBorderArea</key>
-				<string>default</string>
+				<string>small</string>
 				<key>previewGradient</key>
 				<dict>
 					<key>gradientColor</key>
@@ -589,7 +972,7 @@
 					<string>contours_camera_capture_btn</string>
 				</dict>
 				<key>imageHoldTime</key>
-				<integer>6</integer>
+				<integer>2</integer>
 				<key>blurThreshould</key>
 				<integer>250</integer>
 				<key>successInlineMessage</key>
@@ -780,13 +1163,6 @@
 					<integer>15</integer>
 					<key>fontColorHexCode</key>
 					<string>FFFFFF</string>
-					<key>buttonSize</key>
-					<dict>
-						<key>height</key>
-						<integer>46</integer>
-						<key>width</key>
-						<integer>180</integer>
-					</dict>
 				</dict>
 				<key>closeButton</key>
 				<dict>
@@ -843,13 +1219,6 @@
 					<integer>15</integer>
 					<key>fontColorHexCode</key>
 					<string>FFFFFF</string>
-					<key>buttonSize</key>
-					<dict>
-						<key>height</key>
-						<integer>46</integer>
-						<key>width</key>
-						<integer>180</integer>
-					</dict>
 				</dict>
 				<key>closeButton</key>
 				<dict>
@@ -884,13 +1253,6 @@
 					<integer>15</integer>
 					<key>fontColorHexCode</key>
 					<string>FFFFFF</string>
-					<key>buttonSize</key>
-					<dict>
-						<key>height</key>
-						<integer>46</integer>
-						<key>width</key>
-						<integer>180</integer>
-					</dict>
 				</dict>
 				<key>backgroundColor</key>
 				<dict>
@@ -936,19 +1298,25 @@
 		</dict>
 		<key>commonConfig</key>
 		<dict>
-			<key>closeButton</key>
-			<dict>
-				<key>closeButtonImageWhite</key>
-				<string>contours_close_icon_white</string>
-				<key>closeButtonImageGray</key>
-				<string>contours_close_icon</string>
-			</dict>
 			<key>checkBox</key>
 			<dict>
 				<key>selectedImage</key>
 				<string>contours_checkbox_selected</string>
 				<key>unSelectedImage</key>
 				<string>contours_checkbox_unselected</string>
+				<key>tickColor</key>
+				<string>ffffff</string>
+				<key>borderColor</key>
+				<string>767676</string>
+				<key>solidIconColor</key>
+				<string>346DE9</string>
+			</dict>
+			<key>closeButton</key>
+			<dict>
+				<key>closeButtonImageWhite</key>
+				<string>contours_close_icon_white</string>
+				<key>closeButtonImageGray</key>
+				<string>contours_close_icon</string>
 			</dict>
 		</dict>
 		<key>globalSDKConfig</key>

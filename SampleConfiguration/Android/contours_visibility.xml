@@ -3,7 +3,7 @@
 
     <!--Capturing screen-->
     <bool name="contours_auto_on_off_visibility">true</bool>
-    <bool name="contours_flash_on">true</bool>
+    <bool name="contours_flash_on">false</bool>
     <!--END-->
 
     <!--Config to handle Preview visibility-->
@@ -84,5 +84,25 @@
     <!--Gradient Setting-->
     <bool name="contours_gradient_visibility">false</bool>
     <!--END ID/Passport-->
+
+    <!--Selfie-->
+    <bool name="contours_selfie_privacy_screen_visibility">true</bool>
+    <bool name="contours_selfie_tips_screen_visibility">true</bool>
+    <bool name="contours_selfie_instructions_screen_visibility">true</bool>
+
+    <bool name="contours_privacy_close_icon_visibility">true</bool>
+    <bool name="contours_privacy_more_button_visibility">true</bool>
+    <bool name="contours_selfie_checkbox_visibility">true</bool>
+    <bool name="contours_selfie_close_icon_visibility">true</bool>
+
+
+    <bool name="contours_selfie_inline_hint_visibility">true</bool>
+    <bool name="contours_selfie_percentage_visibility">true</bool>
+    <bool name="contours_selfie_success_message_visibility">true</bool>
+    <bool name="contours_selfie_feedback_message_visibility">true</bool>
+    <bool name="contours_selfie_haptic_feedback_inline_enabled">true</bool>
+    <bool name="contours_selfie_haptic_feedback_success_enabled">true</bool>
+    <!--END Selfie-->
+
 
 </resources>

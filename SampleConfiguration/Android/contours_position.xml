@@ -21,5 +21,9 @@
     <!--Position exchange close icon on pop-up screen-->
     <bool name="contours_id_popup_close_icon_position_left">true</bool>
     <!--END-->
-    <!--END ID/Passport-->
+
+    <!--Selfie-->
+    <bool name="contours_privacy_close_icon_position_left">true</bool>
+    <bool name="contours_selfie_close_icon_position_left">true</bool>
+    <!--END-->
 </resources>

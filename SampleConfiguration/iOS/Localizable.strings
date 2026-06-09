@@ -115,7 +115,7 @@ You understand that you may decline or withdraw consent at any time without pena
 "contoursMoveCameraToTheRight" = "Move camera to the right";
 "contourCenterYourWithinFrame" = "Center your face within the frame";
 "contourSuccess" = "Success!";
-"contourNofaceDetected" = "No face detected";
+
 // MARK: - Accessibility
 "contoursCloseButtonAccessibility" = "Close";
 "contoursCheckBoxSelectedAccessibility" = "Check box";

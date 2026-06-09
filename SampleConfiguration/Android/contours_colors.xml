@@ -153,4 +153,67 @@
     <color name="color_contours_gradient">#252525</color>
     <!--END-->
 
+    <!--Selfie-->
+    <color name="color_contours_privacy_screen_background">@color/color_contours_background</color>
+    <color name="color_contours_selfie_tips_background">@color/color_contours_background</color>
+    <color name="color_contours_selfie_instructions_background">@color/color_contours_background</color>
+    <color name="color_contours_privacy_title">@color/color_contours_text</color>
+    <color name="color_contours_privacy_description">@color/color_contours_text</color>
+
+
+    <color name="color_contours_instructions">@color/color_contours_text</color>
+    <color name="color_contours_selfie_overlay">#cc2a2a2a</color>
+    <color name="color_contours_selfie_progress">#4CAF50</color>
+    <color name="color_contours_selfie_circle">#ffffff</color>
+    <color name="color_contours_selfie_corner_brackets">#ffffff</color>
+
+    <color name="color_privacy_screen_CTA_text">@color/color_contours_CTA_secondary_background</color>
+    <color name="color_privacy_screen_more_CTA_text">@color/color_contours_CTA_secondary_background</color>
+
+    <color name="color_contours_privacy_checkbox_selected">@color/color_contours_CTA_primary_background</color>
+    <color name="color_contours_privacy_checkbox_unselected">@color/color_contours_CTA_secondary_background</color>
+    <color name="color_contours_privacy_checkbox_tick">@color/color_white</color>
+    <color name="color_contours_privacy_checkbox_text">@color/color_contours_text</color>
+    <color name="color_contours_privacy_checkbox_unselected_border">#767676</color>
+
+
+    <color name="color_privacy_more_CTA_background">@color/color_contours_CTA_primary_background</color>
+    <color name="color_privacy_continue_CTA_enabled">@color/color_contours_CTA_primary_background</color>
+    <color name="color_privacy_continue_CTA_disabled">@color/color_contours_button_disabled</color>
+    <color name="color_privacy_screen_CTA_disabled_text">@color/color_contours_CTA_secondary_background</color>
+
+
+    <color name="color_selfie_tips_CTA_background">@color/color_contours_CTA_primary_background</color>
+    <color name="color_selfie_tips_CTA_text">@color/color_contours_CTA_secondary_background</color>
+    <color name="color_contours_selfie_tips_checkbox_selected">@color/color_contours_CTA_primary_background</color>
+    <color name="color_contours_selfie_tips_checkbox_unselected">@color/color_contours_CTA_secondary_background</color>
+    <color name="color_contours_selfie_tips_checkbox_tick">@color/color_white</color>
+    <color name="color_contours_selfie_tips_checkbox_text">@color/color_contours_text</color>
+    <color name="color_contours_selfie_tips_checkbox_unselected_border">#767676</color>
+
+    <color name="color_contours_selfie_tips">@color/color_contours_text</color>
+
+    <color name="color_selfie_instructions_CTA_background">@color/color_contours_CTA_primary_background</color>
+    <color name="color_selfie_instructions_CTA_text">@color/color_contours_CTA_secondary_background</color>
+
+    <!--pop up dialog-->
+    <color name="color_contours_popup_title_selfie">@color/color_2a2a2a</color>
+    <color name="color_contours_popup_desc_selfie">@color/color_767676</color>
+    <color name="color_contours_popup_CTA_text_selfie">@color/color_contours_CTA_secondary_background</color>
+    <color name="color_contours_popup_CTA_background_selfie">@color/color_contours_CTA_primary_background</color>
+    <color name="color_contours_popup_background_selfie">@color/color_contours_background</color>
+    <color name="color_contours_popup_selfie">@color/color_white</color>
+    <!--END-->
+
+    <color name="color_contours_selfie_percentage">#FFFFFF</color>
+    <color name="color_contours_selfie_success_text">#FFFFFF</color>
+    <color name="color_contours_selfie_feedback">#FFFFFF</color>
+    <!--Hint Selfie-->
+    <color name="color_contours_selfie_hint_text">@color/color_white</color>
+    <color name="color_contours_selfie_hint_bg">#FF6A5B</color>
+    <color name="color_contours_selfie_hint_border">#FFFFFF</color>
+    <color name="color_contours_selfie_hint_bg_error">#BA200F</color>
+    <color name="color_contours_selfie_hint_border_error">#DD200C</color>
+    <!--Selfie end-->
+
 </resources>

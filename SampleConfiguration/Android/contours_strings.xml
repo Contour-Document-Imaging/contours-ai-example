@@ -163,6 +163,11 @@
     <string name="contours_selfie_face_cant_detected">Your face can\'t be detected</string>
     <string name="contours_selfie_success">Success!</string>
     <string name="contours_message_camera_permission_not_allowed_selfie">To capture a selfie with this app, you first need to allow camera access from settings.</string>
+
+    <string name="contours_privacy_continue">Continue</string>
+    <string name="contours_selfie_continue">Continue</string>
+    <string name="contours_selfie_tips_begin">Begin</string>
+    <string name="contours_selfie_tips_don_t_show_again">@string/contours_don_t_show_again</string>
     <!--selfie end-->
 
 
