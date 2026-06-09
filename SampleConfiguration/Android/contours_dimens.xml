@@ -1,144 +1,144 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Overlay View config-->
-    <dimen name="text_size_micr_format">@dimen/dp_26</dimen>
+    <dimen name="text_size_micr_format">26dp</dimen>
     <!--END-->
 
     <!--Loading UI config-->
-    <dimen name="text_size_oops">@dimen/sp_34</dimen>
-    <dimen name="text_size_loading_screen_percentage_number">@dimen/sp_48</dimen>
-    <dimen name="text_size_loading_screen_percentage_sign">@dimen/sp_28</dimen>
-    <dimen name="text_size_loading_screen_description_text">@dimen/sp_16</dimen>
-    <dimen name="text_size_loading_screen_CTA_text">@dimen/sp_14</dimen>
-    <dimen name="width_loading_cta">@dimen/dp_244</dimen>
+    <dimen name="text_size_oops">34sp</dimen>
+    <dimen name="text_size_loading_screen_percentage_number">48sp</dimen>
+    <dimen name="text_size_loading_screen_percentage_sign">28sp</dimen>
+    <dimen name="text_size_loading_screen_description_text">16sp</dimen>
+    <dimen name="text_size_loading_screen_CTA_text">14sp</dimen>
+    <dimen name="width_loading_cta">244dp</dimen>
     <!--END-->
 
     <!--Capture Screen-->
-    <dimen name="text_size_title_check_face_of_capture">@dimen/sp_14</dimen>
-    <dimen name="text_size_auto_on_off">@dimen/sp_12</dimen>
+    <dimen name="text_size_title_check_face_of_capture">14sp</dimen>
+    <dimen name="text_size_auto_on_off">12sp</dimen>
     <!--END-->
 
     <!--pop up dialog-->
-    <dimen name="width_popup_dialog">@dimen/dp_360</dimen>
-    <dimen name="width_popup_cta">@dimen/dp_244</dimen>
-    <dimen name="text_size_title_popup">@dimen/sp_16</dimen>
-    <dimen name="text_size_desc_popup">@dimen/sp_14</dimen>
-    <dimen name="text_size_cta_popup">@dimen/sp_14</dimen>
+    <dimen name="width_popup_dialog">360dp</dimen>
+    <dimen name="width_popup_cta">244dp</dimen>
+    <dimen name="text_size_title_popup">16sp</dimen>
+    <dimen name="text_size_desc_popup">14sp</dimen>
+    <dimen name="text_size_cta_popup">14sp</dimen>
     <!--END-->
 
 
     <!--Dots and line width config-->
-    <dimen name="radius_dot_four_corner">@dimen/dp_10</dimen>
-    <dimen name="thickness_line_four_corner">@dimen/dp_3</dimen>
-    <dimen name="thickness_dots_border_four_corner">@dimen/dp_1</dimen>
-    <dimen name="text_size_title_four_corner_selection">@dimen/sp_14</dimen>
-    <dimen name="text_size_CTA_four_corner_selection">@dimen/sp_14</dimen>
+    <dimen name="radius_dot_four_corner">10dp</dimen>
+    <dimen name="thickness_line_four_corner">3dp</dimen>
+    <dimen name="thickness_dots_border_four_corner">1dp</dimen>
+    <dimen name="text_size_title_four_corner_selection">14sp</dimen>
+    <dimen name="text_size_CTA_four_corner_selection">14sp</dimen>
     <!---->
 
     <!--Text size of inline message-->
-    <dimen name="text_size_inline_message">@dimen/sp_16</dimen>
-    <dimen name="thickness_inline_message_border">@dimen/dp_3</dimen>
+    <dimen name="text_size_inline_message">16sp</dimen>
+    <dimen name="thickness_inline_message_border">3dp</dimen>
 <!--    <dimen name="corner_radius_inline_message_border">@dimen/dp_6</dimen>-->
 
     <!--TIPS INTRO: Config for text size and CTA button size and width-->
-    <dimen name="text_size_tips_intro_screen_heading">@dimen/sp_18</dimen>
-    <dimen name="text_size_tips_intro_screen_sub_heading">@dimen/sp_15</dimen>
-    <dimen name="text_size_tips_intro_screen_checkbox">@dimen/dp_14</dimen>
+    <dimen name="text_size_tips_intro_screen_heading">18sp</dimen>
+    <dimen name="text_size_tips_intro_screen_sub_heading">15sp</dimen>
+    <dimen name="text_size_tips_intro_screen_checkbox">14dp</dimen>
 
-    <dimen name="width_tips_intro_screen_CTA_btn">@dimen/dp_176</dimen>
-    <dimen name="height_tips_intro_screen_CTA_btn">@dimen/dp_48</dimen>
-    <dimen name="text_size_tips_intro_screen_CTA_btn">@dimen/sp_16</dimen>
+    <dimen name="width_tips_intro_screen_CTA_btn">176dp</dimen>
+    <dimen name="height_tips_intro_screen_CTA_btn">48dp</dimen>
+    <dimen name="text_size_tips_intro_screen_CTA_btn">16sp</dimen>
     <!--END-->
 
     <!--FOUR CORNERS INTRO: Config for text size and CTA button size and width-->
-    <dimen name="text_size_four_corner_intro_screen_point1">@dimen/sp_12</dimen>
-    <dimen name="text_size_four_corner_intro_screen_point2">@dimen/sp_12</dimen>
-    <dimen name="text_size_four_corner_intro_screen_text1">@dimen/sp_14</dimen>
-    <dimen name="text_size_four_corner_intro_screen_text2">@dimen/sp_14</dimen>
-    <dimen name="text_size_four_corners_intro_screen_checkbox">@dimen/dp_14</dimen>
-    <dimen name="width_four_corners_circle">@dimen/sp_22</dimen>
+    <dimen name="text_size_four_corner_intro_screen_point1">12sp</dimen>
+    <dimen name="text_size_four_corner_intro_screen_point2">12sp</dimen>
+    <dimen name="text_size_four_corner_intro_screen_text1">14sp</dimen>
+    <dimen name="text_size_four_corner_intro_screen_text2">14sp</dimen>
+    <dimen name="text_size_four_corners_intro_screen_checkbox">14dp</dimen>
+    <dimen name="width_four_corners_circle">22dp</dimen>
 
-    <dimen name="width_four_corners_intro_screen_CTA_btn">@dimen/dp_176</dimen>
-    <dimen name="height_four_corners_intro_screen_CTA_btn">@dimen/dp_46</dimen>
-    <dimen name="text_size_four_corners_intro_screen_CTA_btn">@dimen/sp_16</dimen>
+    <dimen name="width_four_corners_intro_screen_CTA_btn">176dp</dimen>
+    <dimen name="height_four_corners_intro_screen_CTA_btn">46dp</dimen>
+    <dimen name="text_size_four_corners_intro_screen_CTA_btn">16sp</dimen>
     <!--END-->
 
     <!--ENDORSE INTRO: Config for text size and CTA button size and width-->
-    <dimen name="text_size_endorse_intro_screen_heading">@dimen/sp_16</dimen>
-    <dimen name="text_size_endorse_intro_screen_sub_heading">@dimen/sp_16</dimen>
-    <dimen name="height_endorse_intro_screen_CTA_btn">@dimen/dp_40</dimen>
-    <dimen name="text_size_endorse_intro_screen_CTA_btn">@dimen/sp_14</dimen>
+    <dimen name="text_size_endorse_intro_screen_heading">16sp</dimen>
+    <dimen name="text_size_endorse_intro_screen_sub_heading">16sp</dimen>
+    <dimen name="height_endorse_intro_screen_CTA_btn">40dp</dimen>
+    <dimen name="text_size_endorse_intro_screen_CTA_btn">14sp</dimen>
     <!--END-->
 
     <!--ID/Passport text sizes-->
     <!--Capture Screen-->
-    <dimen name="text_size_title_id_face_of_capture">@dimen/sp_14</dimen>
-    <dimen name="text_size_auto_on_off_id">@dimen/sp_12</dimen>
+    <dimen name="text_size_title_id_face_of_capture">14sp</dimen>
+    <dimen name="text_size_auto_on_off_id">12sp</dimen>
 
     <!--Text size of inline message for ID-->
-    <dimen name="thickness_inline_message_border_id">@dimen/dp_2</dimen>
+    <dimen name="thickness_inline_message_border_id">2dp</dimen>
 
     <!--Text size of inline message-->
-    <dimen name="text_size_inline_message_id">@dimen/sp_16</dimen>
+    <dimen name="text_size_inline_message_id">16sp</dimen>
 <!--    <dimen name="corner_radius_inline_message_border_id">@dimen/dp_6</dimen>-->
 
     <!--Use and Retake CTA config-->
-    <dimen name="width_CTA_retake_id">@dimen/dp_160</dimen>
-    <dimen name="width_CTA_use_id">@dimen/dp_160</dimen>
-    <dimen name="text_size_CTA_retake_id">@dimen/sp_14</dimen>
-    <dimen name="text_size_CTA_use_id">@dimen/sp_14</dimen>
+    <dimen name="width_CTA_retake_id">160dp</dimen>
+    <dimen name="width_CTA_use_id">160dp</dimen>
+    <dimen name="text_size_CTA_retake_id">14sp</dimen>
+    <dimen name="text_size_CTA_use_id">14sp</dimen>
     <!--END ID/Passport-->
 
     <!--Here, We are setting percentage of round corners of CTA buttons, 0 means no radius on corners, 100 means round-->
     <integer name="contours_corner_percentage">30</integer>
-    <integer name="contours_check_corner_percentage_begin_CTA">@integer/contours_corner_percentage</integer>
-    <integer name="contours_check_corner_percentage_retake_CTA">@integer/contours_corner_percentage</integer>
-    <integer name="contours_check_corner_percentage_adjust_CTA">@integer/contours_corner_percentage</integer>
-    <integer name="contours_check_corner_percentage_use_CTA">@integer/contours_corner_percentage</integer>
-    <integer name="contours_check_corner_percentage_continue_CTA">@integer/contours_corner_percentage</integer>
-    <integer name="contours_check_corner_percentage_got_it_CTA">@integer/contours_corner_percentage</integer>
-    <integer name="contours_check_corner_percentage_got_it_error_screen_CTA">@integer/contours_corner_percentage</integer>
-    <integer name="contours_check_corner_percentage_dialog_CTA">@integer/contours_corner_percentage</integer>
-    <integer name="contours_check_corner_percentage_title_bg">@integer/contours_corner_percentage</integer>
-    <integer name="contours_check_corner_percentage_hint_bg">@integer/contours_corner_percentage</integer>
+    <integer name="contours_check_corner_percentage_begin_CTA">30</integer>
+    <integer name="contours_check_corner_percentage_retake_CTA">30</integer>
+    <integer name="contours_check_corner_percentage_adjust_CTA">30</integer>
+    <integer name="contours_check_corner_percentage_use_CTA">30</integer>
+    <integer name="contours_check_corner_percentage_continue_CTA">30</integer>
+    <integer name="contours_check_corner_percentage_got_it_CTA">30</integer>
+    <integer name="contours_check_corner_percentage_got_it_error_screen_CTA">30</integer>
+    <integer name="contours_check_corner_percentage_dialog_CTA">30</integer>
+    <integer name="contours_check_corner_percentage_title_bg">30</integer>
+    <integer name="contours_check_corner_percentage_hint_bg">30</integer>
 
     <!--ID/Password percentage round corner-->
 
-    <integer name="contours_id_corner_percentage_title_bg">@integer/contours_corner_percentage</integer>
-    <integer name="contours_id_corner_percentage_hint_bg">@integer/contours_corner_percentage</integer>
-    <integer name="contours_id_corner_percentage_retake_CTA">@integer/contours_corner_percentage</integer>
-    <integer name="contours_id_corner_percentage_use_CTA">@integer/contours_corner_percentage</integer>
-    <integer name="contours_id_corner_percentage_dialog_CTA">@integer/contours_corner_percentage</integer>
+    <integer name="contours_id_corner_percentage_title_bg">30</integer>
+    <integer name="contours_id_corner_percentage_hint_bg">30</integer>
+    <integer name="contours_id_corner_percentage_retake_CTA">30</integer>
+    <integer name="contours_id_corner_percentage_use_CTA">30</integer>
+    <integer name="contours_id_corner_percentage_dialog_CTA">30</integer>
     <!--END-->
 
     <!--Selfie-->
     <integer name="contours_selfie_corner_percentage_more_CTA">100</integer>
     <integer name="contours_selfie_corner_percentage_hint_bg">100</integer>
-    <integer name="contours_selfie_corner_percentage_privacy_CTA_btn">@integer/contours_corner_percentage</integer>
-    <integer name="contours_selfie_corner_percentage_continue_CTA_btn">@integer/contours_corner_percentage</integer>
-    <integer name="contours_selfie_corner_percentage_begin_CTA_btn">@integer/contours_corner_percentage</integer>
+    <integer name="contours_selfie_corner_percentage_privacy_CTA_btn">30</integer>
+    <integer name="contours_selfie_corner_percentage_continue_CTA_btn">30</integer>
+    <integer name="contours_selfie_corner_percentage_begin_CTA_btn">30</integer>
 
     <dimen name="text_size_privacy_title">20sp</dimen>
     <dimen name="text_size_privacy_description">16sp</dimen>
-    <dimen name="text_size_privacy_CTA_btn">@dimen/sp_14</dimen>
-    <dimen name="text_size_privacy_more_CTA_btn">@dimen/sp_14</dimen>
-    <dimen name="text_size_privacy_checkbox">@dimen/sp_14</dimen>
-    <dimen name="text_size_selfie_tips_checkbox">@dimen/sp_14</dimen>
+    <dimen name="text_size_privacy_CTA_btn">14sp</dimen>
+    <dimen name="text_size_privacy_more_CTA_btn">14sp</dimen>
+    <dimen name="text_size_privacy_checkbox">14sp</dimen>
+    <dimen name="text_size_selfie_tips_checkbox">14sp</dimen>
 
-    <dimen name="text_size_selfie_tips_title">@dimen/sp_20</dimen>
-    <dimen name="text_size_selfie_tips_description">@dimen/sp_16</dimen>
-    <dimen name="text_size_selfie_instructions_title">@dimen/sp_20</dimen>
-    <dimen name="text_size_selfie_instructions_description">@dimen/sp_16</dimen>
+    <dimen name="text_size_selfie_tips_title">20sp</dimen>
+    <dimen name="text_size_selfie_tips_description">16sp</dimen>
+    <dimen name="text_size_selfie_instructions_title">20sp</dimen>
+    <dimen name="text_size_selfie_instructions_description">16sp</dimen>
 
-    <dimen name="text_size_selfie_hint">@dimen/sp_12</dimen>
+    <dimen name="text_size_selfie_hint">12sp</dimen>
     <dimen name="border_thickness_selfie_hint">1dp</dimen>
 
     <dimen name="text_size_selfie_percentage">34sp</dimen>
     <dimen name="text_size_selfie_feedback">20sp</dimen>
 
-    <dimen name="text_size_selfie_begin_CTA_btn">@dimen/sp_14</dimen>
-    <dimen name="text_size_selfie_continue_CTA_btn">@dimen/sp_14</dimen>
-    <dimen name="text_size_selfie_success">@dimen/sp_34</dimen>
+    <dimen name="text_size_selfie_begin_CTA_btn">14sp</dimen>
+    <dimen name="text_size_selfie_continue_CTA_btn">14sp</dimen>
+    <dimen name="text_size_selfie_success">34sp</dimen>
 
     <dimen name="border_thickness_selfie_circle">15f</dimen>
     <dimen name="border_thickness_selfie_corner_brackets">10f</dimen>

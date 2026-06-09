@@ -2,146 +2,146 @@
 <resources>
 
     <!--Global color config-->
-    <color name="color_contours_text">@color/color_white</color>
-    <color name="color_contours_CTA_primary_background">@color/contours_blue</color>
-    <color name="color_contours_CTA_secondary_background">@color/color_white</color>
-    <color name="color_contours_background">@color/color_252525</color>
+    <color name="color_contours_text">#FFFFFF</color>
+    <color name="color_contours_CTA_primary_background">#346DE9</color>
+    <color name="color_contours_CTA_secondary_background">#FFFFFF</color>
+    <color name="color_contours_background">#252525</color>
     <!--END-->
 
     <!--Loading UI-->
-    <color name="color_loading_background">@color/color_contours_background</color>
-    <color name="color_loading_screen_CTA_background">@color/color_contours_CTA_primary_background</color>
-    <color name="color_loading_screen_CTA_text">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_loading_screen_text">@color/color_contours_text</color>
-    <color name="color_loading_screen_progress_bar">@color/color_contours_CTA_primary_background</color>
+    <color name="color_loading_background">#252525</color>
+    <color name="color_loading_screen_CTA_background">#346DE9</color>
+    <color name="color_loading_screen_CTA_text">#FFFFFF</color>
+    <color name="color_loading_screen_text">#FFFFFF</color>
+    <color name="color_loading_screen_progress_bar">#346DE9</color>
     <!--END-->
 
     <!--Intro screens color config-->
     <!--Default color of CTA background and checkbox text-->
-    <color name="color_intro_screen_checkbox_text">@color/color_contours_text</color>
-    <color name="color_intro_screen_CTA_background">@color/color_contours_CTA_primary_background</color>
-    <color name="color_intro_screen_checkbox_solid">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_intro_screen_checkbox_border">@color/color_767676</color>
-    <color name="color_intro_screen_checkbox_tick">@color/color_2E3D5F</color>
+    <color name="color_intro_screen_checkbox_text">#FFFFFF</color>
+    <color name="color_intro_screen_CTA_background">#346DE9</color>
+    <color name="color_intro_screen_checkbox_solid">#FFFFFF</color>
+    <color name="color_intro_screen_checkbox_border">#767676</color>
+    <color name="color_intro_screen_checkbox_tick">#2E3D5F</color>
     <!---->
 
     <!--Color config for tips intro screen-->
-    <color name="color_tips_intro_background">@color/color_contours_background</color>
-    <color name="color_tips_intro_screen_heading">@color/color_contours_text</color>
-    <color name="color_tips_intro_screen_subheading">@color/color_contours_text</color>
-    <color name="color_tips_intro_screen_CTA_text">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_tips_intro_screen_CTA_background">@color/color_intro_screen_CTA_background</color>
-    <color name="color_tips_intro_screen_checkbox_text">@color/color_intro_screen_checkbox_text</color>
+    <color name="color_tips_intro_background">#252525</color>
+    <color name="color_tips_intro_screen_heading">#FFFFFF</color>
+    <color name="color_tips_intro_screen_subheading">#FFFFFF</color>
+    <color name="color_tips_intro_screen_CTA_text">#FFFFFF</color>
+    <color name="color_tips_intro_screen_CTA_background">#346DE9</color>
+    <color name="color_tips_intro_screen_checkbox_text">#FFFFFF</color>
     <!--Config of tips intro ends here-->
 
     <!--Color config for four corners intro screen-->
-    <color name="color_four_corners_intro_background">@color/color_contours_background</color>
-    <color name="color_four_corners_point_circle_background">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_four_corners_intro_screen_text">@color/color_contours_text</color>
-    <color name="color_four_corners_intro_screen_CTA_text">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_four_corners_intro_screen_CTA_background">@color/color_intro_screen_CTA_background</color>
-    <color name="color_four_corners_intro_screen_checkbox_text">@color/color_intro_screen_checkbox_text</color>
+    <color name="color_four_corners_intro_background">#252525</color>
+    <color name="color_four_corners_point_circle_background">#FFFFFF</color>
+    <color name="color_four_corners_intro_screen_text">#FFFFFF</color>
+    <color name="color_four_corners_intro_screen_CTA_text">#FFFFFF</color>
+    <color name="color_four_corners_intro_screen_CTA_background">#346DE9</color>
+    <color name="color_four_corners_intro_screen_checkbox_text">#FFFFFF</color>
     <!--Config of four corners intro ends here-->
 
     <!--Color config for endorse intro screen-->
-    <color name="color_endorse_intro_background">@color/color_contours_background</color>
-    <color name="color_endorse_intro_screen_heading">@color/color_contours_text</color>
-    <color name="color_endorse_intro_screen_subheading">@color/color_contours_text</color>
-    <color name="color_endorse_intro_screen_CTA_text">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_endorse_intro_screen_CTA_background">@color/color_intro_screen_CTA_background</color>
+    <color name="color_endorse_intro_background">#252525</color>
+    <color name="color_endorse_intro_screen_heading">#FFFFFF</color>
+    <color name="color_endorse_intro_screen_subheading">#FFFFFF</color>
+    <color name="color_endorse_intro_screen_CTA_text">#FFFFFF</color>
+    <color name="color_endorse_intro_screen_CTA_background">#346DE9</color>
     <!--Config of endorse intro ends here-->
 
     <!--Capture screen config-->
-    <color name="color_check_capture_background">@color/color_contours_background</color>
-    <color name="color_title_check_face_of_capture">@color/color_white</color>
-    <color name="color_text_auto_on_off">@color/color_white</color>
-    <color name="color_background_title_check_face">@color/color_cc2a2a2a</color>
-    <color name="color_background_auto_on_off">@color/color_cc2a2a2a</color>
-    <color name="color_switch_thumb_active">@color/color_contours_CTA_primary_background</color>
-    <color name="color_switch_track_inactive">@color/color_e5e5e5</color>
-    <color name="color_switch_thumb_inactive">@color/color_light_grey</color>
-    <color name="color_switch_track_active">@color/color_white</color>
+    <color name="color_check_capture_background">#252525</color>
+    <color name="color_title_check_face_of_capture">#FFFFFF</color>
+    <color name="color_text_auto_on_off">#FFFFFF</color>
+    <color name="color_background_title_check_face">#CC2A2A2A</color>
+    <color name="color_background_auto_on_off">#CC2A2A2A</color>
+    <color name="color_switch_thumb_active">#346DE9</color>
+    <color name="color_switch_track_inactive">#E5E5E5</color>
+    <color name="color_switch_thumb_inactive">#F6F7F7</color>
+    <color name="color_switch_track_active">#FFFFFF</color>
     <!--END-->
 
     <!--Hint arrows and background color config-->
     <color name="color_hint_outline">#FF7006</color>
     <color name="color_hint_bg">#FFE1DE</color>
-    <color name="color_hint_text">@color/color_2a2a2a</color>
+    <color name="color_hint_text">#2A2A2A</color>
     <color name="color_success_hint_bg">#2E3D5F</color>
     <color name="color_success_icon_bg">#098743</color>
-    <color name="color_success_text">@color/color_white</color>
-    <color name="color_arrow_icon_up">@color/color_2a2a2a</color>
-    <color name="color_arrow_icon_down">@color/color_2a2a2a</color>
-    <color name="color_arrow_icon_left">@color/color_2a2a2a</color>
-    <color name="color_arrow_icon_right">@color/color_2a2a2a</color>
+    <color name="color_success_text">#FFFFFF</color>
+    <color name="color_arrow_icon_up">#2A2A2A</color>
+    <color name="color_arrow_icon_down">#2A2A2A</color>
+    <color name="color_arrow_icon_left">#2A2A2A</color>
+    <color name="color_arrow_icon_right">#2A2A2A</color>
     <!--END-->
 
     <!--Color config for four corner selection-->
-    <color name="color_strip_top_message">@color/color_cc2a2a2a</color>
-    <color name="color_dot_four_corner">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_dot_border_four_corner">@color/color_black</color>
+    <color name="color_strip_top_message">#CC2A2A2A</color>
+    <color name="color_dot_four_corner">#FFFFFF</color>
+    <color name="color_dot_border_four_corner">#000000</color>
     <color name="color_line_four_corner">#FF7006</color>
-    <color name="color_use_button_bg_four_corner">@color/color_contours_CTA_primary_background</color>
-    <color name="color_retake_button_bg_four_corner">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_text_use_button_four_corner">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_text_retake_button_four_corner">@color/color_contours_CTA_primary_background</color>
-    <color name="color_text_title_four_corner">@color/color_white</color>
+    <color name="color_use_button_bg_four_corner">#346DE9</color>
+    <color name="color_retake_button_bg_four_corner">#FFFFFF</color>
+    <color name="color_text_use_button_four_corner">#FFFFFF</color>
+    <color name="color_text_retake_button_four_corner">#346DE9</color>
+    <color name="color_text_title_four_corner">#FFFFFF</color>
     <!--END-->
 
     <!--pop up dialog-->
-    <color name="color_contours_popup_title">@color/color_2a2a2a</color>
-    <color name="color_contours_popup_desc">@color/color_767676</color>
-    <color name="color_contours_popup_CTA_text">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_contours_popup_CTA_background">@color/color_contours_CTA_primary_background</color>
-    <color name="color_contours_popup_background">@color/color_contours_background</color>
-    <color name="color_contours_popup">@color/color_white</color>
+    <color name="color_contours_popup_title">#2A2A2A</color>
+    <color name="color_contours_popup_desc">#767676</color>
+    <color name="color_contours_popup_CTA_text">#FFFFFF</color>
+    <color name="color_contours_popup_CTA_background">#346DE9</color>
+    <color name="color_contours_popup_background">#252525</color>
+    <color name="color_contours_popup">#FFFFFF</color>
     <!--END-->
 
     <!--Overlay View config-->
-    <color name="color_contours_overlay_box">@color/color_semi_white</color>
-    <color name="color_contours_micr_view">@color/color_white</color>
-    <color name="color_contours_endorse_view">@color/color_white</color>
+    <color name="color_contours_overlay_box">#80FFFFFF</color>
+    <color name="color_contours_micr_view">#FFFFFF</color>
+    <color name="color_contours_endorse_view">#FFFFFF</color>
     <!--END-->
 
     <!--ID/Passport config-->
     <!--Capture screen config-->
-    <color name="color_background_auto_on_off_id">@color/color_cc2a2a2a</color>
-    <color name="color_text_auto_on_off_id">@color/color_white</color>
-    <color name="color_title_id_face">@color/color_white</color>
-    <color name="color_background_title_id_face">@color/color_cc2a2a2a</color>
-    <color name="color_switch_thumb_active_id">@color/color_contours_CTA_primary_background</color>
-    <color name="color_switch_track_inactive_id">@color/color_e5e5e5</color>
-    <color name="color_switch_thumb_inactive_id">@color/color_light_grey</color>
-    <color name="color_switch_track_active_id">@color/color_white</color>
+    <color name="color_background_auto_on_off_id">#CC2A2A2A</color>
+    <color name="color_text_auto_on_off_id">#FFFFFF</color>
+    <color name="color_title_id_face">#FFFFFF</color>
+    <color name="color_background_title_id_face">#CC2A2A2A</color>
+    <color name="color_switch_thumb_active_id">#346DE9</color>
+    <color name="color_switch_track_inactive_id">#E5E5E5</color>
+    <color name="color_switch_thumb_inactive_id">#F6F7F7</color>
+    <color name="color_switch_track_active_id">#FFFFFF</color>
 
     <!--Hint arrows and background color config-->
     <color name="color_hint_outline_id">#FF7006</color>
     <color name="color_hint_bg_id">#FFE1DE</color>
-    <color name="color_hint_text_id">@color/color_2a2a2a</color>
+    <color name="color_hint_text_id">#2A2A2A</color>
     <color name="color_success_hint_bg_id">#2E3D5F</color><!--left-->
     <color name="color_success_icon_bg_id">#098743</color>
-    <color name="color_success_text_id">@color/color_white</color>
-    <color name="color_arrow_icon_up_id">@color/color_2a2a2a</color>
-    <color name="color_arrow_icon_down_id">@color/color_2a2a2a</color>
-    <color name="color_arrow_icon_left_id">@color/color_2a2a2a</color>
-    <color name="color_arrow_icon_right_id">@color/color_2a2a2a</color>
+    <color name="color_success_text_id">#FFFFFF</color>
+    <color name="color_arrow_icon_up_id">#2A2A2A</color>
+    <color name="color_arrow_icon_down_id">#2A2A2A</color>
+    <color name="color_arrow_icon_left_id">#2A2A2A</color>
+    <color name="color_arrow_icon_right_id">#2A2A2A</color>
     <!--END-->
 
     <!--pop up dialog-->
-    <color name="color_contours_popup_title_id">@color/color_2a2a2a</color>
-    <color name="color_contours_popup_desc_id">@color/color_767676</color>
-    <color name="color_contours_popup_CTA_text_id">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_contours_popup_CTA_background_id">@color/color_contours_CTA_primary_background</color>
-    <color name="color_contours_popup_background_id">@color/color_contours_background</color>
-    <color name="color_contours_popup_id">@color/color_white</color>
+    <color name="color_contours_popup_title_id">#2A2A2A</color>
+    <color name="color_contours_popup_desc_id">#767676</color>
+    <color name="color_contours_popup_CTA_text_id">#FFFFFF</color>
+    <color name="color_contours_popup_CTA_background_id">#346DE9</color>
+    <color name="color_contours_popup_background_id">#252525</color>
+    <color name="color_contours_popup_id">#FFFFFF</color>
     <!--END-->
 
     <!--Preview screen-->
-    <color name="color_id_capture_background">@color/color_contours_background</color>
-    <color name="color_use_button_bg_four_corner_id">@color/color_contours_CTA_primary_background</color>
-    <color name="color_retake_button_bg_four_corner_id">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_text_use_button_four_corner_id">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_text_retake_button_four_corner_id">@color/color_contours_CTA_primary_background</color>
+    <color name="color_id_capture_background">#252525</color>
+    <color name="color_use_button_bg_four_corner_id">#346DE9</color>
+    <color name="color_retake_button_bg_four_corner_id">#FFFFFF</color>
+    <color name="color_text_use_button_four_corner_id">#FFFFFF</color>
+    <color name="color_text_retake_button_four_corner_id">#346DE9</color>
     <color name="color_line_four_corner_id">#FF7006</color>
 
     <!--Overlay-->
@@ -154,62 +154,62 @@
     <!--END-->
 
     <!--Selfie-->
-    <color name="color_contours_privacy_screen_background">@color/color_contours_background</color>
-    <color name="color_contours_selfie_tips_background">@color/color_contours_background</color>
-    <color name="color_contours_selfie_instructions_background">@color/color_contours_background</color>
-    <color name="color_contours_privacy_title">@color/color_contours_text</color>
-    <color name="color_contours_privacy_description">@color/color_contours_text</color>
+    <color name="color_contours_privacy_screen_background">#252525</color>
+    <color name="color_contours_selfie_tips_background">#252525</color>
+    <color name="color_contours_selfie_instructions_background">#252525</color>
+    <color name="color_contours_privacy_title">#FFFFFF</color>
+    <color name="color_contours_privacy_description">#FFFFFF</color>
 
 
-    <color name="color_contours_instructions">@color/color_contours_text</color>
+    <color name="color_contours_instructions">#FFFFFF</color>
     <color name="color_contours_selfie_overlay">#cc2a2a2a</color>
     <color name="color_contours_selfie_progress">#4CAF50</color>
-    <color name="color_contours_selfie_circle">#ffffff</color>
-    <color name="color_contours_selfie_corner_brackets">#ffffff</color>
+    <color name="color_contours_selfie_circle">#FFFFFF</color>
+    <color name="color_contours_selfie_corner_brackets">#FFFFFF</color>
 
-    <color name="color_privacy_screen_CTA_text">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_privacy_screen_more_CTA_text">@color/color_contours_CTA_secondary_background</color>
+    <color name="color_privacy_screen_CTA_text">#FFFFFF</color>
+    <color name="color_privacy_screen_more_CTA_text">#FFFFFF</color>
 
-    <color name="color_contours_privacy_checkbox_selected">@color/color_contours_CTA_primary_background</color>
-    <color name="color_contours_privacy_checkbox_unselected">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_contours_privacy_checkbox_tick">@color/color_white</color>
-    <color name="color_contours_privacy_checkbox_text">@color/color_contours_text</color>
+    <color name="color_contours_privacy_checkbox_selected">#346DE9</color>
+    <color name="color_contours_privacy_checkbox_unselected">#FFFFFF</color>
+    <color name="color_contours_privacy_checkbox_tick">#FFFFFF</color>
+    <color name="color_contours_privacy_checkbox_text">#FFFFFF</color>
     <color name="color_contours_privacy_checkbox_unselected_border">#767676</color>
 
 
-    <color name="color_privacy_more_CTA_background">@color/color_contours_CTA_primary_background</color>
-    <color name="color_privacy_continue_CTA_enabled">@color/color_contours_CTA_primary_background</color>
-    <color name="color_privacy_continue_CTA_disabled">@color/color_contours_button_disabled</color>
-    <color name="color_privacy_screen_CTA_disabled_text">@color/color_contours_CTA_secondary_background</color>
+    <color name="color_privacy_more_CTA_background">#346DE9</color>
+    <color name="color_privacy_continue_CTA_enabled">#346DE9</color>
+    <color name="color_privacy_continue_CTA_disabled">#E5E5E5</color>
+    <color name="color_privacy_screen_CTA_disabled_text">#FFFFFF</color>
 
 
-    <color name="color_selfie_tips_CTA_background">@color/color_contours_CTA_primary_background</color>
-    <color name="color_selfie_tips_CTA_text">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_contours_selfie_tips_checkbox_selected">@color/color_contours_CTA_primary_background</color>
-    <color name="color_contours_selfie_tips_checkbox_unselected">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_contours_selfie_tips_checkbox_tick">@color/color_white</color>
-    <color name="color_contours_selfie_tips_checkbox_text">@color/color_contours_text</color>
+    <color name="color_selfie_tips_CTA_background">#346DE9</color>
+    <color name="color_selfie_tips_CTA_text">#FFFFFF</color>
+    <color name="color_contours_selfie_tips_checkbox_selected">#346DE9</color>
+    <color name="color_contours_selfie_tips_checkbox_unselected">#FFFFFF</color>
+    <color name="color_contours_selfie_tips_checkbox_tick">#FFFFFF</color>
+    <color name="color_contours_selfie_tips_checkbox_text">#FFFFFF</color>
     <color name="color_contours_selfie_tips_checkbox_unselected_border">#767676</color>
 
-    <color name="color_contours_selfie_tips">@color/color_contours_text</color>
+    <color name="color_contours_selfie_tips">#FFFFFF</color>
 
-    <color name="color_selfie_instructions_CTA_background">@color/color_contours_CTA_primary_background</color>
-    <color name="color_selfie_instructions_CTA_text">@color/color_contours_CTA_secondary_background</color>
+    <color name="color_selfie_instructions_CTA_background">#346DE9</color>
+    <color name="color_selfie_instructions_CTA_text">#FFFFFF</color>
 
     <!--pop up dialog-->
-    <color name="color_contours_popup_title_selfie">@color/color_2a2a2a</color>
-    <color name="color_contours_popup_desc_selfie">@color/color_767676</color>
-    <color name="color_contours_popup_CTA_text_selfie">@color/color_contours_CTA_secondary_background</color>
-    <color name="color_contours_popup_CTA_background_selfie">@color/color_contours_CTA_primary_background</color>
-    <color name="color_contours_popup_background_selfie">@color/color_contours_background</color>
-    <color name="color_contours_popup_selfie">@color/color_white</color>
+    <color name="color_contours_popup_title_selfie">#2A2A2A</color>
+    <color name="color_contours_popup_desc_selfie">#767676</color>
+    <color name="color_contours_popup_CTA_text_selfie">#FFFFFF</color>
+    <color name="color_contours_popup_CTA_background_selfie">#346DE9</color>
+    <color name="color_contours_popup_background_selfie">#252525</color>
+    <color name="color_contours_popup_selfie">#FFFFFF</color>
     <!--END-->
 
     <color name="color_contours_selfie_percentage">#FFFFFF</color>
     <color name="color_contours_selfie_success_text">#FFFFFF</color>
     <color name="color_contours_selfie_feedback">#FFFFFF</color>
     <!--Hint Selfie-->
-    <color name="color_contours_selfie_hint_text">@color/color_white</color>
+    <color name="color_contours_selfie_hint_text">#FFFFFF</color>
     <color name="color_contours_selfie_hint_bg">#FF6A5B</color>
     <color name="color_contours_selfie_hint_border">#FFFFFF</color>
     <color name="color_contours_selfie_hint_bg_error">#BA200F</color>
