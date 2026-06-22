@@ -8,7 +8,10 @@ android {
     compileSdk 35
 
     packagingOptions {
-        exclude '/lib/**/libopencv_java4.so'
+        jniLibs {
+            useLegacyPackaging = true
+        }
+        pickFirst "/lib/**/libopencv_java4.so"
         pickFirst '/lib/**/libc++_shared.so'
     }
 
@@ -46,5 +49,5 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.github.Contour-Document-Imaging:contours-ai-android-sdk:1.17.1'
+    implementation 'com.github.Contour-Document-Imaging:contours-ai-android-sdk:1.17.2'
 }
