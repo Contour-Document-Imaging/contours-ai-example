@@ -1,133 +1,255 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_white"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:background="@drawable/bg_screen_gradient">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <ScrollView
+        android:id="@+id/content_scroll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingStart="@dimen/space_16"
+        android:paddingTop="@dimen/space_24"
+        android:paddingEnd="@dimen/space_16"
+        android:paddingBottom="@dimen/space_120"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/ivFront"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:adjustViewBounds="true"
-            android:background="@color/color_light_grey" />
-
-        <TextView
-            android:id="@+id/tvFront"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@color/color_2a2a2a"
-            android:text="@string/front_check" />
+            android:gravity="top|center_horizontal"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvDownloadFront"
-            android:visibility="invisible"
-            android:text="Download"
-            android:padding="10dp"
-            android:textColor="#FF03A9F4"
-            android:background="@null"
-            android:layout_below="@id/ivFront"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:id="@+id/hero_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_hero_card"
+                android:elevation="10dp"
+                android:orientation="vertical"
+                android:padding="@dimen/space_24">
 
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_eyebrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.14"
+                    android:text="@string/identity_verification"
+                    android:textAllCaps="true"
+                    android:textColor="@color/brand_accent"
+                    android:textSize="13sp" />
 
-    <RelativeLayout
-        android:id="@+id/layoutBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_version_meta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.04"
+                    android:text="@string/powered_by_native_android"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp" />
 
-        <ImageView
-            android:id="@+id/ivBack"
-            android:background="@color/color_light_grey"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:adjustViewBounds="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp" />
+                <TextView
+                    android:id="@+id/tv_app_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="sans-serif"
+                    android:text="@string/app_version_placeholder"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tvBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:textColor="@color/color_2a2a2a"
-            android:text="@string/back_check" />
+                <TextView
+                    android:id="@+id/tv_screen_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:fontFamily="sans-serif-light"
+                    android:text="@string/check_scan"
+                    android:textColor="@color/text_strong"
+                    android:textSize="34sp" />
 
-        <TextView
-            android:id="@+id/tvDownloadBack"
-            android:visibility="invisible"
-            android:text="Download"
-            android:padding="10dp"
-            android:textColor="#FF03A9F4"
-            android:background="@null"
-            android:layout_below="@id/ivBack"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/tv_screen_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_12"
+                    android:lineSpacingExtra="3dp"
+                    android:text="@string/check_description"
+                    android:textColor="@color/text_muted"
+                    android:textSize="15sp" />
 
-    <View
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+                <TextView
+                    android:id="@+id/tv_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_20"
+                    android:minHeight="22dp"
+                    android:text="@string/preparing_scanner"
+                    android:textColor="@color/text_muted"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:id="@+id/preview_section"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_20"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/front_preview_tile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_download_front"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_8"
+                            android:text="@string/front_check"
+                            android:textColor="@color/text_strong"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <FrameLayout
+                            android:id="@+id/front_preview_wrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_preview_tile">
+
+                            <ImageView
+                                android:id="@+id/iv_front"
+                                android:layout_width="match_parent"
+                                android:layout_height="110dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/tv_front"
+                                android:layout_width="match_parent"
+                                android:layout_height="110dp"
+                                android:gravity="center"
+                                android:padding="@dimen/space_12"
+                                android:text="@string/front_check"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_muted"
+                                android:textSize="13sp" />
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/back_preview_tile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_16"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_download_back"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/space_8"
+                            android:text="@string/back_check"
+                            android:textColor="@color/text_strong"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <FrameLayout
+                            android:id="@+id/back_preview_wrap"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_preview_tile">
+
+                            <ImageView
+                                android:id="@+id/iv_back"
+                                android:layout_width="match_parent"
+                                android:layout_height="110dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:visibility="gone" />
+
+                            <TextView
+                                android:id="@+id/tv_back"
+                                android:layout_width="match_parent"
+                                android:layout_height="110dp"
+                                android:gravity="center"
+                                android:padding="@dimen/space_12"
+                                android:text="@string/back_check"
+                                android:textAlignment="center"
+                                android:textColor="@color/text_muted"
+                                android:textSize="13sp" />
+                        </FrameLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
     <LinearLayout
-        android:gravity="bottom"
-        android:layout_marginBottom="@dimen/dp_16"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:id="@+id/bottom_tabs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
+        android:layout_marginBottom="@dimen/space_24"
+        android:background="@drawable/bg_bottom_tabs"
+        android:elevation="12dp"
+        android:orientation="horizontal"
+        android:padding="@dimen/space_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
         <TextView
             android:id="@+id/check"
-            android:padding="@dimen/dp_10"
-            android:text="@string/check"
+            style="@style/TabButton"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="@string/check" />
+
         <TextView
             android:id="@+id/id"
-            android:padding="@dimen/dp_10"
-            android:text="@string/id"
+            style="@style/TabButton"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="@string/id" />
+
         <TextView
             android:id="@+id/passport"
-            android:padding="@dimen/dp_10"
-            android:text="@string/passport"
-            android:gravity="center"
+            style="@style/TabButton"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
             android:layout_weight="1"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="@string/passport" />
 
         <TextView
             android:id="@+id/selfie"
-            android:padding="@dimen/dp_10"
-            android:text="@string/selfie"
-            android:gravity="center"
+            style="@style/TabButton"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
             android:layout_weight="1"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/colorPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:text="@string/selfie" />
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

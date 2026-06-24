@@ -1,20 +1,16 @@
 package com.contoursai.android.example
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
+import android.os.Build
+import android.view.GestureDetector
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
-import android.widget.RelativeLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.contourdocumentimaging.android.contours_ai.ContoursStarterActivity
 import com.contourdocumentimaging.android.contours_ai.callback.IContoursResultListener
@@ -33,9 +29,16 @@ class MainActivity : AppCompatActivity() {
     private var ivBack: ImageView? = null
     private var tvFront: TextView? = null
     private var tvBack: TextView? = null
+    private var tvStatus: TextView? = null
+    private var tvScreenTitle: TextView? = null
+    private var tvScreenDescription: TextView? = null
+    private var tvVersionMeta: TextView? = null
+    private var tvAppVersion: TextView? = null
+    private var frontPreviewTile: View? = null
+    private var backPreviewTile: View? = null
     private var bitmapFront: Bitmap? = null
     private var bitmapBack: Bitmap? = null
-    private var imageName: String? = null
+    private lateinit var gestureDetector: GestureDetector
 
     // Check face controls the capture of front or back check face.
     // It's important to set it correctly because that affects different
@@ -46,7 +49,6 @@ class MainActivity : AppCompatActivity() {
     private var events: String = "";
     private var docType: ContoursScanType = ContoursScanType.CHECK
     private val tabs = arrayOf(R.id.check, R.id.id, R.id.passport, R.id.selfie)
-
     private val clientId: String = ""
 
     public override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,51 +56,55 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         ContoursStarterActivity.initialize(applicationContext, clientId)
         StatusBarUtils.updateStatusBarColor(this)
-        tvFront = findViewById<View>(R.id.tvFront) as TextView
-        tvBack = findViewById<View>(R.id.tvBack) as TextView
-        ivFront = findViewById<View>(R.id.ivFront) as ImageView
-        ivBack = findViewById<View>(R.id.ivBack) as ImageView
-        ivFront!!.setOnClickListener { openContours(true) }
-        ivBack!!.setOnClickListener { openContours(false) }
-        (findViewById<View>(R.id.tvDownloadFront) as TextView).setOnClickListener {
-            imageName = "Front check contours"
-            saveImageToGallery(bitmapFront, imageName)
+        tvFront = findViewById<View>(R.id.tv_front) as TextView
+        tvBack = findViewById<View>(R.id.tv_back) as TextView
+        tvStatus = findViewById(R.id.tv_status)
+        tvScreenTitle = findViewById(R.id.tv_screen_title)
+        tvScreenDescription = findViewById(R.id.tv_screen_description)
+        tvVersionMeta = findViewById(R.id.tv_version_meta)
+        tvAppVersion = findViewById(R.id.tv_app_version)
+        ivFront = findViewById<View>(R.id.iv_front) as ImageView
+        ivBack = findViewById<View>(R.id.iv_back) as ImageView
+        frontPreviewTile = findViewById(R.id.front_preview_tile)
+        backPreviewTile = findViewById(R.id.back_preview_tile)
+        gestureDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
+            override fun onDown(e: MotionEvent): Boolean = true
+
+            override fun onFling(
+                e1: MotionEvent?,
+                e2: MotionEvent,
+                velocityX: Float,
+                velocityY: Float
+            ): Boolean {
+                if (e1 == null) return false
+                val diffX = e2.x - e1.x
+                val diffY = e2.y - e1.y
+                if (kotlin.math.abs(diffX) < 120 || kotlin.math.abs(diffX) < kotlin.math.abs(diffY)) {
+                    return false
+                }
+
+                if (diffX < 0) {
+                    switchTab(1)
+                } else {
+                    switchTab(-1)
+                }
+                return true
+            }
+        })
+        findViewById<View>(R.id.content_scroll).setOnTouchListener { _, event ->
+            gestureDetector.onTouchEvent(event)
+            false
         }
-        (findViewById<View>(R.id.tvDownloadBack) as TextView).setOnClickListener {
-            imageName = "Back check contours"
-            saveImageToGallery(bitmapBack, imageName)
-        }
-        findViewById<TextView>(R.id.id).setOnClickListener {
-            docType = ContoursScanType.ID
-            resetView()
-            tvFront?.text = getString(R.string.front_id)
-            tvBack?.text = getString(R.string.back_id)
-            findViewById<RelativeLayout>(R.id.layoutBack).visibility = View.VISIBLE
-            handleSelection(it.id)
-        }
-        findViewById<TextView>(R.id.passport).setOnClickListener {
-            docType = ContoursScanType.PASSPORT
-            tvFront?.text = getString(R.string.passport)
-            resetView()
-            findViewById<RelativeLayout>(R.id.layoutBack).visibility = View.INVISIBLE
-            handleSelection(it.id)
-        }
-        findViewById<TextView>(R.id.check).setOnClickListener {
-            docType = ContoursScanType.CHECK
-            resetView()
-            tvFront?.text = getString(R.string.front_check)
-            tvBack?.text = getString(R.string.back_check)
-            findViewById<RelativeLayout>(R.id.layoutBack).visibility = View.VISIBLE
-            handleSelection(it.id)
-        }
-        findViewById<TextView>(R.id.selfie).setOnClickListener {
-            docType = ContoursScanType.SELFIE
-            tvFront?.text = getString(R.string.selfie)
-            resetView()
-            findViewById<RelativeLayout>(R.id.layoutBack).visibility = View.INVISIBLE
-            handleSelection(it.id)
-        }
-        handleSelection(R.id.check)
+        frontPreviewTile!!.setOnClickListener { openContours(true) }
+        backPreviewTile!!.setOnClickListener { openContours(false) }
+        tvVersionMeta?.text = getString(R.string.powered_by_native_android)
+        tvAppVersion?.text = getString(R.string.app_version_format, getAppVersionName())
+        findViewById<TextView>(R.id.id).setOnClickListener { selectTab(R.id.id) }
+        findViewById<TextView>(R.id.passport).setOnClickListener { selectTab(R.id.passport) }
+        findViewById<TextView>(R.id.check).setOnClickListener { selectTab(R.id.check) }
+        findViewById<TextView>(R.id.selfie).setOnClickListener { selectTab(R.id.selfie) }
+        selectTab(R.id.check)
+        setStatus(getString(R.string.preparing_scanner))
 
     }
 
@@ -117,6 +123,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun startScan() {
         events = ""
+        setStatus(
+            when (docType) {
+                ContoursScanType.ID -> "Opening ${if (checkFace == ContoursConstants.FRONT_FACE) "front" else "back"}..."
+                ContoursScanType.PASSPORT -> "Opening front face..."
+                ContoursScanType.SELFIE -> "Opening face..."
+                else -> "Opening ${if (checkFace == ContoursConstants.FRONT_FACE) "front" else "back"}..."
+            }
+        )
         //Put this code before launching sdk to capture check
         val contoursModel = ContoursModel()
         contoursModel.capturingMode = ContoursCapturingMode.BOTH_CAPTURE
@@ -128,18 +142,21 @@ class MainActivity : AppCompatActivity() {
             override fun onCaptureSuccess(contoursResultModel: ContoursResultModel) {
 
                 if (contoursResultModel.resultCheckFace.equals(ContoursConstants.FRONT_FACE, ignoreCase = true)) {
-                    (findViewById<View>(R.id.tvDownloadFront) as TextView).visibility = if (contoursResultModel.resultFrontCroppedImageUri != null && contoursResultModel.resultFrontCroppedImageUri.isNotEmpty()) View.VISIBLE else View.GONE
-                    //Below keys contains full captured image for front and back face which is to be sent to server
-                    //contoursResultModel.resultFrontImageUri
-                    //contoursResultModel.resultRearImageUri
                     showCapturedImage(contoursResultModel.resultFrontCroppedImageUri, ivFront, tvFront, true)
                     showCapturedImage(contoursResultModel.resultRearCroppedImageUri, ivBack, tvBack, false)
+                    setStatus(
+                        if (!contoursResultModel.resultRearCroppedImageUri.isNullOrEmpty()) {
+                            "${getActiveDocumentName()} front and back scan completed."
+                        } else {
+                            "${getActiveDocumentName()} front completed."
+                        }
+                    )
                 } else if (contoursResultModel.resultCheckFace.equals(ContoursConstants.BACK_FACE, ignoreCase = true)) {
-                    (findViewById<View>(R.id.tvDownloadBack) as TextView).visibility = if (contoursResultModel.resultRearCroppedImageUri != null && contoursResultModel.resultRearCroppedImageUri.isNotEmpty()) View.VISIBLE else View.GONE
                     showCapturedImage(contoursResultModel.resultRearCroppedImageUri, ivBack, tvBack, false)
+                    setStatus("${getActiveDocumentName()} back scan completed.")
                 }  else if (contoursResultModel.resultCheckFace.equals(ContoursConstants.FRONT_FACE_ONLY, ignoreCase = true)) {
-                    (findViewById<View>(R.id.tvDownloadBack) as TextView).visibility = if (contoursResultModel.resultRearCroppedImageUri != null && contoursResultModel.resultRearCroppedImageUri.isNotEmpty()) View.VISIBLE else View.GONE
                     showCapturedImage(contoursResultModel.resultFrontCroppedImageUri, ivFront, tvFront, true)
+                    setStatus("${getActiveDocumentName()} front face completed.")
                 }
             }
 
@@ -150,10 +167,14 @@ class MainActivity : AppCompatActivity() {
 
             override fun onContourClosed() {
                 println("---------- SDK closed")
+                if (bitmapFront == null && bitmapBack == null) {
+                    setStatus("${getActiveDocumentName()} scan closed.")
+                }
             }
 
             override fun onSelfieCaptured(imageCropped: String?) {
                 showCapturedImage(imageCropped, ivFront, tvFront, true)
+                setStatus("Selfie completed.")
             }
         })
         //SDK initialization process complete
@@ -174,6 +195,7 @@ class MainActivity : AppCompatActivity() {
                     bitmapBack = bmp
                 }
                 imageView!!.setImageBitmap(bmp)
+                imageView.visibility = View.VISIBLE
                 textView!!.visibility = View.GONE
             }
         } catch (e: URISyntaxException) {
@@ -181,50 +203,136 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveImageToGallery(bmp: Bitmap?, name: String?) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU || hasStoragePermission()) {
-            MediaStore.Images.Media.insertImage(contentResolver, bmp, name, "")
-            Toast.makeText(this, "Your image has been saved to your gallery", Toast.LENGTH_SHORT).show()
-        } else {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1004)
-        }
-    }
-
-    private fun hasStoragePermission(): Boolean {
-        return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 1004 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            if (imageName != null && imageName == "Front check contours") {
-                saveImageToGallery(bitmapFront, imageName)
-            } else {
-                saveImageToGallery(bitmapBack, imageName)
-            }
-        }
-    }
-
     private fun resetView() {
+        bitmapFront = null
+        bitmapBack = null
         tvFront?.visibility = View.VISIBLE
         tvBack?.visibility = View.VISIBLE
-        ivFront?.setImageResource(android.R.color.transparent)
-        ivBack?.setImageResource(android.R.color.transparent)
-        findViewById<View>(R.id.tvDownloadFront).visibility = View.INVISIBLE
-        findViewById<View>(R.id.tvDownloadBack).visibility = View.INVISIBLE
+        ivFront?.setImageDrawable(null)
+        ivBack?.setImageDrawable(null)
+        ivFront?.visibility = View.GONE
+        ivBack?.visibility = View.GONE
     }
 
     private fun handleSelection(selectedId: Int) {
         tabs.forEach { id ->
             val textView = findViewById<TextView>(id)
             if (id == selectedId) {
-                textView.setBackgroundColor(ContextCompat.getColor(this, R.color.purple_500))
+                textView.setBackgroundResource(R.drawable.bg_tab_active)
                 textView.setTextColor(Color.WHITE)
             } else {
-                textView.setBackgroundColor(Color.TRANSPARENT)
-                textView.setTextColor(Color.BLACK)
+                textView.background = null
+                textView.setTextColor(ContextCompat.getColor(this, R.color.text_muted))
             }
         }
+    }
+
+    private fun selectTab(selectedId: Int) {
+        resetView()
+        when (selectedId) {
+            R.id.id -> {
+                docType = ContoursScanType.ID
+                updateDocumentUi(
+                    title = R.string.id_scan,
+                    description = R.string.id_description,
+                    frontLabel = R.string.front_id,
+                    backLabel = R.string.back_id,
+                    showBack = true
+                )
+            }
+            R.id.passport -> {
+                docType = ContoursScanType.PASSPORT
+                updateDocumentUi(
+                    title = R.string.passport_scan,
+                    description = R.string.passport_description,
+                    frontLabel = R.string.passport_front_face,
+                    backLabel = null,
+                    showBack = false
+                )
+            }
+            R.id.selfie -> {
+                docType = ContoursScanType.SELFIE
+                updateDocumentUi(
+                    title = R.string.selfie_scan,
+                    description = R.string.selfie_description,
+                    frontLabel = R.string.user_selfie,
+                    backLabel = null,
+                    showBack = false
+                )
+            }
+            else -> {
+                docType = ContoursScanType.CHECK
+                updateDocumentUi(
+                    title = R.string.check_scan,
+                    description = R.string.check_description,
+                    frontLabel = R.string.front_check,
+                    backLabel = R.string.back_check,
+                    showBack = true
+                )
+            }
+        }
+        handleSelection(selectedId)
+    }
+
+    private fun switchTab(direction: Int) {
+        val currentIndex = tabs.indexOfFirst { isTabSelected(it) }.coerceAtLeast(0)
+        val nextIndex = (currentIndex + direction).coerceIn(0, tabs.lastIndex)
+        if (nextIndex != currentIndex) {
+            selectTab(tabs[nextIndex])
+        }
+    }
+
+    private fun isTabSelected(tabId: Int): Boolean {
+        return findViewById<TextView>(tabId).currentTextColor == Color.WHITE
+    }
+
+    private fun updateDocumentUi(
+        title: Int,
+        description: Int,
+        frontLabel: Int,
+        backLabel: Int?,
+        showBack: Boolean
+    ) {
+        tvScreenTitle?.text = getString(title)
+        tvScreenDescription?.text = getString(description)
+        tvFront?.text = getString(frontLabel)
+        findViewById<TextView>(R.id.tv_download_front).text = getString(frontLabel)
+
+        if (backLabel != null) {
+            tvBack?.text = getString(backLabel)
+            findViewById<TextView>(R.id.tv_download_back).text = getString(backLabel)
+        }
+
+        updatePreviewLayout(showBack)
+        setStatus("Ready to scan ${getActiveDocumentName().lowercase()}.")
+    }
+
+    private fun updatePreviewLayout(showBack: Boolean) {
+        backPreviewTile?.visibility = if (showBack) View.VISIBLE else View.GONE
+    }
+
+    private fun getActiveDocumentName(): String {
+        return when (docType) {
+            ContoursScanType.ID -> "ID"
+            ContoursScanType.PASSPORT -> "Passport"
+            ContoursScanType.SELFIE -> "Selfie"
+            else -> "Check"
+        }
+    }
+
+    private fun setStatus(message: String) {
+        tvStatus?.text = message
+    }
+
+    private fun getAppVersionName(): String {
+        val packageInfo = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            packageManager.getPackageInfo(packageName, android.content.pm.PackageManager.PackageInfoFlags.of(0))
+        } else {
+            @Suppress("DEPRECATION")
+            packageManager.getPackageInfo(packageName, 0)
+        }
+
+        return packageInfo.versionName ?: "1.0"
     }
 
     companion object {

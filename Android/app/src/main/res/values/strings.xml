@@ -1,5 +1,18 @@
 <resources>
     <string name="app_name">ContoursAIExampleAndroid</string>
+    <string name="app_version_placeholder">App Version</string>
+    <string name="app_version_format">App Version %1$s</string>
+    <string name="identity_verification">Identity Verification</string>
+    <string name="powered_by_native_android">Powered by Native Android</string>
+    <string name="preparing_scanner">Preparing scanner...</string>
+    <string name="check_scan">Check Scan</string>
+    <string name="check_description">Capture the front or back side of the check.</string>
+    <string name="id_scan">ID Scan</string>
+    <string name="id_description">Capture the front and back side of the ID.</string>
+    <string name="passport_scan">Passport Scan</string>
+    <string name="passport_description">Capture the passport front face only.</string>
+    <string name="selfie_scan">Take Selfie</string>
+    <string name="selfie_description">Capture your selfie</string>
     <string name="front_check">Front check</string>
     <string name="back_check">Rear check</string>
     <string name="check">CHECK</string>
@@ -7,5 +20,7 @@
     <string name="passport">PASSPORT</string>
     <string name="front_id">Front ID</string>
     <string name="back_id">Rear ID</string>
+    <string name="passport_front_face">Passport Front Face</string>
+    <string name="user_selfie">User Selfie</string>
     <string name="selfie">Selfie</string>
 </resources>
