@@ -22,7 +22,6 @@ class _ScanIDState extends State<ScanID> {
     Contouraisdk.registerCallbacks(onDataReceived, onEventCaptured, onContourClosed, null);
   }
 
-  // Platform messages are asynchronous, so we initialize in an async method.
   Future<void> callContour(String face) async {
     try {
       var contoursModel = ContoursModel(clientID: "<CLIENT_ID>", type: "id", captureSide: face, captureType: "both", enableMultipleCapturing: false);
@@ -61,7 +60,7 @@ class _ScanIDState extends State<ScanID> {
       return GestureDetector(
         onTap: () {
           callContour(face);
-        }, 
+        },
         child: Image.file(
           File(uri),
           width: width,

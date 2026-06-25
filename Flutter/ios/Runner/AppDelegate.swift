@@ -2,7 +2,7 @@ import UIKit
 import Flutter
 import ContoursAI_SDK
 
-@UIApplicationMain
+@main
 @objc class AppDelegate: FlutterAppDelegate {
     var navigationController: UINavigationController!
     let contoursSDK = ContoursAIFramework()
@@ -13,8 +13,8 @@ import ContoursAI_SDK
         GeneratedPluginRegistrant.register(with: self)
         let controller = window?.rootViewController as! FlutterViewController
         self.navigationController = UINavigationController(rootViewController: controller)
-        self.window.rootViewController = self.navigationController
-        self.window.makeKeyAndVisible()
+        self.window?.rootViewController = self.navigationController
+        self.window?.makeKeyAndVisible()
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     override func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
