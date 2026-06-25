@@ -6,39 +6,19 @@
 //
 import UIKit
 class TabButton: UIButton {
-    var alternateButton:Array<TabButton>?
-    
-    override func awakeFromNib() {
-        self.layer.cornerRadius = 5
-        self.layer.borderWidth = 0.0
-        self.layer.masksToBounds = true
-    }
-    
-    func unselectAlternateButtons() {
-        if alternateButton != nil {
-            self.isSelected = true
-            
-            for aButton:TabButton in alternateButton! {
-                aButton.isSelected = false
-            }
-        } else {
-            toggleButton()
-        }
-    }
-    
+    private let selectedFillColor = UIColor(red: 0.094, green: 0.212, blue: 0.259, alpha: 1.0)
+    private let unselectedTitleColor = UIColor(red: 0.373, green: 0.467, blue: 0.510, alpha: 1.0)
 
-    func toggleButton() {
-        self.isSelected = !isSelected
-    }
-    
     override var isSelected: Bool {
         didSet {
-            if isSelected {
-                self.layer.borderColor = UIColor.blue.cgColor
-            } else {
-                self.layer.borderColor = UIColor.clear.cgColor
-            }
+            applySelectionStyle()
         }
+    }
+
+    private func applySelectionStyle() {
+        layer.borderColor = UIColor.clear.cgColor
+        backgroundColor = isSelected ? selectedFillColor : .clear
+        setTitleColor(isSelected ? .white : unselectedTitleColor, for: .normal)
     }
     
 }

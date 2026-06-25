@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74F234F33B2E6341712A9464 /* Pods_ContoursAIExampleiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17AB3F34F5DBA2B2E014A0C5 /* Pods_ContoursAIExampleiOS.framework */; };
 		8226EE442DC321B300F9B908 /* ButtonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8226EE432DC321B300F9B908 /* ButtonClass.swift */; };
 		D029D3A3295031660078C2E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029D3A2295031660078C2E8 /* AppDelegate.swift */; };
 		D029D3A5295031660078C2E8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D029D3A4295031660078C2E8 /* SceneDelegate.swift */; };
@@ -17,7 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05CC4194DB86F6EC72977575 /* Pods-ContoursAIExampleiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContoursAIExampleiOS.release.xcconfig"; path = "Target Support Files/Pods-ContoursAIExampleiOS/Pods-ContoursAIExampleiOS.release.xcconfig"; sourceTree = "<group>"; };
+		17AB3F34F5DBA2B2E014A0C5 /* Pods_ContoursAIExampleiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContoursAIExampleiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8226EE432DC321B300F9B908 /* ButtonClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonClass.swift; sourceTree = "<group>"; };
+		AC96A371A64F7586D7956336 /* Pods-ContoursAIExampleiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContoursAIExampleiOS.debug.xcconfig"; path = "Target Support Files/Pods-ContoursAIExampleiOS/Pods-ContoursAIExampleiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		D029D39F295031660078C2E8 /* ContoursAIExampleiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContoursAIExampleiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D029D3A2295031660078C2E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D029D3A4295031660078C2E8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -33,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74F234F33B2E6341712A9464 /* Pods_ContoursAIExampleiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31AC8FD98DC34E8B44FD434B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AC96A371A64F7586D7956336 /* Pods-ContoursAIExampleiOS.debug.xcconfig */,
+				05CC4194DB86F6EC72977575 /* Pods-ContoursAIExampleiOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		952C9C457597386F897AC569 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				17AB3F34F5DBA2B2E014A0C5 /* Pods_ContoursAIExampleiOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D029D396295031660078C2E8 = {
 			isa = PBXGroup;
 			children = (
 				D029D3A1295031660078C2E8 /* ContoursAIExampleiOS */,
 				D029D3A0295031660078C2E8 /* Products */,
+				31AC8FD98DC34E8B44FD434B /* Pods */,
+				952C9C457597386F897AC569 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D029D3B3295031670078C2E8 /* Build configuration list for PBXNativeTarget "ContoursAIExampleiOS" */;
 			buildPhases = (
+				3A920A43F711E709069E9576 /* [CP] Check Pods Manifest.lock */,
 				D029D39B295031660078C2E8 /* Sources */,
 				D029D39C295031660078C2E8 /* Frameworks */,
 				D029D39D295031660078C2E8 /* Resources */,
+				471D08D408A0A95F0E83D205 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,6 +161,52 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3A920A43F711E709069E9576 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ContoursAIExampleiOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		471D08D408A0A95F0E83D205 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ContoursAIExampleiOS/Pods-ContoursAIExampleiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ContoursAIExampleiOS/Pods-ContoursAIExampleiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ContoursAIExampleiOS/Pods-ContoursAIExampleiOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D029D39B295031660078C2E8 /* Sources */ = {
@@ -286,11 +358,15 @@
 		};
 		D029D3B4295031670078C2E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC96A371A64F7586D7956336 /* Pods-ContoursAIExampleiOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A77YYNYWPS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ContoursAIExampleiOS/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Document capturing";
@@ -303,8 +379,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.contoursai.ios.example;
+				PRODUCT_BUNDLE_IDENTIFIER = com.urbanft.rcsdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Wildcard Development";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -313,11 +391,15 @@
 		};
 		D029D3B5295031670078C2E8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05CC4194DB86F6EC72977575 /* Pods-ContoursAIExampleiOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = A77YYNYWPS;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ContoursAIExampleiOS/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Document capturing";
@@ -330,8 +412,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.contoursai.ios.example;
+				PRODUCT_BUNDLE_IDENTIFIER = com.urbanft.rcsdk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Wildcard Development";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

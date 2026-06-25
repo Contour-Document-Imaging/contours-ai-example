@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		551B979E229169B71A16C877 /* Pods_ContoursAIExampleSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23FEA07480630F1A8AD6EE31 /* Pods_ContoursAIExampleSwiftUI.framework */; };
 		8273E61F29D6A334008BC719 /* ContoursAIExampleSwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8273E61E29D6A334008BC719 /* ContoursAIExampleSwiftUIApp.swift */; };
 		8273E62129D6A334008BC719 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8273E62029D6A334008BC719 /* ContentView.swift */; };
 		8273E62329D6A335008BC719 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8273E62229D6A335008BC719 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23FEA07480630F1A8AD6EE31 /* Pods_ContoursAIExampleSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ContoursAIExampleSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8273E61B29D6A334008BC719 /* ContoursAIExampleSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContoursAIExampleSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8273E61E29D6A334008BC719 /* ContoursAIExampleSwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContoursAIExampleSwiftUIApp.swift; sourceTree = "<group>"; };
 		8273E62029D6A334008BC719 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -23,6 +25,8 @@
 		8273E62529D6A335008BC719 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8273E62C29D6A384008BC719 /* ContourSDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContourSDK.swift; sourceTree = "<group>"; };
 		8273E62E29D6A3C6008BC719 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B54D2AD4E11A97707C35F5DA /* Pods-ContoursAIExampleSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContoursAIExampleSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-ContoursAIExampleSwiftUI/Pods-ContoursAIExampleSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
+		F8DB17A45390FAEC29D91D0D /* Pods-ContoursAIExampleSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ContoursAIExampleSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-ContoursAIExampleSwiftUI/Pods-ContoursAIExampleSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -30,18 +34,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				551B979E229169B71A16C877 /* Pods_ContoursAIExampleSwiftUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7DE14EB69C0BD74F6DA50311 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				23FEA07480630F1A8AD6EE31 /* Pods_ContoursAIExampleSwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8273E61229D6A334008BC719 = {
 			isa = PBXGroup;
 			children = (
 				8273E61D29D6A334008BC719 /* ContoursAIExampleSwiftUI */,
 				8273E61C29D6A334008BC719 /* Products */,
 				8975D4D401ED885591D661B4 /* Pods */,
+				7DE14EB69C0BD74F6DA50311 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,6 +91,8 @@
 		8975D4D401ED885591D661B4 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
+				B54D2AD4E11A97707C35F5DA /* Pods-ContoursAIExampleSwiftUI.debug.xcconfig */,
+				F8DB17A45390FAEC29D91D0D /* Pods-ContoursAIExampleSwiftUI.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -88,9 +104,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8273E62929D6A335008BC719 /* Build configuration list for PBXNativeTarget "ContoursAIExampleSwiftUI" */;
 			buildPhases = (
+				AAED0B01B00BAFD2AE23F250 /* [CP] Check Pods Manifest.lock */,
 				8273E61729D6A334008BC719 /* Sources */,
 				8273E61829D6A334008BC719 /* Frameworks */,
 				8273E61929D6A334008BC719 /* Resources */,
+				C51F78D62C8C33DAC7751F2F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -145,6 +163,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		AAED0B01B00BAFD2AE23F250 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ContoursAIExampleSwiftUI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C51F78D62C8C33DAC7751F2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ContoursAIExampleSwiftUI/Pods-ContoursAIExampleSwiftUI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ContoursAIExampleSwiftUI/Pods-ContoursAIExampleSwiftUI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ContoursAIExampleSwiftUI/Pods-ContoursAIExampleSwiftUI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8273E61729D6A334008BC719 /* Sources */ = {
@@ -277,6 +337,7 @@
 		};
 		8273E62A29D6A335008BC719 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B54D2AD4E11A97707C35F5DA /* Pods-ContoursAIExampleSwiftUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -311,6 +372,7 @@
 		};
 		8273E62B29D6A335008BC719 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F8DB17A45390FAEC29D91D0D /* Pods-ContoursAIExampleSwiftUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
