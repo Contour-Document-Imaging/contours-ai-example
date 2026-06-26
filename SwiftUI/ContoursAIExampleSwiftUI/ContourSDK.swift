@@ -61,10 +61,10 @@ struct ContoursSDK: UIViewControllerRepresentable {
          */
         func imageCaptured(frontImageCropped: UIImage?, rearImageCropped: UIImage?, frontImage: UIImage?, rearImage: UIImage?) {
             ContoursAIFramework.shared.isLandscape = false
-            if let uiImage = frontImage {
+            if let uiImage = frontImageCropped {
                 parent.frontImage = uiImage
             }
-            if let uiImage = rearImage {
+            if let uiImage = rearImageCropped {
                 parent.rearImage = uiImage
             }
         }
