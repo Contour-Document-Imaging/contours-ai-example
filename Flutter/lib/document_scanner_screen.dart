@@ -21,7 +21,7 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
 
   DocumentType _activeDocument = DocumentType.check;
   DocumentType? _activeCaptureDocument;
-  String? _activeCaptureSide;
+  ScanItem? _activeCaptureItem;
   String _statusMessage = 'Ready to scan check.';
 
   @override
@@ -35,19 +35,19 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
     );
   }
 
-  Future<void> _startScan(String side) async {
+  Future<void> _startScanForItem(ScanItem item) async {
     final config = _activeDocument.config;
     setState(() {
       _activeCaptureDocument = _activeDocument;
-      _activeCaptureSide = side;
-      _statusMessage = 'Opening ${_labelForStatus(config, side)}...';
+      _activeCaptureItem = item;
+      _statusMessage = 'Opening ${item.statusLabel}...';
     });
 
     try {
       final contoursModel = ContoursModel(
         clientID: _clientId,
-        type: config.sdkType,
-        captureSide: side,
+        type: config.documentType,
+        captureSide: item.documentSide,
         captureType: 'both',
         enableMultipleCapturing: false,
       );
@@ -81,7 +81,7 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
       }
       _statusMessage = _formatCaptureResult(
         document,
-        _activeCaptureSide,
+        _activeCaptureItem,
         frontUri,
         backUri,
       );
@@ -125,13 +125,13 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
         _statusMessage = '${document.displayName} scan closed.';
       }
       _activeCaptureDocument = null;
-      _activeCaptureSide = null;
+      _activeCaptureItem = null;
     });
   }
 
   String _formatCaptureResult(
     DocumentType document,
-    String? captureSide,
+    ScanItem? captureItem,
     String? frontUri,
     String? backUri,
   ) {
@@ -145,17 +145,9 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
       return '${document.displayName} back scan completed.';
     }
     if (hasFront) {
-      return '${_labelForStatus(document.config, captureSide ?? document.config.sides.first.sdkSide)} completed.';
+      return '${(captureItem ?? document.config.items.first).statusLabel} completed.';
     }
     return 'Scan completed.';
-  }
-
-  String _labelForStatus(DocumentConfig config, String side) {
-    final sideConfig = config.sides.firstWhere(
-      (item) => item.sdkSide == side,
-      orElse: () => config.sides.first,
-    );
-    return sideConfig.actionLabel.replaceFirst('Scan ', '').toLowerCase();
   }
 
   void _setActiveDocument(DocumentType document) {
@@ -250,34 +242,44 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                             ),
                           ),
                           const SizedBox(height: 18),
-                          if (config.sides.length == 1)
-                            _PreviewTile(
-                              label: config.sides.first.previewLabel,
-                              imagePath:
-                                  previews[config.sides.first.documentSide] ?? '',
-                              square: _activeDocument == DocumentType.selfie,
-                              onTap: () =>
-                                  _startScan(config.sides.first.sdkSide),
+                          if (config.items.length == 1)
+                            Builder(
+                              builder: (context) {
+                                final firstItem = config.items.first;
+                                return _PreviewTile(
+                                  label: firstItem.label,
+                                  imagePath:
+                                      previews[_previewKey(firstItem)] ?? '',
+                                  square: _activeDocument == DocumentType.selfie,
+                                  onTap: () => _startScanForItem(firstItem),
+                                );
+                              },
                             )
                           else
                             Column(
                               children: [
-                                _PreviewTile(
-                                  label: config.sides[0].previewLabel,
-                                  imagePath:
-                                      previews[config.sides[0].documentSide] ??
-                                          '',
-                                  onTap: () =>
-                                      _startScan(config.sides[0].sdkSide),
+                                Builder(
+                                  builder: (context) {
+                                    final frontItem = config.items[0];
+                                    return _PreviewTile(
+                                      label: frontItem.label,
+                                      imagePath:
+                                          previews[_previewKey(frontItem)] ?? '',
+                                      onTap: () => _startScanForItem(frontItem),
+                                    );
+                                  },
                                 ),
                                 const SizedBox(height: 12),
-                                _PreviewTile(
-                                  label: config.sides[1].previewLabel,
-                                  imagePath:
-                                      previews[config.sides[1].documentSide] ??
-                                          '',
-                                  onTap: () =>
-                                      _startScan(config.sides[1].sdkSide),
+                                Builder(
+                                  builder: (context) {
+                                    final backItem = config.items[1];
+                                    return _PreviewTile(
+                                      label: backItem.label,
+                                      imagePath:
+                                          previews[_previewKey(backItem)] ?? '',
+                                      onTap: () => _startScanForItem(backItem),
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -356,6 +358,10 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
         ),
       ),
     );
+  }
+
+  String _previewKey(ScanItem item) {
+    return item.documentSide == 'back' ? 'back' : 'front';
   }
 }
 
@@ -444,6 +450,18 @@ class _PreviewPlaceholder extends StatelessWidget {
   }
 }
 
+class ScanItem {
+  const ScanItem({
+    required this.documentSide,
+    required this.label,
+    required this.statusLabel,
+  });
+
+  final String documentSide;
+  final String label;
+  final String statusLabel;
+}
+
 enum DocumentType {
   check,
   id,
@@ -482,19 +500,17 @@ enum DocumentType {
         return const DocumentConfig(
           title: 'Check Scan',
           description: 'Capture the front or back side of the check.',
-          sdkType: 'check',
-          sides: [
-            DocumentSide(
-              sdkSide: 'front',
+          documentType: 'check',
+          items: [
+            ScanItem(
               documentSide: 'front',
-              previewLabel: 'Front Check',
-              actionLabel: 'Scan Front',
+              label: 'Front Check',
+              statusLabel: 'front',
             ),
-            DocumentSide(
-              sdkSide: 'back',
+            ScanItem(
               documentSide: 'back',
-              previewLabel: 'Back Check',
-              actionLabel: 'Scan Back',
+              label: 'Back Check',
+              statusLabel: 'back',
             ),
           ],
         );
@@ -502,19 +518,17 @@ enum DocumentType {
         return const DocumentConfig(
           title: 'ID Scan',
           description: 'Capture the front and back side of the ID.',
-          sdkType: 'id',
-          sides: [
-            DocumentSide(
-              sdkSide: 'front',
+          documentType: 'id',
+          items: [
+            ScanItem(
               documentSide: 'front',
-              previewLabel: 'Front ID',
-              actionLabel: 'Scan Front',
+              label: 'Front ID',
+              statusLabel: 'front',
             ),
-            DocumentSide(
-              sdkSide: 'back',
+            ScanItem(
               documentSide: 'back',
-              previewLabel: 'Back ID',
-              actionLabel: 'Scan Back',
+              label: 'Back ID',
+              statusLabel: 'back',
             ),
           ],
         );
@@ -522,13 +536,12 @@ enum DocumentType {
         return const DocumentConfig(
           title: 'Passport Scan',
           description: 'Capture the passport front face only.',
-          sdkType: 'passport',
-          sides: [
-            DocumentSide(
-              sdkSide: 'frontFaceOnly',
-              documentSide: 'front',
-              previewLabel: 'Passport Front Face',
-              actionLabel: 'Scan Front Face',
+          documentType: 'passport',
+          items: [
+            ScanItem(
+              documentSide: 'frontFaceOnly',
+              label: 'Passport Front Face',
+              statusLabel: 'front face',
             ),
           ],
         );
@@ -536,13 +549,12 @@ enum DocumentType {
         return const DocumentConfig(
           title: 'Take Selfie',
           description: 'Capture your selfie',
-          sdkType: 'Selfie',
-          sides: [
-            DocumentSide(
-              sdkSide: 'front',
+          documentType: 'Selfie',
+          items: [
+            ScanItem(
               documentSide: 'front',
-              previewLabel: 'User Selfie',
-              actionLabel: 'Capture Face',
+              label: 'User Selfie',
+              statusLabel: 'face capture',
             ),
           ],
         );
@@ -554,26 +566,12 @@ class DocumentConfig {
   const DocumentConfig({
     required this.title,
     required this.description,
-    required this.sdkType,
-    required this.sides,
+    required this.documentType,
+    required this.items,
   });
 
   final String title;
   final String description;
-  final String sdkType;
-  final List<DocumentSide> sides;
-}
-
-class DocumentSide {
-  const DocumentSide({
-    required this.sdkSide,
-    required this.documentSide,
-    required this.previewLabel,
-    required this.actionLabel,
-  });
-
-  final String sdkSide;
-  final String documentSide;
-  final String previewLabel;
-  final String actionLabel;
+  final String documentType;
+  final List<ScanItem> items;
 }
