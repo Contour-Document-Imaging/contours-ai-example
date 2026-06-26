@@ -14,9 +14,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String frontImageUri = '';
-  String rearImageUri = '';
-
   @override
   void initState() {
     super.initState();
