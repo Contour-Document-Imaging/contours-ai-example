@@ -19,7 +19,7 @@ import {
 } from 'contour-ai-sdk';
 
 const CLIENT_ID = '<CLIENT_ID>';
-const VERSION_META = 'App v0.0.1 | SDK v1.17.1';
+const POWERED_BY_TEXT = 'Powered by React Native';
 
 type PreviewSide = 'front' | 'back';
 
@@ -129,20 +129,13 @@ export default function DocumentScannerScreen({
     updateStatus('Opening scanner...');
     registerScannerCallbacks();
 
-    const contoursModel: ContourModel = selfie
-      ? {
-          clientId: CLIENT_ID,
-          type: documentType,
-          environmentType: 'dev'
-        }
-      : {
-          clientId: CLIENT_ID,
-          captureType: 'both',
-          enableMultipleCapturing: false,
-          type: documentType,
-          capturingSide,
-          environmentType: 'dev'
-        };
+    const contoursModel: ContourModel = {
+      clientId: CLIENT_ID,
+      captureType: 'both',
+      enableMultipleCapturing: false,
+      type: documentType,
+      capturingSide,
+    };
 
     startContour(contoursModel, onCaptured);
   };
@@ -157,7 +150,7 @@ export default function DocumentScannerScreen({
       style={styles.scrollView}>
       <View style={styles.heroCard}>
         <Text style={styles.eyebrow}>Identity Verification</Text>
-        <Text style={styles.versionMeta}>{VERSION_META}</Text>
+        <Text style={styles.versionMeta}>{POWERED_BY_TEXT}</Text>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
         <Text style={styles.statusMessage}>{statusMessage}</Text>

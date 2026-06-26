@@ -6,7 +6,7 @@ export default function SelfieCapture() {
     <DocumentScannerScreen
       title="Take Selfie."
       description="Capture your selfie."
-      documentType="selfie"
+      documentType="Selfie"
       selfie
       previews={[{key: 'front', label: 'Selfie', emptyLabel: 'Selfie preview'}]}
     />
