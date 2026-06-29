@@ -376,7 +376,7 @@ private extension ViewController {
         previewSurface.addSubview(button)
 
         NSLayoutConstraint.activate([
-            previewSurface.heightAnchor.constraint(equalToConstant: 110),
+            previewSurface.heightAnchor.constraint(equalToConstant: 220),
             imageView.topAnchor.constraint(equalTo: previewSurface.topAnchor),
             imageView.leadingAnchor.constraint(equalTo: previewSurface.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: previewSurface.trailingAnchor),
