@@ -324,7 +324,7 @@ private struct PreviewTile: View {
                     }
                 }
                 .frame(maxWidth: isSquare ? 150 : .infinity, alignment: .leading)
-                .frame(height: 150)
+                .frame(height: 220)
             }
             .buttonStyle(.plain)
         }
