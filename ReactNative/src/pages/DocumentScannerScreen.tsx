@@ -21,7 +21,7 @@ import {
 const CLIENT_ID = '<CLIENT_ID>';
 const POWERED_BY_TEXT = 'Powered by React Native';
 
-type PreviewSide = 'front' | 'back';
+type PreviewSide = 'front' | 'back' | 'frontFaceOnly';
 
 type PreviewConfig = {
   key: PreviewSide;
@@ -141,7 +141,7 @@ export default function DocumentScannerScreen({
   };
 
   const getImageUri = (side: PreviewSide) =>
-    side === 'front' ? frontImageUri : backImageUri;
+    side === 'back' ? backImageUri : frontImageUri;
 
   return (
     <ScrollView
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   previewImageWrap: {
-    height: 118,
+    height: 220,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
@@ -309,8 +309,8 @@ const styles = StyleSheet.create({
   },
   selfieImageWrap: {
     alignSelf: 'flex-start',
-    width: 180,
-    height: 180,
+    width: 220,
+    height: 220,
   },
   previewImageWrapActive: {
     borderColor: 'rgba(15, 118, 110, 0.28)',
