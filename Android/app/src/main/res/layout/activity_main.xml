@@ -135,7 +135,7 @@
                             <ImageView
                                 android:id="@+id/iv_front"
                                 android:layout_width="match_parent"
-                                android:layout_height="110dp"
+                                android:layout_height="220dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="fitCenter"
                                 android:visibility="gone" />
@@ -143,7 +143,7 @@
                             <TextView
                                 android:id="@+id/tv_front"
                                 android:layout_width="match_parent"
-                                android:layout_height="110dp"
+                                android:layout_height="220dp"
                                 android:gravity="center"
                                 android:padding="@dimen/space_12"
                                 android:text="@string/front_check"
@@ -182,7 +182,7 @@
                             <ImageView
                                 android:id="@+id/iv_back"
                                 android:layout_width="match_parent"
-                                android:layout_height="110dp"
+                                android:layout_height="220dp"
                                 android:adjustViewBounds="true"
                                 android:scaleType="fitCenter"
                                 android:visibility="gone" />
@@ -190,7 +190,7 @@
                             <TextView
                                 android:id="@+id/tv_back"
                                 android:layout_width="match_parent"
-                                android:layout_height="110dp"
+                                android:layout_height="220dp"
                                 android:gravity="center"
                                 android:padding="@dimen/space_12"
                                 android:text="@string/back_check"

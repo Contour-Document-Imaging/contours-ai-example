@@ -45,8 +45,6 @@ class MainActivity : AppCompatActivity() {
     // stages and thresholds of metrics for the process.
     private var checkFace = ContoursConstants.FRONT_FACE
 
-    //Here, We will collect all events by appending new line char
-    private var events: String = "";
     private var docType: ContoursScanType = ContoursScanType.CHECK
     private val tabs = arrayOf(R.id.check, R.id.id, R.id.passport, R.id.selfie)
     private val clientId: String = ""
@@ -122,7 +120,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startScan() {
-        events = ""
         setStatus(
             when (docType) {
                 ContoursScanType.ID -> "Opening ${if (checkFace == ContoursConstants.FRONT_FACE) "front" else "back"}..."
@@ -162,7 +159,6 @@ class MainActivity : AppCompatActivity() {
 
             override fun onEventCapture(eventJsonString: String) {
                 println("---------- eventJsonString $eventJsonString")
-                events += "$eventJsonString\n\n"
             }
 
             override fun onContourClosed() {
@@ -333,9 +329,5 @@ class MainActivity : AppCompatActivity() {
         }
 
         return packageInfo.versionName ?: "1.0"
-    }
-
-    companion object {
-        private const val TAG = "ContoursDemo::MainActivity"
     }
 }
