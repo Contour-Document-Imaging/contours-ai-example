@@ -381,8 +381,8 @@ class _PreviewTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final previewBox = Container(
-      width: square ? 180 : double.infinity,
-      height: square ? 180 : 140,
+      width: square ? 220 : double.infinity,
+      height: 220,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: const Color(0x24183642)),
