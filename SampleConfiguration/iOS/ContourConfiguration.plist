@@ -557,7 +557,7 @@
 					<string>contours_camera_capture_btn</string>
 				</dict>
 				<key>imageHoldTime</key>
-				<integer>2</integer>
+				<integer>4</integer>
 				<key>blurThreshould</key>
 				<integer>250</integer>
 				<key>successInlineMessage</key>
@@ -972,7 +972,7 @@
 					<string>contours_camera_capture_btn</string>
 				</dict>
 				<key>imageHoldTime</key>
-				<integer>2</integer>
+				<integer>4</integer>
 				<key>blurThreshould</key>
 				<integer>250</integer>
 				<key>successInlineMessage</key>
