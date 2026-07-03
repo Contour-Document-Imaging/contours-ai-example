@@ -72,7 +72,7 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         }
     }
 
-    var sdkType: String {
+    var documentCaptureType: String {
         switch self {
         case .check: return "check"
         case .id: return "id"
@@ -138,9 +138,9 @@ struct ContentView: View {
 
     private var heroCard: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("IDENTITY VERIFICATION")
-                .font(.system(size: 13, weight: .semibold))
-                .foregroundStyle(Color(red: 0.059, green: 0.463, blue: 0.431))
+            Text(selectedTab.screenTitle)
+                .font(.system(size: 28, weight: .bold))
+                .foregroundStyle(textStrong)
                 .padding(.bottom, 6)
 
             Text("Powered by Native iOS SwiftUI")
@@ -151,11 +151,6 @@ struct ContentView: View {
             Text("App Version \(appVersionName())")
                 .font(.system(size: 12))
                 .foregroundStyle(textMuted)
-                .padding(.bottom, 12)
-
-            Text(selectedTab.screenTitle)
-                .font(.system(size: 34, weight: .light))
-                .foregroundStyle(textStrong)
                 .padding(.bottom, 12)
 
             Text(selectedTab.description)
@@ -239,7 +234,7 @@ struct ContentView: View {
     }
 
     private func openScanner(for side: DocumentSide) {
-        viewModel.docType = selectedTab.sdkType
+        viewModel.docType = selectedTab.documentCaptureType
         viewModel.captureSide = selectedTab == .selfie ? "" : side.rawValue
         statusMessage = openingStatus(for: side)
         isShowingSDK = true
