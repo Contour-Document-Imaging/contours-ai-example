@@ -13,6 +13,7 @@ import ContoursAI_SDK
         GeneratedPluginRegistrant.register(with: self)
         let controller = window?.rootViewController as! FlutterViewController
         self.navigationController = UINavigationController(rootViewController: controller)
+        self.navigationController.setNavigationBarHidden(true, animated: false)
         self.window?.rootViewController = self.navigationController
         self.window?.makeKeyAndVisible()
         return super.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -21,4 +22,3 @@ import ContoursAI_SDK
         return ContoursAIFramework.shared.isLandscape ? .landscapeRight : .portrait
     }
 }
-

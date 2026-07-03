@@ -1,11 +1,10 @@
 import 'dart:io';
 
 import 'package:contouraisdk/contouraisdk.dart';
-import 'package:contouraisdk/contouraisdk_contours_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-const String _clientId = '<CLIENT_ID>';
+import 'scannerConfig.dart';
 
 class DocumentScannerScreen extends StatefulWidget {
   const DocumentScannerScreen({super.key});
@@ -22,7 +21,7 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
   DocumentType _activeDocument = DocumentType.check;
   DocumentType? _activeCaptureDocument;
   ScanItem? _activeCaptureItem;
-  String _statusMessage = 'Ready to scan check.';
+  String _statusMessage = DocumentType.check.initialStatusMessage;
 
   @override
   void initState() {
@@ -44,14 +43,7 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
     });
 
     try {
-      final contoursModel = ContoursModel(
-        clientID: _clientId,
-        type: config.documentType,
-        captureSide: item.documentSide,
-        captureType: 'both',
-        enableMultipleCapturing: false,
-      );
-      await Contouraisdk.startContour(contoursModel);
+      await Contouraisdk.startContour(buildContoursModel(config, item));
     } on PlatformException catch (error) {
       if (!mounted) {
         return;
@@ -157,7 +149,7 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
 
     setState(() {
       _activeDocument = document;
-      _statusMessage = 'Ready to scan ${document.displayName.toLowerCase()}.';
+      _statusMessage = document.initialStatusMessage;
     });
   }
 
@@ -194,26 +186,6 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'Identity Verification',
-                            style: TextStyle(
-                              color: Color(0xFF0F766E),
-                              fontSize: 13,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: 2.2,
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          const Text(
-                            'Powered by Flutter',
-                            style: TextStyle(
-                              color: Color(0xFF5F7782),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                          const SizedBox(height: 14),
                           Text(
                             config.title,
                             style: const TextStyle(
@@ -221,6 +193,16 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                               fontSize: 34,
                               fontWeight: FontWeight.w800,
                               height: 1.05,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text(
+                            'Powered by Flutter',
+                            style: TextStyle(
+                              color: Color(0xFF5F7782),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: 0.5,
                             ),
                           ),
                           const SizedBox(height: 14),
@@ -243,43 +225,25 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                           ),
                           const SizedBox(height: 18),
                           if (config.items.length == 1)
-                            Builder(
-                              builder: (context) {
-                                final firstItem = config.items.first;
-                                return _PreviewTile(
-                                  label: firstItem.label,
-                                  imagePath:
-                                      previews[_previewKey(firstItem)] ?? '',
-                                  square: _activeDocument == DocumentType.selfie,
-                                  onTap: () => _startScanForItem(firstItem),
-                                );
-                              },
+                            _PreviewTile(
+                              label: config.items.first.label,
+                              imagePath: previews[previewKey(config.items.first)] ?? '',
+                              square: _activeDocument == DocumentType.selfie,
+                              onTap: () => _startScanForItem(config.items.first),
                             )
                           else
                             Column(
                               children: [
-                                Builder(
-                                  builder: (context) {
-                                    final frontItem = config.items[0];
-                                    return _PreviewTile(
-                                      label: frontItem.label,
-                                      imagePath:
-                                          previews[_previewKey(frontItem)] ?? '',
-                                      onTap: () => _startScanForItem(frontItem),
-                                    );
-                                  },
+                                _PreviewTile(
+                                  label: config.items[0].label,
+                                  imagePath: previews[previewKey(config.items[0])] ?? '',
+                                  onTap: () => _startScanForItem(config.items[0]),
                                 ),
                                 const SizedBox(height: 12),
-                                Builder(
-                                  builder: (context) {
-                                    final backItem = config.items[1];
-                                    return _PreviewTile(
-                                      label: backItem.label,
-                                      imagePath:
-                                          previews[_previewKey(backItem)] ?? '',
-                                      onTap: () => _startScanForItem(backItem),
-                                    );
-                                  },
+                                _PreviewTile(
+                                  label: config.items[1].label,
+                                  imagePath: previews[previewKey(config.items[1])] ?? '',
+                                  onTap: () => _startScanForItem(config.items[1]),
                                 ),
                               ],
                             ),
@@ -317,8 +281,7 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                             final isActive = document == _activeDocument;
                             return Expanded(
                               child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 4),
+                                padding: const EdgeInsets.symmetric(horizontal: 4),
                                 child: FilledButton(
                                   onPressed: () => _setActiveDocument(document),
                                   style: FilledButton.styleFrom(
@@ -329,9 +292,7 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                                     foregroundColor: isActive
                                         ? Colors.white
                                         : const Color(0xFF5F7782),
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 14,
-                                    ),
+                                    padding: const EdgeInsets.symmetric(vertical: 14),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(14),
                                     ),
@@ -358,10 +319,6 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
         ),
       ),
     );
-  }
-
-  String _previewKey(ScanItem item) {
-    return item.documentSide == 'back' ? 'back' : 'front';
   }
 }
 
@@ -448,130 +405,4 @@ class _PreviewPlaceholder extends StatelessWidget {
       ),
     );
   }
-}
-
-class ScanItem {
-  const ScanItem({
-    required this.documentSide,
-    required this.label,
-    required this.statusLabel,
-  });
-
-  final String documentSide;
-  final String label;
-  final String statusLabel;
-}
-
-enum DocumentType {
-  check,
-  id,
-  passport,
-  selfie;
-
-  String get tabLabel {
-    switch (this) {
-      case DocumentType.check:
-        return 'Check';
-      case DocumentType.id:
-        return 'ID';
-      case DocumentType.passport:
-        return 'Passport';
-      case DocumentType.selfie:
-        return 'Selfie';
-    }
-  }
-
-  String get displayName {
-    switch (this) {
-      case DocumentType.id:
-        return 'ID';
-      case DocumentType.check:
-        return 'Check';
-      case DocumentType.passport:
-        return 'Passport';
-      case DocumentType.selfie:
-        return 'Selfie';
-    }
-  }
-
-  DocumentConfig get config {
-    switch (this) {
-      case DocumentType.check:
-        return const DocumentConfig(
-          title: 'Check Scan',
-          description: 'Capture the front or back side of the check.',
-          documentType: 'check',
-          items: [
-            ScanItem(
-              documentSide: 'front',
-              label: 'Front Check',
-              statusLabel: 'front',
-            ),
-            ScanItem(
-              documentSide: 'back',
-              label: 'Back Check',
-              statusLabel: 'back',
-            ),
-          ],
-        );
-      case DocumentType.id:
-        return const DocumentConfig(
-          title: 'ID Scan',
-          description: 'Capture the front and back side of the ID.',
-          documentType: 'id',
-          items: [
-            ScanItem(
-              documentSide: 'front',
-              label: 'Front ID',
-              statusLabel: 'front',
-            ),
-            ScanItem(
-              documentSide: 'back',
-              label: 'Back ID',
-              statusLabel: 'back',
-            ),
-          ],
-        );
-      case DocumentType.passport:
-        return const DocumentConfig(
-          title: 'Passport Scan',
-          description: 'Capture the passport front face only.',
-          documentType: 'passport',
-          items: [
-            ScanItem(
-              documentSide: 'frontFaceOnly',
-              label: 'Passport Front Face',
-              statusLabel: 'front face',
-            ),
-          ],
-        );
-      case DocumentType.selfie:
-        return const DocumentConfig(
-          title: 'Take Selfie',
-          description: 'Capture your selfie',
-          documentType: 'Selfie',
-          items: [
-            ScanItem(
-              documentSide: 'front',
-              label: 'User Selfie',
-              statusLabel: 'face capture',
-            ),
-          ],
-        );
-    }
-  }
-}
-
-class DocumentConfig {
-  const DocumentConfig({
-    required this.title,
-    required this.description,
-    required this.documentType,
-    required this.items,
-  });
-
-  final String title;
-  final String description;
-  final String documentType;
-  final List<ScanItem> items;
 }
