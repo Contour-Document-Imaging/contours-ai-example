@@ -15,7 +15,7 @@ export type PreviewSide = 'front' | 'back' | 'frontFaceOnly';
 export type DocumentType = 'check' | 'id' | 'passport' | 'selfie';
 
 export type ScanItem = {
-  documentCaptureSide: PreviewSide;
+  documentCaptureSide?: PreviewSide;
   label: string;
   emptyLabel: string;
   statusLabel: string;
@@ -24,9 +24,9 @@ export type ScanItem = {
 export type DocumentConfig = {
   title: string;
   description: string;
-  documentType: string;
-  captureType: 'both';
-  enableMultipleCapturing: boolean;
+  documentType?: string;
+  captureType?: 'both';
+  enableMultipleCapturing?: boolean;
   selfie?: boolean;
   items: ScanItem[];
 };
@@ -38,6 +38,11 @@ type ContourCaptureEvent = {
 
 type SelfieCaptureEvent = {
   selfieUri?: string;
+};
+
+type DocumentImageState = {
+  front: string;
+  back: string;
 };
 
 export function getDocumentConfig(documentType: DocumentType): DocumentConfig {
@@ -107,12 +112,9 @@ export function getDocumentConfig(documentType: DocumentType): DocumentConfig {
         title: 'Take Selfie.',
         description: 'Capture your selfie.',
         documentType: 'Selfie',
-        captureType: 'both',
-        enableMultipleCapturing: false,
         selfie: true,
         items: [
           {
-            documentCaptureSide: 'front',
             label: 'Selfie',
             emptyLabel: 'Selfie preview',
             statusLabel: 'face capture',
@@ -122,12 +124,40 @@ export function getDocumentConfig(documentType: DocumentType): DocumentConfig {
   }
 }
 
+export function withDefaultDocumentConfig(
+  config: DocumentConfig,
+): DocumentConfig {
+  return {
+    ...config,
+    items: config.items.map(item => ({
+      ...item,
+      documentCaptureSide: item.documentCaptureSide ?? 'front',
+    })),
+  };
+}
+
 export function useContourScanner(config: DocumentConfig) {
-  const [frontImageUri, setFrontImageUri] = useState('');
-  const [backImageUri, setBackImageUri] = useState('');
+  const [imageUrisByDocument, setImageUrisByDocument] = useState<
+    Record<string, DocumentImageState>
+  >({});
   const [statusMessage, setStatusMessage] = useState('Preparing scanner...');
   const scanInProgressRef = useRef(false);
   const appStateRef = useRef(AppState.currentState);
+  const currentDocumentType = config.documentType ?? 'check';
+
+  const updateDocumentImages = useCallback(
+    (documentType: string, nextState: Partial<DocumentImageState>) => {
+      setImageUrisByDocument(previousState => ({
+        ...previousState,
+        [documentType]: {
+          front: previousState[documentType]?.front ?? '',
+          back: previousState[documentType]?.back ?? '',
+          ...nextState,
+        },
+      }));
+    },
+    [],
+  );
 
   const updateStatus = useCallback((message: string) => {
     setStatusMessage(message);
@@ -144,11 +174,11 @@ export function useContourScanner(config: DocumentConfig) {
       const croppedRearUri = event.croppedRearUri;
 
       if (croppedFrontUri) {
-        setFrontImageUri(croppedFrontUri);
+        updateDocumentImages(currentDocumentType, {front: croppedFrontUri});
       }
 
       if (croppedRearUri) {
-        setBackImageUri(croppedRearUri);
+        updateDocumentImages(currentDocumentType, {back: croppedRearUri});
       }
 
       if (croppedFrontUri || croppedRearUri) {
@@ -156,7 +186,7 @@ export function useContourScanner(config: DocumentConfig) {
         updateStatus('Preview captured. Tap it to scan again.');
       }
     },
-    [updateStatus],
+    [currentDocumentType, updateDocumentImages, updateStatus],
   );
 
   const registerScannerCallbacks = useCallback(() => {
@@ -171,12 +201,17 @@ export function useContourScanner(config: DocumentConfig) {
     onSelfieCaptured((selfieCapture: SelfieCaptureEvent) => {
       const selfieUri = selfieCapture.selfieUri;
       if (selfieUri) {
-        setFrontImageUri(selfieUri);
+        updateDocumentImages(currentDocumentType, {front: selfieUri});
         scanInProgressRef.current = false;
         updateStatus('Selfie captured. Tap it to scan again.');
       }
     });
-  }, [handleContourClosed, updateStatus]);
+  }, [
+    currentDocumentType,
+    handleContourClosed,
+    updateDocumentImages,
+    updateStatus,
+  ]);
 
   useEffect(() => {
     updateStatus('Tap a preview to start scanning.');
@@ -220,9 +255,9 @@ export function useContourScanner(config: DocumentConfig) {
 
       const contoursModel: ContourModel = {
         clientId: CLIENT_ID,
-        captureType: config.captureType,
-        enableMultipleCapturing: config.enableMultipleCapturing,
-        type: config.documentType,
+        captureType: config.captureType ?? 'both',
+        enableMultipleCapturing: config.enableMultipleCapturing ?? false,
+        type: config.documentType ?? 'check',
         capturingSide,
       };
 
@@ -232,8 +267,16 @@ export function useContourScanner(config: DocumentConfig) {
   );
 
   const getImageUri = useCallback(
-    (side: PreviewSide) => (side === 'back' ? backImageUri : frontImageUri),
-    [backImageUri, frontImageUri],
+    (side: PreviewSide) => {
+      const currentImages = imageUrisByDocument[currentDocumentType];
+
+      if (side === 'back') {
+        return currentImages?.back ?? '';
+      }
+
+      return currentImages?.front ?? '';
+    },
+    [currentDocumentType, imageUrisByDocument],
   );
 
   return {
