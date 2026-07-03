@@ -7,7 +7,7 @@ ContoursModel buildContoursModel(DocumentConfig config, ScanItem item) {
     clientID: contourClientId,
     type: config.documentType,
     captureSide: item.documentSide,
-    captureType: 'both',
+    captureType: config.captureType,
     enableMultipleCapturing: false,
   );
 }
@@ -18,12 +18,12 @@ String previewKey(ScanItem item) {
 
 class ScanItem {
   const ScanItem({
-    required this.documentSide,
+    this.documentSide,
     required this.label,
     required this.statusLabel,
   });
 
-  final String documentSide;
+  final String? documentSide;
   final String label;
   final String statusLabel;
 }
@@ -71,6 +71,7 @@ enum DocumentType {
           title: 'Check Scan',
           description: 'Capture the front or back side of the check.',
           documentType: 'check',
+          captureType: 'both',
           items: [
             ScanItem(
               documentSide: 'front',
@@ -89,6 +90,7 @@ enum DocumentType {
           title: 'ID Scan',
           description: 'Capture the front and back side of the ID.',
           documentType: 'id',
+          captureType: 'both',
           items: [
             ScanItem(
               documentSide: 'front',
@@ -107,6 +109,7 @@ enum DocumentType {
           title: 'Passport Scan',
           description: 'Capture the passport front face only.',
           documentType: 'passport',
+          captureType: 'both',
           items: [
             ScanItem(
               documentSide: 'frontFaceOnly',
@@ -122,7 +125,6 @@ enum DocumentType {
           documentType: 'Selfie',
           items: [
             ScanItem(
-              documentSide: 'front',
               label: 'User Selfie',
               statusLabel: 'face capture',
             ),
@@ -137,11 +139,13 @@ class DocumentConfig {
     required this.title,
     required this.description,
     required this.documentType,
+    this.captureType,
     required this.items,
   });
 
   final String title;
   final String description;
   final String documentType;
+  final String? captureType;
   final List<ScanItem> items;
 }
