@@ -6,23 +6,21 @@ import {
   StyleSheet,
   Text,
   View,
-  useWindowDimensions,
 } from 'react-native';
 import {
+  CapturingSide,
   DocumentConfig,
   DocumentType,
-  PreviewSide,
-} from './scannerConfig';
+} from './ScannerTypes';
 
 const POWERED_BY_TEXT = 'Powered by React Native';
 
 type ViewProps = {
   activeDocumentType: DocumentType;
   config: DocumentConfig;
-  getImageUri: (side: PreviewSide) => string;
+  getImageUri: (capturingSide: CapturingSide) => string;
   onSelectDocumentType: (documentType: DocumentType) => void;
-  onStartScan: (side: PreviewSide) => void;
-  statusMessage: string;
+  onStartScan: (capturingSide: CapturingSide) => void;
 };
 
 const tabs: Array<{label: string; value: DocumentType}> = [
@@ -32,17 +30,79 @@ const tabs: Array<{label: string; value: DocumentType}> = [
   {label: 'Selfie', value: 'selfie'},
 ];
 
+export function getDocumentUiConfig(
+  documentType: DocumentType,
+): DocumentConfig['ui'] {
+  switch (documentType) {
+    case 'check':
+      return {
+        title: 'Check Scan',
+        description: 'Capture the front or back side of the check.',
+        items: [
+          {
+            label: 'Front Check',
+            emptyLabel: 'Front preview',
+            statusLabel: 'front',
+          },
+          {
+            label: 'Back Check',
+            emptyLabel: 'Back preview',
+            statusLabel: 'back',
+          },
+        ],
+      };
+    case 'id':
+      return {
+        title: 'ID Scan',
+        description: 'Capture the front and back side of the ID.',
+        items: [
+          {
+            label: 'Front ID',
+            emptyLabel: 'Front preview',
+            statusLabel: 'front',
+          },
+          {
+            label: 'Back ID',
+            emptyLabel: 'Back preview',
+            statusLabel: 'back',
+          },
+        ],
+      };
+    case 'passport':
+      return {
+        title: 'Passport Scan',
+        description: 'Capture the passport front face only.',
+        items: [
+          {
+            label: 'Passport',
+            emptyLabel: 'Passport preview',
+            statusLabel: 'front face',
+          },
+        ],
+      };
+    case 'selfie':
+      return {
+        title: 'Take Selfie.',
+        description: 'Capture your selfie.',
+        selfie: true,
+        items: [
+          {
+            label: 'Selfie',
+            emptyLabel: 'Selfie preview',
+            statusLabel: 'face capture',
+          },
+        ],
+      };
+  }
+}
+
 export default function ViewScreen({
   activeDocumentType,
   config,
   getImageUri,
   onSelectDocumentType,
   onStartScan,
-  statusMessage,
 }: ViewProps) {
-  const {width} = useWindowDimensions();
-  const useSingleColumn = width < 420 || Boolean(config.selfie);
-
   return (
     <View style={styles.safeArea}>
       <ScrollView
@@ -50,34 +110,28 @@ export default function ViewScreen({
         contentContainerStyle={styles.screen}
         style={styles.scrollView}>
         <View style={styles.heroCard}>
-          <Text style={styles.title}>{config.title}</Text>
+          <Text style={styles.title}>{config.ui.title}</Text>
           <Text style={styles.versionMeta}>{POWERED_BY_TEXT}</Text>
-          <Text style={styles.description}>{config.description}</Text>
-          <Text style={styles.statusMessage}>{statusMessage}</Text>
+          <Text style={styles.description}>{config.ui.description}</Text>
 
           <View
-            style={[
-              styles.previewGrid,
-              useSingleColumn && styles.previewGridSingle,
-            ]}>
-            {config.items.map(preview => {
-              const imageUri = getImageUri(preview.documentCaptureSide);
+            style={styles.previewGrid}>
+            {config.ui.items.map((preview, index) => {
+              const capturingSide =
+                config.sdk.capturingSides?.[index] ?? 'front';
+              const imageUri = getImageUri(capturingSide);
 
               return (
                 <Pressable
-                  key={preview.documentCaptureSide}
+                  key={`${capturingSide}-${preview.label}`}
                   accessibilityRole="button"
                   accessibilityLabel={preview.label}
-                  style={[
-                    styles.previewTile,
-                    useSingleColumn && styles.previewTileSingle,
-                  ]}
-                  onPress={() => onStartScan(preview.documentCaptureSide)}>
+                  style={styles.previewTile}
+                  onPress={() => onStartScan(capturingSide)}>
                   <Text style={styles.previewLabel}>{preview.label}</Text>
                   <View
                     style={[
                       styles.previewImageWrap,
-                      config.selfie && styles.selfieImageWrap,
                       imageUri && styles.previewImageWrapActive,
                     ]}>
                     {imageUri ? (
@@ -192,28 +246,12 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 24,
   },
-  statusMessage: {
-    minHeight: 22,
-    marginTop: 20,
-    color: colors.textMuted,
-    fontSize: 14,
-    lineHeight: 21,
-  },
   previewGrid: {
-    marginTop: 18,
-    flexDirection: 'row',
+    marginTop: 20,
+    flexDirection: 'column',
     gap: 12,
   },
-  previewGridSingle: {
-    flexDirection: 'column',
-    alignItems: 'stretch',
-  },
   previewTile: {
-    flex: 1,
-    minWidth: 0,
-  },
-  previewTileSingle: {
-    flex: 0,
     width: '100%',
   },
   previewImageWrap: {
@@ -230,11 +268,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 12,
     elevation: 3,
-  },
-  selfieImageWrap: {
-    alignSelf: 'flex-start',
-    width: 220,
-    height: 220,
   },
   previewImageWrapActive: {
     borderColor: 'rgba(15, 118, 110, 0.28)',
