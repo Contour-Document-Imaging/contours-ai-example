@@ -139,26 +139,6 @@ export function useContourScanner(config: DocumentConfig) {
 
   useEffect(() => {
     registerScannerCallbacks();
-
-    const subscription = AppState.addEventListener(
-      'change',
-      (nextAppState: AppStateStatus) => {
-        const previousAppState = appStateRef.current;
-        appStateRef.current = nextAppState;
-
-        if (
-          scanInProgressRef.current &&
-          previousAppState.match(/inactive|background/) &&
-          nextAppState === 'active'
-        ) {
-          handleContourClosed();
-        }
-      },
-    );
-
-    return () => {
-      subscription.remove();
-    };
   }, [handleContourClosed, registerScannerCallbacks]);
 
   const startSDK = useCallback(
