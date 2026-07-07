@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:contouraisdk/contouraisdk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'scannerConfig.dart';
+import 'contourScannerManager.dart';
+import 'scannerTypes.dart';
 
 class DocumentScannerScreen extends StatefulWidget {
   const DocumentScannerScreen({super.key});
@@ -14,149 +14,62 @@ class DocumentScannerScreen extends StatefulWidget {
 }
 
 class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
-  final Map<DocumentType, Map<String, String>> _previewState = {
-    for (final type in DocumentType.values) type: <String, String>{},
-  };
-
-  DocumentType _activeDocument = DocumentType.check;
-  DocumentType? _activeCaptureDocument;
-  ScanItem? _activeCaptureItem;
-  String _statusMessage = DocumentType.check.initialStatusMessage;
+  late final ScannerController _controller;
 
   @override
   void initState() {
     super.initState();
-    Contouraisdk.registerCallbacks(
-      _onDataReceived,
-      _onEventCaptured,
-      _onContourClosed,
-      _onSelfieCaptured,
-    );
+    _controller = ScannerController();
   }
 
-  Future<void> _startScanForItem(ScanItem item) async {
-    final config = _activeDocument.config;
-    setState(() {
-      _activeCaptureDocument = _activeDocument;
-      _activeCaptureItem = item;
-      _statusMessage = 'Opening ${item.statusLabel}...';
-    });
-
-    try {
-      await Contouraisdk.startContour(buildContoursModel(config, item));
-    } on PlatformException catch (error) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {
-        _statusMessage = error.message ?? 'Unable to open the scan SDK.';
-      });
-    }
-  }
-
-  void _onDataReceived(Map<String, String> data) {
-    final document = _activeCaptureDocument ?? _activeDocument;
-    final state = _previewState[document]!;
-    final frontUri = data['croppedFrontUri'] ?? data['frontUri'];
-    final backUri = data['croppedRearUri'] ?? data['rearUri'];
-
-    if (!mounted) {
-      return;
-    }
-
-    setState(() {
-      if (frontUri != null && frontUri.isNotEmpty) {
-        state['front'] = frontUri;
-      }
-      if (backUri != null && backUri.isNotEmpty) {
-        state['back'] = backUri;
-      }
-      _statusMessage = _formatCaptureResult(
-        document,
-        _activeCaptureItem,
-        frontUri,
-        backUri,
-      );
-    });
-  }
-
-  void _onSelfieCaptured(String? capturedSelfie) {
-    if (!mounted || capturedSelfie == null || capturedSelfie.isEmpty) {
-      return;
-    }
-
-    setState(() {
-      _previewState[DocumentType.selfie]!['front'] = capturedSelfie;
-      if (_activeDocument == DocumentType.selfie) {
-        _statusMessage = 'Selfie completed.';
-      }
-    });
-  }
-
-  void _onEventCaptured(String data) {
-    if (!mounted) {
-      return;
-    }
-    setState(() {
-      _statusMessage = 'Contour SDK event received.';
-    });
-  }
-
-  void _onContourClosed() {
-    if (!mounted) {
-      return;
-    }
-
-    final document = _activeCaptureDocument ?? _activeDocument;
-    final preview = _previewState[document]!;
-    final hasImage = (preview['front']?.isNotEmpty ?? false) ||
-        (preview['back']?.isNotEmpty ?? false);
-
-    setState(() {
-      if (!hasImage) {
-        _statusMessage = '${document.displayName} scan closed.';
-      }
-      _activeCaptureDocument = null;
-      _activeCaptureItem = null;
-    });
-  }
-
-  String _formatCaptureResult(
-    DocumentType document,
-    ScanItem? captureItem,
-    String? frontUri,
-    String? backUri,
-  ) {
-    final hasFront = frontUri != null && frontUri.isNotEmpty;
-    final hasBack = backUri != null && backUri.isNotEmpty;
-
-    if (hasFront && hasBack) {
-      return '${document.displayName} front and back scan completed.';
-    }
-    if (hasBack) {
-      return '${document.displayName} back scan completed.';
-    }
-    if (hasFront) {
-      return '${(captureItem ?? document.config.items.first).statusLabel} completed.';
-    }
-    return 'Scan completed.';
-  }
-
-  void _setActiveDocument(DocumentType document) {
-    if (_activeDocument == document) {
-      return;
-    }
-
-    setState(() {
-      _activeDocument = document;
-      _statusMessage = document.initialStatusMessage;
-    });
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    final config = _activeDocument.config;
-    final previews = _previewState[_activeDocument]!;
+    return ListenableBuilder(
+      listenable: _controller,
+      builder: (context, _) {
+        return ViewScreen(
+          activeDocumentType: _controller.activeDocumentType,
+          config: _controller.config,
+          getImageUri: _controller.getImageUri,
+          onSelectDocumentType: _controller.setActiveDocumentType,
+          onStartScan: (capturingSide) async {
+            try {
+              await _controller.startScan(capturingSide);
+            } on PlatformException catch (error) {
+              debugPrint(error.message ?? 'Unable to open the scan SDK.');
+            }
+          },
+        );
+      },
+    );
+  }
+}
+
+class ViewScreen extends StatelessWidget {
+  const ViewScreen({
+    super.key,
+    required this.activeDocumentType,
+    required this.config,
+    required this.getImageUri,
+    required this.onSelectDocumentType,
+    required this.onStartScan,
+  });
+
+  final DocumentType activeDocumentType;
+  final DocumentConfig config;
+  final String Function(CapturingSide capturingSide) getImageUri;
+  final void Function(DocumentType documentType) onSelectDocumentType;
+  final Future<void> Function(CapturingSide capturingSide) onStartScan;
+
+  @override
+  Widget build(BuildContext context) {
+    final capturingSides = config.sdk.capturingSides ?? const [CapturingSide.front];
 
     return Scaffold(
       backgroundColor: const Color(0xFFD8E8EF),
@@ -187,7 +100,7 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            config.title,
+                            config.ui.title,
                             style: const TextStyle(
                               color: Color(0xFF183642),
                               fontSize: 34,
@@ -197,7 +110,7 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                           ),
                           const SizedBox(height: 8),
                           const Text(
-                            'Powered by Flutter',
+                            poweredByText,
                             style: TextStyle(
                               color: Color(0xFF5F7782),
                               fontSize: 12,
@@ -207,43 +120,37 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                           ),
                           const SizedBox(height: 14),
                           Text(
-                            config.description,
+                            config.ui.description,
                             style: const TextStyle(
                               color: Color(0xFF5F7782),
                               fontSize: 15,
                               height: 1.6,
                             ),
                           ),
-                          const SizedBox(height: 20),
-                          Text(
-                            _statusMessage,
-                            style: const TextStyle(
-                              color: Color(0xFF5F7782),
-                              fontSize: 14,
-                              height: 1.5,
-                            ),
-                          ),
                           const SizedBox(height: 18),
-                          if (config.items.length == 1)
+                          if (config.ui.items.length == 1)
                             _PreviewTile(
-                              label: config.items.first.label,
-                              imagePath: previews[previewKey(config.items.first)] ?? '',
-                              square: _activeDocument == DocumentType.selfie,
-                              onTap: () => _startScanForItem(config.items.first),
+                              label: config.ui.items.first.label,
+                              emptyLabel: config.ui.items.first.emptyLabel,
+                              imagePath: getImageUri(capturingSides.first),
+                              square: config.ui.selfie,
+                              onTap: () => onStartScan(capturingSides.first),
                             )
                           else
                             Column(
                               children: [
                                 _PreviewTile(
-                                  label: config.items[0].label,
-                                  imagePath: previews[previewKey(config.items[0])] ?? '',
-                                  onTap: () => _startScanForItem(config.items[0]),
+                                  label: config.ui.items[0].label,
+                                  emptyLabel: config.ui.items[0].emptyLabel,
+                                  imagePath: getImageUri(capturingSides[0]),
+                                  onTap: () => onStartScan(capturingSides[0]),
                                 ),
                                 const SizedBox(height: 12),
                                 _PreviewTile(
-                                  label: config.items[1].label,
-                                  imagePath: previews[previewKey(config.items[1])] ?? '',
-                                  onTap: () => _startScanForItem(config.items[1]),
+                                  label: config.ui.items[1].label,
+                                  emptyLabel: config.ui.items[1].emptyLabel,
+                                  imagePath: getImageUri(capturingSides[1]),
+                                  onTap: () => onStartScan(capturingSides[1]),
                                 ),
                               ],
                             ),
@@ -277,13 +184,13 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                       child: Padding(
                         padding: const EdgeInsets.all(8),
                         child: Row(
-                          children: DocumentType.values.map((document) {
-                            final isActive = document == _activeDocument;
+                          children: DocumentType.values.map((documentType) {
+                            final isActive = documentType == activeDocumentType;
                             return Expanded(
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 4),
                                 child: FilledButton(
-                                  onPressed: () => _setActiveDocument(document),
+                                  onPressed: () => onSelectDocumentType(documentType),
                                   style: FilledButton.styleFrom(
                                     elevation: 0,
                                     backgroundColor: isActive
@@ -298,7 +205,7 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
                                     ),
                                   ),
                                   child: Text(
-                                    document.tabLabel,
+                                    documentType.tabLabel,
                                     style: const TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w800,
@@ -325,12 +232,14 @@ class _DocumentScannerScreenState extends State<DocumentScannerScreen> {
 class _PreviewTile extends StatelessWidget {
   const _PreviewTile({
     required this.label,
+    required this.emptyLabel,
     required this.imagePath,
     required this.onTap,
     this.square = false,
   });
 
   final String label;
+  final String emptyLabel;
   final String imagePath;
   final bool square;
   final VoidCallback onTap;
@@ -352,10 +261,10 @@ class _PreviewTile extends StatelessWidget {
               File(imagePath),
               fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) {
-                return _PreviewPlaceholder(label: label);
+                return _PreviewPlaceholder(label: emptyLabel);
               },
             )
-          : _PreviewPlaceholder(label: label),
+          : _PreviewPlaceholder(label: emptyLabel),
     );
 
     return GestureDetector(

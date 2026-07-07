@@ -1,6 +1,5 @@
-import 'package:contour_ai_sdk/scannerConfig.dart';
+import 'package:contour_ai_sdk/contourScannerManager.dart';
 import 'package:contour_ai_sdk/view.dart';
-import 'package:contouraisdk/contouraisdk.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,7 +17,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    Contouraisdk.initialize(contourClientId);
+    initializeScannerSdk();
   }
 
   @override
