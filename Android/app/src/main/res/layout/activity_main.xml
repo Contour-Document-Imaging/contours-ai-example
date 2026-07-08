@@ -89,21 +89,11 @@
                     android:textColor="@color/text_muted"
                     android:textSize="15sp" />
 
-                <TextView
-                    android:id="@+id/tv_status"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_20"
-                    android:minHeight="22dp"
-                    android:text="@string/preparing_scanner"
-                    android:textColor="@color/text_muted"
-                    android:textSize="14sp" />
-
                 <LinearLayout
                     android:id="@+id/preview_section"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_20"
+                    android:layout_marginTop="@dimen/space_24"
                     android:gravity="center_horizontal"
                     android:orientation="vertical">
 
