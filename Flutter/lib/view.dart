@@ -69,7 +69,8 @@ class ViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final capturingSides = config.sdk.capturingSides ?? const [CapturingSide.front];
+    final firstCapturingSide = getPreviewCapturingSide(activeDocumentType, 0);
+    final secondCapturingSide = getPreviewCapturingSide(activeDocumentType, 1);
 
     return Scaffold(
       backgroundColor: const Color(0xFFD8E8EF),
@@ -132,9 +133,9 @@ class ViewScreen extends StatelessWidget {
                             _PreviewTile(
                               label: config.ui.items.first.label,
                               emptyLabel: config.ui.items.first.emptyLabel,
-                              imagePath: getImageUri(capturingSides.first),
+                              imagePath: getImageUri(firstCapturingSide),
                               square: config.ui.selfie,
-                              onTap: () => onStartScan(capturingSides.first),
+                              onTap: () => onStartScan(firstCapturingSide),
                             )
                           else
                             Column(
@@ -142,15 +143,15 @@ class ViewScreen extends StatelessWidget {
                                 _PreviewTile(
                                   label: config.ui.items[0].label,
                                   emptyLabel: config.ui.items[0].emptyLabel,
-                                  imagePath: getImageUri(capturingSides[0]),
-                                  onTap: () => onStartScan(capturingSides[0]),
+                                  imagePath: getImageUri(firstCapturingSide),
+                                  onTap: () => onStartScan(firstCapturingSide),
                                 ),
                                 const SizedBox(height: 12),
                                 _PreviewTile(
                                   label: config.ui.items[1].label,
                                   emptyLabel: config.ui.items[1].emptyLabel,
-                                  imagePath: getImageUri(capturingSides[1]),
-                                  onTap: () => onStartScan(capturingSides[1]),
+                                  imagePath: getImageUri(secondCapturingSide),
+                                  onTap: () => onStartScan(secondCapturingSide),
                                 ),
                               ],
                             ),

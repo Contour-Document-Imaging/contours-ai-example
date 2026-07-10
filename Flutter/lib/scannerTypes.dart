@@ -97,6 +97,21 @@ class DocumentImageState {
   }
 }
 
+CapturingSide getPreviewCapturingSide(
+  DocumentType documentType,
+  int index,
+) {
+  switch (documentType) {
+    case DocumentType.check:
+    case DocumentType.id:
+      return index == 0 ? CapturingSide.front : CapturingSide.back;
+    case DocumentType.passport:
+      return CapturingSide.frontFaceOnly;
+    case DocumentType.selfie:
+      return CapturingSide.front;
+  }
+}
+
 DocumentUiConfig getDocumentUiConfig(DocumentType documentType) {
   switch (documentType) {
     case DocumentType.check:

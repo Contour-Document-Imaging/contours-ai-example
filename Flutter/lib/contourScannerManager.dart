@@ -51,12 +51,12 @@ DocumentSdkConfig getDocumentSdkConfig(DocumentType documentType) {
 //----------------------------------------------------------------
 ContoursModel buildContoursModel(
   DocumentSdkConfig config,
-  CapturingSide capturingSide,
+  CapturingSide? capturingSide,
 ) {
   return ContoursModel(
     clientID: contourClientId,
     type: config.documentType,
-    captureSide: capturingSide.value,
+    captureSide: capturingSide?.value,
     captureType: config.captureType,
     enableMultipleCapturing: config.enableMultipleCapturing,
   );
@@ -98,9 +98,16 @@ class ScannerController extends ChangeNotifier {
   // Starts the SDK flow for the requested capture side.
   //----------------------------------------------------------------
   Future<void> startScan(CapturingSide capturingSide) async {
+    final configuredSides = config.sdk.capturingSides;
+    final contourCapturingSide =
+        configuredSides == null || configuredSides.isEmpty
+            ? null
+            : configuredSides.contains(capturingSide)
+                ? capturingSide
+                : configuredSides.first;
     try {
       await Contouraisdk.startContour(
-        buildContoursModel(config.sdk, capturingSide),
+        buildContoursModel(config.sdk, contourCapturingSide),
       );
     } catch (error) {
       rethrow;
@@ -141,12 +148,17 @@ class ScannerController extends ChangeNotifier {
   void _onDataReceived(Map<String, String> data) {
     final croppedFrontUri = data['croppedFrontUri'] ?? data['frontUri'];
     final croppedRearUri = data['croppedRearUri'] ?? data['rearUri'];
+    final hasFrontImage =
+        croppedFrontUri != null && croppedFrontUri.isNotEmpty;
+    final hasRearImage = croppedRearUri != null && croppedRearUri.isNotEmpty;
+    final isDuplicateFrontAndRear =
+        hasFrontImage && hasRearImage && croppedFrontUri == croppedRearUri;
 
-    if (croppedFrontUri != null && croppedFrontUri.isNotEmpty) {
+    if (hasFrontImage) {
       _updateDocumentImages(_activeDocumentType, front: croppedFrontUri);
     }
 
-    if (croppedRearUri != null && croppedRearUri.isNotEmpty) {
+    if (hasRearImage && !isDuplicateFrontAndRear) {
       _updateDocumentImages(_activeDocumentType, back: croppedRearUri);
     }
   }
