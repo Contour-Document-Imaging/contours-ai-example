@@ -30,6 +30,17 @@ const tabs: Array<{label: string; value: DocumentType}> = [
   {label: 'Selfie', value: 'selfie'},
 ];
 
+function getPreviewImageSide(
+  documentType: DocumentType,
+  index: number,
+): CapturingSide {
+  if (documentType === 'passport' || documentType === 'selfie') {
+    return 'front';
+  }
+
+  return index === 1 ? 'back' : 'front';
+}
+
 export function getDocumentUiConfig(
   documentType: DocumentType,
 ): DocumentConfig['ui'] {
@@ -117,17 +128,21 @@ export default function ViewScreen({
           <View
             style={styles.previewGrid}>
             {config.ui.items.map((preview, index) => {
-              const capturingSide =
+              const captureSide =
                 config.sdk.capturingSides?.[index] ?? 'front';
-              const imageUri = getImageUri(capturingSide);
+              const previewImageSide = getPreviewImageSide(
+                activeDocumentType,
+                index,
+              );
+              const imageUri = getImageUri(previewImageSide);
 
               return (
                 <Pressable
-                  key={`${capturingSide}-${preview.label}`}
+                  key={`${previewImageSide}-${preview.label}`}
                   accessibilityRole="button"
                   accessibilityLabel={preview.label}
                   style={styles.previewTile}
-                  onPress={() => onStartScan(capturingSide)}>
+                  onPress={() => onStartScan(captureSide)}>
                   <Text style={styles.previewLabel}>{preview.label}</Text>
                   <View
                     style={[

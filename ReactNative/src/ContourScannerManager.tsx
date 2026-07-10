@@ -1,5 +1,4 @@
 import {useCallback, useEffect, useRef, useState} from 'react';
-import {AppState, AppStateStatus} from 'react-native';
 import {
   ContourModel,
   onContourClosed,
@@ -59,26 +58,11 @@ export function getDocumentConfig(documentType: DocumentType): DocumentConfig {
   };
 }
 
-export function withDefaultDocumentConfig(
-  config: DocumentConfig,
-): DocumentConfig {
-  return {
-    ...config,
-    sdk: {
-      ...config.sdk,
-      capturingSides:
-        config.sdk.capturingSides ??
-        config.ui.items.map(() => 'front'),
-    },
-  };
-}
-
 export function useContourScanner(config: DocumentConfig) {
   const [imageUrisByDocument, setImageUrisByDocument] = useState<
     Record<string, DocumentImageState>
   >({});
   const scanInProgressRef = useRef(false);
-  const appStateRef = useRef(AppState.currentState);
   const currentDocumentType = config.sdk.documentType ?? 'check';
 
   const updateDocumentImages = useCallback(
@@ -143,8 +127,9 @@ export function useContourScanner(config: DocumentConfig) {
 
   const startSDK = useCallback(
     (capturingSide: CapturingSide) => {
-      const hasSelectedPreview =
-        config.sdk.capturingSides?.includes(capturingSide) ?? false;
+      const hasSelectedPreview = config.sdk.capturingSides
+        ? config.sdk.capturingSides.includes(capturingSide)
+        : true;
 
       if (!hasSelectedPreview) {
         return;

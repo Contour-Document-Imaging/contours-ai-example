@@ -7,7 +7,6 @@ import {
   DocumentType,
   getDocumentConfig,
   useContourScanner,
-  withDefaultDocumentConfig,
 } from './ContourScannerManager';
 
 export default function App() {
@@ -19,7 +18,7 @@ export default function App() {
   }, []);
 
   const config = useMemo(
-    () => withDefaultDocumentConfig(getDocumentConfig(activeDocumentType)),
+    () => getDocumentConfig(activeDocumentType),
     [activeDocumentType],
   );
   const {getImageUri, startSDK} = useContourScanner(config);
