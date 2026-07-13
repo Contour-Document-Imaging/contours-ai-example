@@ -12,7 +12,7 @@ import ContoursAI_SDK
 struct ContoursSDK: UIViewControllerRepresentable {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    var captureSide = DocumentSide.front.rawValue
+    var captureSide = ContoursAI_SDK.DocumentSide.front.rawValue
     var docType = ScanType.check.rawValue
 
     @Binding  var frontImage: UIImage?

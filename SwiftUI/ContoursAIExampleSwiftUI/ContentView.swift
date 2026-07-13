@@ -6,11 +6,6 @@ final class ViewModel {
     var docType: String = ""
 }
 
-enum DocumentSide: String {
-    case front
-    case back
-}
-
 private enum CaptureTab: Int, CaseIterable, Identifiable {
     case check = 101
     case id = 102
@@ -209,7 +204,7 @@ struct ContentView: View {
         }
     }
 
-    private func openScanner(for side: DocumentSide) {
+    private func openScanner(for side: ContoursAI_SDK.DocumentSide) {
         viewModel.docType = selectedTab.documentCaptureType
         viewModel.captureSide = selectedTab == .selfie ? "" : side.rawValue
         isShowingSDK = true
