@@ -36,7 +36,7 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         switch self {
         case .check: return "Capture the front or back side of the check."
         case .id: return "Capture the front and back side of the ID."
-        case .passport: return "Capture the passport front face."
+        case .passport: return "Capture the passport front face only."
         case .selfie: return "Capture your selfie"
         }
     }
@@ -45,7 +45,7 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         switch self {
         case .check: return "Front check"
         case .id: return "Front ID"
-        case .passport: return "Passport Front"
+        case .passport: return "Passport Front Face"
         case .selfie: return "User Selfie"
         }
     }
@@ -55,6 +55,15 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         case .check: return "Rear check"
         case .id: return "Rear ID"
         case .passport, .selfie: return nil
+        }
+    }
+
+    var activeName: String {
+        switch self {
+        case .check: return "Check"
+        case .id: return "ID"
+        case .passport: return "Passport"
+        case .selfie: return "Selfie"
         }
     }
 
@@ -73,6 +82,7 @@ struct ContentView: View {
     @State private var isShowingSDK = false
     @State private var frontImage: UIImage?
     @State private var rearImage: UIImage?
+    @State private var statusMessage = "Preparing scanner..."
 
     private let viewModel = ViewModel()
 
@@ -103,6 +113,12 @@ struct ContentView: View {
         }
         .onAppear {
             applyDocumentUI(for: .check, resetImages: false)
+        }
+        .onChange(of: frontImage) { _ in
+            updateCaptureStatus()
+        }
+        .onChange(of: rearImage) { _ in
+            updateCaptureStatus()
         }
         .fullScreenCover(isPresented: $isShowingSDK) {
             ContoursSDK(
@@ -137,10 +153,16 @@ struct ContentView: View {
                 .foregroundStyle(textMuted)
                 .padding(.bottom, 20)
 
+            Text(statusMessage)
+                .font(.system(size: 14))
+                .foregroundStyle(textMuted)
+                .padding(.bottom, 20)
+
             VStack(spacing: 16) {
                 PreviewTile(
                     title: selectedTab.frontLabel,
-                    image: frontImage
+                    image: frontImage,
+                    isSquare: selectedTab == .selfie
                 ) {
                     openScanner(for: .front)
                 }
@@ -148,7 +170,8 @@ struct ContentView: View {
                 if let backLabel = selectedTab.backLabel {
                     PreviewTile(
                         title: backLabel,
-                        image: rearImage
+                        image: rearImage,
+                        isSquare: false
                     ) {
                         openScanner(for: .back)
                     }
@@ -202,16 +225,49 @@ struct ContentView: View {
             frontImage = nil
             rearImage = nil
         }
+        statusMessage = "Ready to scan \(tab.activeName.lowercased())."
     }
 
     private func openScanner(for side: ContoursAI_SDK.DocumentSide) {
         viewModel.docType = selectedTab.documentCaptureType
         viewModel.captureSide = selectedTab == .selfie ? "" : side.rawValue
+        statusMessage = openingStatus(for: side)
         isShowingSDK = true
+    }
+
+    private func openingStatus(for side: DocumentSide) -> String {
+        switch selectedTab {
+        case .passport:
+            return "Opening front face..."
+        case .selfie:
+            return "Opening face..."
+        case .check, .id:
+            return side == .back ? "Opening back..." : "Opening front..."
+        }
     }
 
     private func appVersionName() -> String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0"
+    }
+
+    private func updateCaptureStatus() {
+        if selectedTab == .selfie {
+            if frontImage != nil {
+                statusMessage = "Selfie completed."
+            }
+            return
+        }
+
+        let hasFront = frontImage != nil
+        let hasBack = rearImage != nil
+
+        if hasFront && hasBack {
+            statusMessage = "\(selectedTab.activeName) front and back scan completed."
+        } else if hasBack {
+            statusMessage = "\(selectedTab.activeName) back scan completed."
+        } else if hasFront {
+            statusMessage = "\(selectedTab.activeName) front completed."
+        }
     }
 
     private var textStrong: Color {
@@ -226,6 +282,7 @@ struct ContentView: View {
 private struct PreviewTile: View {
     let title: String
     let image: UIImage?
+    let isSquare: Bool
     let action: () -> Void
 
     var body: some View {
@@ -256,7 +313,7 @@ private struct PreviewTile: View {
                             .padding(.horizontal, 16)
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: isSquare ? 150 : .infinity, alignment: .leading)
                 .frame(height: 220)
             }
             .buttonStyle(.plain)

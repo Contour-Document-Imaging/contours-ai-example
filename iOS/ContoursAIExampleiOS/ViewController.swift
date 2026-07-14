@@ -16,6 +16,7 @@ class ViewController: UIViewController, CheckCaptureDelegate {
         super.viewDidLoad()
         uiController.buildInterface()
         uiController.applyDocumentUI(for: .check, resetImages: false)
+        uiController.setStatus("Preparing scanner...")
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -25,6 +26,7 @@ class ViewController: UIViewController, CheckCaptureDelegate {
 
     func openContoursSDKConcept(checkSide: Int) {
         ContoursAIFramework.shared.isLandscape = true
+        uiController.setStatus(uiController.openingStatus(for: checkSide))
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.view.layoutSubviews()
             switch checkSide {
@@ -68,12 +70,25 @@ class ViewController: UIViewController, CheckCaptureDelegate {
 
     func imageCaptured(frontImageCropped: UIImage?, rearImageCropped: UIImage?, frontImage: UIImage?, rearImage: UIImage?) {
         ContoursAIFramework.shared.isLandscape = false
-        uiController.showFrontImage(frontImage == nil ? nil : (frontImageCropped ?? frontImage))
-        uiController.showBackImage(rearImage == nil ? nil : (rearImageCropped ?? rearImage))
+        if frontImage != nil {
+            uiController.showFrontImage(frontImageCropped)
+        }
+        if rearImage != nil {
+            uiController.showBackImage(rearImageCropped)
+        }
+        uiController.setStatus(
+            uiController.captureCompleteStatus(
+                frontCaptured: frontImage != nil,
+                backCaptured: rearImage != nil
+            )
+        )
     }
 
     func onContourClose() {
         ContoursAIFramework.shared.isLandscape = false
+        if uiController.hasNoCapturedImages {
+            uiController.setStatus("\(uiController.activeDocumentName()) scan closed.")
+        }
     }
 
     func eventCaptured(data: [String: Any]?) {
@@ -82,6 +97,7 @@ class ViewController: UIViewController, CheckCaptureDelegate {
     func selfieCaptured(image: UIImage?) {
         if image != nil {
             uiController.showFrontImage(image)
+            uiController.setStatus("Selfie completed.")
         }
     }
 

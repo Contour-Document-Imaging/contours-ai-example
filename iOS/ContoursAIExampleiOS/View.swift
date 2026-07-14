@@ -14,6 +14,7 @@ final class View {
         let description: String
         let frontLabel: String
         let backLabel: String?
+        let activeName: String
     }
 
     private unowned let viewController: ViewController
@@ -31,10 +32,13 @@ final class View {
     private let versionLabel = UILabel()
     private let screenTitleLabel = UILabel()
     private let screenDescriptionLabel = UILabel()
+    private let statusLabel = UILabel()
     private let frontTileTitleLabel = UILabel()
     private let backTileTitleLabel = UILabel()
+    private var frontPreviewTile: UIStackView!
     private let backPreviewTile = UIStackView()
     private let tabContainer = UIView()
+    private var frontPreviewSquareConstraint: NSLayoutConstraint?
 
     private let textStrong = UIColor(red: 0.094, green: 0.212, blue: 0.259, alpha: 1.0)
     private let textMuted = UIColor(red: 0.373, green: 0.467, blue: 0.510, alpha: 1.0)
@@ -46,12 +50,16 @@ final class View {
         self.viewController = viewController
     }
 
+    var hasNoCapturedImages: Bool {
+        frontImageView.image == nil && backImageView.image == nil
+    }
+
     private var documents: [DocumentContent] {
         [
-            DocumentContent(type: .check, tabTag: 101, title: "Check Scan", description: "Capture the front or back side of the check.", frontLabel: "Front check", backLabel: "Rear check"),
-            DocumentContent(type: .id, tabTag: 102, title: "ID Scan", description: "Capture the front and back side of the ID.", frontLabel: "Front ID", backLabel: "Rear ID"),
-            DocumentContent(type: .passport, tabTag: 103, title: "Passport Scan", description: "Capture the passport front face.", frontLabel: "Passport Front", backLabel: nil),
-            DocumentContent(type: .selfie, tabTag: 104, title: "Take Selfie", description: "Capture your selfie", frontLabel: "User Selfie", backLabel: nil)
+            DocumentContent(type: .check, tabTag: 101, title: "Check Scan", description: "Capture the front or back side of the check.", frontLabel: "Front check", backLabel: "Rear check", activeName: "Check"),
+            DocumentContent(type: .id, tabTag: 102, title: "ID Scan", description: "Capture the front and back side of the ID.", frontLabel: "Front ID", backLabel: "Rear ID", activeName: "ID"),
+            DocumentContent(type: .passport, tabTag: 103, title: "Passport Scan", description: "Capture the passport front face only.", frontLabel: "Passport Front Face", backLabel: nil, activeName: "Passport"),
+            DocumentContent(type: .selfie, tabTag: 104, title: "Take Selfie", description: "Capture your selfie", frontLabel: "User Selfie", backLabel: nil, activeName: "Selfie")
         ]
     }
 
@@ -100,6 +108,7 @@ final class View {
         configureLabel(versionLabel, text: "App Version \(appVersionName())", color: textMuted, font: .systemFont(ofSize: 12, weight: .regular), lines: 1)
         configureLabel(screenTitleLabel, text: nil, color: textStrong, font: .systemFont(ofSize: 28, weight: .bold), lines: 0)
         configureLabel(screenDescriptionLabel, text: nil, color: textMuted, font: .systemFont(ofSize: 15, weight: .regular), lines: 0)
+        configureLabel(statusLabel, text: nil, color: textMuted, font: .systemFont(ofSize: 14, weight: .regular), lines: 0)
 
         cardStack.addArrangedSubview(screenTitleLabel)
         cardStack.setCustomSpacing(6, after: screenTitleLabel)
@@ -109,6 +118,8 @@ final class View {
         cardStack.setCustomSpacing(12, after: versionLabel)
         cardStack.addArrangedSubview(screenDescriptionLabel)
         cardStack.setCustomSpacing(20, after: screenDescriptionLabel)
+        cardStack.addArrangedSubview(statusLabel)
+        cardStack.setCustomSpacing(20, after: statusLabel)
 
         let previewStack = UIStackView()
         previewStack.axis = .vertical
@@ -116,8 +127,10 @@ final class View {
         cardStack.addArrangedSubview(previewStack)
 
         let frontTile = makePreviewTile(titleLabel: frontTileTitleLabel, imageTag: 101, buttonTag: 101)
+        frontPreviewTile = frontTile.tile
         frontImageView = frontTile.imageView
         frontImageButton = frontTile.button
+        frontPreviewSquareConstraint = frontTile.previewSurface.widthAnchor.constraint(equalTo: frontTile.previewSurface.heightAnchor)
         previewStack.addArrangedSubview(frontTile.tile)
 
         let backTile = makePreviewTile(titleLabel: backTileTitleLabel, imageTag: 102, buttonTag: 102)
@@ -285,6 +298,7 @@ final class View {
         screenDescriptionLabel.text = content.description
         frontTileTitleLabel.text = content.frontLabel
         frontImageButton.setTitle(content.frontLabel, for: .normal)
+        updateFrontPreviewLayout(isSelfie: type == .selfie)
 
         if let backLabel = content.backLabel {
             backTileTitleLabel.text = backLabel
@@ -301,6 +315,13 @@ final class View {
         [buttonCheckScan, buttonIdScan, passportButton, selfieButton].forEach { button in
             button?.isSelected = button?.tag == content.tabTag
         }
+
+        setStatus("Ready to scan \(content.activeName.lowercased()).")
+    }
+
+    func updateFrontPreviewLayout(isSelfie: Bool) {
+        frontPreviewTile.alignment = isSelfie ? .leading : .fill
+        frontPreviewSquareConstraint?.isActive = isSelfie
     }
 
     func resetPreviews() {
@@ -314,14 +335,14 @@ final class View {
 
     func showFrontImage(_ image: UIImage?) {
         frontImageView.image = image
-        frontImageView.isHidden = image == nil
-        frontImageButton.setTitle(image == nil ? currentDocument.frontLabel : nil, for: .normal)
+        frontImageView.isHidden = false
+        frontImageButton.setTitle(nil, for: .normal)
     }
 
     func showBackImage(_ image: UIImage?) {
         backImageView.image = image
-        backImageView.isHidden = image == nil
-        backImageButton.setTitle(image == nil ? currentDocument.backLabel : nil, for: .normal)
+        backImageView.isHidden = false
+        backImageButton.setTitle(nil, for: .normal)
     }
 
     func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
@@ -336,6 +357,38 @@ final class View {
         guard nextIndex != currentIndex else { return }
         let nextType = documents[nextIndex].type
         applyDocumentUI(for: nextType)
+    }
+
+    func setStatus(_ message: String) {
+        statusLabel.text = message
+    }
+
+    func activeDocumentName() -> String {
+        currentDocument.activeName
+    }
+
+    func openingStatus(for checkSide: Int) -> String {
+        switch selectedDocumentType {
+        case .passport:
+            return "Opening front face..."
+        case .selfie:
+            return "Opening face..."
+        default:
+            return "Opening \(checkSide == 102 ? "back" : "front")..."
+        }
+    }
+
+    func captureCompleteStatus(frontCaptured: Bool, backCaptured: Bool) -> String {
+        if selectedDocumentType == .selfie {
+            return "Selfie completed."
+        }
+        if frontCaptured && backCaptured {
+            return "\(activeDocumentName()) front and back scan completed."
+        }
+        if backCaptured {
+            return "\(activeDocumentName()) back scan completed."
+        }
+        return "\(activeDocumentName()) front completed."
     }
 
     func appVersionName() -> String {
