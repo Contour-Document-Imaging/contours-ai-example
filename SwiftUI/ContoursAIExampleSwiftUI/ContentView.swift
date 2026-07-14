@@ -58,15 +58,6 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         }
     }
 
-    var activeName: String {
-        switch self {
-        case .check: return "Check"
-        case .id: return "ID"
-        case .passport: return "Passport"
-        case .selfie: return "Selfie"
-        }
-    }
-
     var documentCaptureType: String {
         switch self {
         case .check: return "check"
@@ -82,7 +73,6 @@ struct ContentView: View {
     @State private var isShowingSDK = false
     @State private var frontImage: UIImage?
     @State private var rearImage: UIImage?
-    @State private var statusMessage = "Preparing scanner..."
 
     private let viewModel = ViewModel()
 
@@ -113,12 +103,6 @@ struct ContentView: View {
         }
         .onAppear {
             applyDocumentUI(for: .check, resetImages: false)
-        }
-        .onChange(of: frontImage) { _ in
-            updateCaptureStatus()
-        }
-        .onChange(of: rearImage) { _ in
-            updateCaptureStatus()
         }
         .fullScreenCover(isPresented: $isShowingSDK) {
             ContoursSDK(
@@ -153,16 +137,10 @@ struct ContentView: View {
                 .foregroundStyle(textMuted)
                 .padding(.bottom, 20)
 
-            Text(statusMessage)
-                .font(.system(size: 14))
-                .foregroundStyle(textMuted)
-                .padding(.bottom, 20)
-
             VStack(spacing: 16) {
                 PreviewTile(
                     title: selectedTab.frontLabel,
-                    image: frontImage,
-                    isSquare: selectedTab == .selfie
+                    image: frontImage
                 ) {
                     openScanner(for: .front)
                 }
@@ -170,8 +148,7 @@ struct ContentView: View {
                 if let backLabel = selectedTab.backLabel {
                     PreviewTile(
                         title: backLabel,
-                        image: rearImage,
-                        isSquare: false
+                        image: rearImage
                     ) {
                         openScanner(for: .back)
                     }
@@ -225,49 +202,16 @@ struct ContentView: View {
             frontImage = nil
             rearImage = nil
         }
-        statusMessage = "Ready to scan \(tab.activeName.lowercased())."
     }
 
     private func openScanner(for side: ContoursAI_SDK.DocumentSide) {
         viewModel.docType = selectedTab.documentCaptureType
         viewModel.captureSide = selectedTab == .selfie ? "" : side.rawValue
-        statusMessage = openingStatus(for: side)
         isShowingSDK = true
-    }
-
-    private func openingStatus(for side: DocumentSide) -> String {
-        switch selectedTab {
-        case .passport:
-            return "Opening front face..."
-        case .selfie:
-            return "Opening face..."
-        case .check, .id:
-            return side == .back ? "Opening back..." : "Opening front..."
-        }
     }
 
     private func appVersionName() -> String {
         Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0"
-    }
-
-    private func updateCaptureStatus() {
-        if selectedTab == .selfie {
-            if frontImage != nil {
-                statusMessage = "Selfie completed."
-            }
-            return
-        }
-
-        let hasFront = frontImage != nil
-        let hasBack = rearImage != nil
-
-        if hasFront && hasBack {
-            statusMessage = "\(selectedTab.activeName) front and back scan completed."
-        } else if hasBack {
-            statusMessage = "\(selectedTab.activeName) back scan completed."
-        } else if hasFront {
-            statusMessage = "\(selectedTab.activeName) front completed."
-        }
     }
 
     private var textStrong: Color {
@@ -282,7 +226,6 @@ struct ContentView: View {
 private struct PreviewTile: View {
     let title: String
     let image: UIImage?
-    let isSquare: Bool
     let action: () -> Void
 
     var body: some View {
@@ -313,7 +256,7 @@ private struct PreviewTile: View {
                             .padding(.horizontal, 16)
                     }
                 }
-                .frame(maxWidth: isSquare ? 150 : .infinity, alignment: .leading)
+                .frame(maxWidth:.infinity, alignment: .leading)
                 .frame(height: 220)
             }
             .buttonStyle(.plain)
