@@ -36,7 +36,7 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         switch self {
         case .check: return "Capture the front or back side of the check."
         case .id: return "Capture the front and back side of the ID."
-        case .passport: return "Capture the passport front face."
+        case .passport: return "Capture the passport front."
         case .selfie: return "Capture your selfie"
         }
     }
