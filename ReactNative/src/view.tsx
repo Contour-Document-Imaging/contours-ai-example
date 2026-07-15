@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  useWindowDimensions,
   View,
 } from 'react-native';
 import {
@@ -82,7 +83,7 @@ export function getDocumentUiConfig(
     case 'passport':
       return {
         title: 'Passport Scan',
-        description: 'Capture the passport front face only.',
+        description: 'Capture the passport front.',
         items: [
           {
             label: 'Passport',
@@ -114,13 +115,32 @@ export default function ViewScreen({
   onSelectDocumentType,
   onStartScan,
 }: ViewProps) {
+  const {width} = useWindowDimensions();
+  const isTablet = width >= 600;
+  const isExtraLargeScreen = width >= 1024;
+  const horizontalInset = isTablet ? 12 : 24;
+  const tabBarInset = isTablet ? 12 : 16;
+
   return (
     <View style={styles.safeArea}>
       <ScrollView
         bounces={false}
-        contentContainerStyle={styles.screen}
+        contentContainerStyle={[
+          styles.screen,
+          {paddingHorizontal: horizontalInset},
+        ]}
         style={styles.scrollView}>
-        <View style={styles.heroCard}>
+        <View
+          style={[
+            styles.heroCard,
+            {
+              width: '100%',
+              maxWidth: '100%',
+              paddingHorizontal: isTablet ? 32 : 24,
+              paddingTop: isTablet ? 36 : 28,
+              paddingBottom: isTablet ? 32 : 24,
+            },
+          ]}>
           <Text style={styles.title}>{config.ui.title}</Text>
           <Text style={styles.versionMeta}>{POWERED_BY_TEXT}</Text>
           <Text style={styles.description}>{config.ui.description}</Text>
@@ -141,12 +161,17 @@ export default function ViewScreen({
                   key={`${previewImageSide}-${preview.label}`}
                   accessibilityRole="button"
                   accessibilityLabel={preview.label}
-                  style={styles.previewTile}
+                  style={[
+                    styles.previewTile,
+                  ]}
                   onPress={() => onStartScan(captureSide)}>
                   <Text style={styles.previewLabel}>{preview.label}</Text>
                   <View
                     style={[
                       styles.previewImageWrap,
+                      isTablet && {
+                        height: isExtraLargeScreen ? 360 : 300,
+                      },
                       imageUri && styles.previewImageWrapActive,
                     ]}>
                     {imageUri ? (
@@ -168,8 +193,24 @@ export default function ViewScreen({
         </View>
       </ScrollView>
 
-      <View pointerEvents="box-none" style={styles.tabBarPosition}>
-        <View style={styles.tabBar}>
+      <View
+        pointerEvents="box-none"
+        style={[
+          styles.tabBarPosition,
+          {
+            right: tabBarInset,
+            left: tabBarInset,
+            bottom: tabBarInset,
+          },
+        ]}>
+        <View
+          style={[
+            styles.tabBar,
+            {
+              width: '100%',
+              maxWidth: '100%',
+            },
+          ]}>
           {tabs.map(tab => {
             const focused = activeDocumentType === tab.value;
 
@@ -218,9 +259,8 @@ const styles = StyleSheet.create({
   },
   screen: {
     flexGrow: 1,
-    alignItems: 'center',
+    alignItems: 'stretch',
     justifyContent: 'flex-start',
-    paddingHorizontal: 24,
     paddingTop: 32,
     paddingBottom: 104,
     backgroundColor: colors.bgBottom,

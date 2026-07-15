@@ -28,7 +28,6 @@ final class View {
     private var selfieButton: TabButton!
 
     private let platformLabel = UILabel()
-    private let versionLabel = UILabel()
     private let screenTitleLabel = UILabel()
     private let screenDescriptionLabel = UILabel()
     private let frontTileTitleLabel = UILabel()
@@ -71,7 +70,7 @@ final class View {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.alwaysBounceVertical = true
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.contentInset = UIEdgeInsets(top: 24, left: 0, bottom: 120, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 120, right: 0)
         view.addSubview(scrollView)
 
         let contentView = UIView()
@@ -97,16 +96,13 @@ final class View {
         heroCard.addSubview(cardStack)
 
         configureLabel(platformLabel, text: "Powered by Native iOS UIKit", color: textMuted, font: .systemFont(ofSize: 12, weight: .medium), lines: 1)
-        configureLabel(versionLabel, text: "App Version \(appVersionName())", color: textMuted, font: .systemFont(ofSize: 12, weight: .regular), lines: 1)
         configureLabel(screenTitleLabel, text: nil, color: textStrong, font: .systemFont(ofSize: 28, weight: .bold), lines: 0)
         configureLabel(screenDescriptionLabel, text: nil, color: textMuted, font: .systemFont(ofSize: 15, weight: .regular), lines: 0)
 
         cardStack.addArrangedSubview(screenTitleLabel)
         cardStack.setCustomSpacing(6, after: screenTitleLabel)
         cardStack.addArrangedSubview(platformLabel)
-        cardStack.setCustomSpacing(4, after: platformLabel)
-        cardStack.addArrangedSubview(versionLabel)
-        cardStack.setCustomSpacing(12, after: versionLabel)
+        cardStack.setCustomSpacing(12, after: platformLabel)
         cardStack.addArrangedSubview(screenDescriptionLabel)
         cardStack.setCustomSpacing(20, after: screenDescriptionLabel)
 
@@ -336,10 +332,6 @@ final class View {
         guard nextIndex != currentIndex else { return }
         let nextType = documents[nextIndex].type
         applyDocumentUI(for: nextType)
-    }
-
-    func appVersionName() -> String {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0"
     }
 }
 

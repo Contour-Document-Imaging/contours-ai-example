@@ -59,16 +59,6 @@
                     android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/tv_app_version"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/app_version_placeholder"
-                    android:textColor="@color/text_muted"
-                    android:textSize="12sp" />
-
-                <TextView
                     android:id="@+id/tv_screen_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

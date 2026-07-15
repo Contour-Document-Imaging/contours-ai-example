@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">ContoursAIExampleAndroid</string>
-    <string name="app_version_placeholder">App Version</string>
-    <string name="app_version_format">App Version %1$s</string>
     <string name="identity_verification">Identity Verification</string>
     <string name="powered_by_native_android">Powered by Native Android</string>
     <string name="preparing_scanner">Preparing scanner...</string>

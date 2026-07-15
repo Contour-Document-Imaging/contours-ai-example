@@ -71,6 +71,13 @@ class ViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final firstCapturingSide = getPreviewCapturingSide(activeDocumentType, 0);
     final secondCapturingSide = getPreviewCapturingSide(activeDocumentType, 1);
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final horizontalPadding = screenWidth >= 768 ? 32.0 : 16.0;
+    final previewHeight = screenWidth >= 1200
+        ? 360.0
+        : screenWidth >= 768
+            ? 300.0
+            : 220.0;
 
     return Scaffold(
       backgroundColor: const Color(0xFFD8E8EF),
@@ -79,85 +86,88 @@ class ViewScreen extends StatelessWidget {
           children: [
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(16, 24, 16, 16),
-                child: Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 420),
-                    child: Container(
-                      padding: const EdgeInsets.fromLTRB(24, 28, 24, 24),
-                      decoration: BoxDecoration(
-                        color: const Color(0xF7FFFCF8),
-                        borderRadius: BorderRadius.circular(28),
-                        border: Border.all(color: const Color(0x1F2F4757)),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x29183642),
-                            blurRadius: 30,
-                            offset: Offset(0, 12),
-                          ),
-                        ],
+                padding: EdgeInsets.fromLTRB(
+                  horizontalPadding,
+                  24,
+                  horizontalPadding,
+                  16,
+                ),
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.fromLTRB(24, 28, 24, 24),
+                  decoration: BoxDecoration(
+                    color: const Color(0xF7FFFCF8),
+                    borderRadius: BorderRadius.circular(28),
+                    border: Border.all(color: const Color(0x1F2F4757)),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x29183642),
+                        blurRadius: 30,
+                        offset: Offset(0, 12),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            config.ui.title,
-                            style: const TextStyle(
-                              color: Color(0xFF183642),
-                              fontSize: 34,
-                              fontWeight: FontWeight.w800,
-                              height: 1.05,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            poweredByText,
-                            style: TextStyle(
-                              color: Color(0xFF5F7782),
-                              fontSize: 12,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: 0.5,
-                            ),
-                          ),
-                          const SizedBox(height: 14),
-                          Text(
-                            config.ui.description,
-                            style: const TextStyle(
-                              color: Color(0xFF5F7782),
-                              fontSize: 15,
-                              height: 1.6,
-                            ),
-                          ),
-                          const SizedBox(height: 18),
-                          if (config.ui.items.length == 1)
+                    ],
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        config.ui.title,
+                        style: const TextStyle(
+                          color: Color(0xFF183642),
+                          fontSize: 34,
+                          fontWeight: FontWeight.w800,
+                          height: 1.05,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      const Text(
+                        poweredByText,
+                        style: TextStyle(
+                          color: Color(0xFF5F7782),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 0.5,
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                      Text(
+                        config.ui.description,
+                        style: const TextStyle(
+                          color: Color(0xFF5F7782),
+                          fontSize: 15,
+                          height: 1.6,
+                        ),
+                      ),
+                      const SizedBox(height: 18),
+                      if (config.ui.items.length == 1)
+                        _PreviewTile(
+                          label: config.ui.items.first.label,
+                          emptyLabel: config.ui.items.first.emptyLabel,
+                          imagePath: getImageUri(firstCapturingSide),
+                          height: previewHeight,
+                          onTap: () => onStartScan(firstCapturingSide),
+                        )
+                      else
+                        Column(
+                          children: [
                             _PreviewTile(
-                              label: config.ui.items.first.label,
-                              emptyLabel: config.ui.items.first.emptyLabel,
+                              label: config.ui.items[0].label,
+                              emptyLabel: config.ui.items[0].emptyLabel,
                               imagePath: getImageUri(firstCapturingSide),
-                              square: config.ui.selfie,
+                              height: previewHeight,
                               onTap: () => onStartScan(firstCapturingSide),
-                            )
-                          else
-                            Column(
-                              children: [
-                                _PreviewTile(
-                                  label: config.ui.items[0].label,
-                                  emptyLabel: config.ui.items[0].emptyLabel,
-                                  imagePath: getImageUri(firstCapturingSide),
-                                  onTap: () => onStartScan(firstCapturingSide),
-                                ),
-                                const SizedBox(height: 12),
-                                _PreviewTile(
-                                  label: config.ui.items[1].label,
-                                  emptyLabel: config.ui.items[1].emptyLabel,
-                                  imagePath: getImageUri(secondCapturingSide),
-                                  onTap: () => onStartScan(secondCapturingSide),
-                                ),
-                              ],
                             ),
-                        ],
-                      ),
-                    ),
+                            const SizedBox(height: 12),
+                            _PreviewTile(
+                              label: config.ui.items[1].label,
+                              emptyLabel: config.ui.items[1].emptyLabel,
+                              imagePath: getImageUri(secondCapturingSide),
+                              height: previewHeight,
+                              onTap: () => onStartScan(secondCapturingSide),
+                            ),
+                          ],
+                        ),
+                    ],
                   ),
                 ),
               ),
@@ -165,59 +175,59 @@ class ViewScreen extends StatelessWidget {
             SafeArea(
               top: false,
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                child: Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 420),
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: const Color(0xEBFFFFFF),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(color: const Color(0x242F4757)),
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Color(0x2E183642),
-                            blurRadius: 48,
-                            offset: Offset(0, 18),
-                          ),
-                        ],
+                padding: EdgeInsets.fromLTRB(
+                  horizontalPadding,
+                  0,
+                  horizontalPadding,
+                  16,
+                ),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: const Color(0xEBFFFFFF),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: const Color(0x242F4757)),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Color(0x2E183642),
+                        blurRadius: 48,
+                        offset: Offset(0, 18),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Row(
-                          children: DocumentType.values.map((documentType) {
-                            final isActive = documentType == activeDocumentType;
-                            return Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 4),
-                                child: FilledButton(
-                                  onPressed: () => onSelectDocumentType(documentType),
-                                  style: FilledButton.styleFrom(
-                                    elevation: 0,
-                                    backgroundColor: isActive
-                                        ? const Color(0xFF183642)
-                                        : Colors.transparent,
-                                    foregroundColor: isActive
-                                        ? Colors.white
-                                        : const Color(0xFF5F7782),
-                                    padding: const EdgeInsets.symmetric(vertical: 14),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(14),
-                                    ),
-                                  ),
-                                  child: Text(
-                                    documentType.tabLabel,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
+                    ],
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      children: DocumentType.values.map((documentType) {
+                        final isActive = documentType == activeDocumentType;
+                        return Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
+                            child: FilledButton(
+                              onPressed: () => onSelectDocumentType(documentType),
+                              style: FilledButton.styleFrom(
+                                elevation: 0,
+                                backgroundColor: isActive
+                                    ? const Color(0xFF183642)
+                                    : Colors.transparent,
+                                foregroundColor: isActive
+                                    ? Colors.white
+                                    : const Color(0xFF5F7782),
+                                padding: const EdgeInsets.symmetric(vertical: 14),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(14),
                                 ),
                               ),
-                            );
-                          }).toList(),
-                        ),
-                      ),
+                              child: Text(
+                                documentType.tabLabel,
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ),
                 ),
@@ -235,6 +245,7 @@ class _PreviewTile extends StatelessWidget {
     required this.label,
     required this.emptyLabel,
     required this.imagePath,
+    required this.height,
     required this.onTap,
     this.square = false,
   });
@@ -242,6 +253,7 @@ class _PreviewTile extends StatelessWidget {
   final String label;
   final String emptyLabel;
   final String imagePath;
+  final double height;
   final bool square;
   final VoidCallback onTap;
 
@@ -249,7 +261,7 @@ class _PreviewTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final previewBox = Container(
       width: square ? 220 : double.infinity,
-      height: 220,
+      height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: const Color(0x24183642)),

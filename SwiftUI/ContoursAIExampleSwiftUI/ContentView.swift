@@ -125,11 +125,6 @@ struct ContentView: View {
             Text("Powered by Native iOS SwiftUI")
                 .font(.system(size: 12, weight: .medium))
                 .foregroundStyle(textMuted)
-                .padding(.bottom, 4)
-
-            Text("App Version \(appVersionName())")
-                .font(.system(size: 12))
-                .foregroundStyle(textMuted)
                 .padding(.bottom, 12)
 
             Text(selectedTab.description)
@@ -208,10 +203,6 @@ struct ContentView: View {
         viewModel.docType = selectedTab.documentCaptureType
         viewModel.captureSide = selectedTab == .selfie ? "" : side.rawValue
         isShowingSDK = true
-    }
-
-    private func appVersionName() -> String {
-        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "1.0"
     }
 
     private var textStrong: Color {

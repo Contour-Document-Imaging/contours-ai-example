@@ -135,10 +135,10 @@ DocumentUiConfig getDocumentUiConfig(DocumentType documentType) {
     case DocumentType.passport:
       return const DocumentUiConfig(
         title: 'Passport Scan',
-        description: 'Capture the passport front face only.',
+        description: 'Capture the passport front.',
         items: [
           PreviewItem(
-            label: 'Passport Front Face',
+            label: 'Passport Front',
             emptyLabel: 'Passport preview',
           ),
         ],

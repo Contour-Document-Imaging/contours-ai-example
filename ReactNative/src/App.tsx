@@ -1,5 +1,5 @@
 import React, {useEffect, useMemo, useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {Platform, SafeAreaView, StatusBar, StyleSheet} from 'react-native';
 import {initialize} from 'contour-ai-sdk';
 import ViewScreen from './view';
 import {
@@ -44,5 +44,6 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: '#d8e8ef',
+    paddingTop: Platform.OS === 'android' ? (StatusBar.currentHeight ?? 0) : 0,
   },
 });

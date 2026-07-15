@@ -69,7 +69,6 @@ class MainActivity : AppCompatActivity() {
         ivBack = findViewById(R.id.iv_back)
         backPreviewTile = findViewById(R.id.back_preview_tile)
         findViewById<TextView>(R.id.tv_version_meta).text = getString(R.string.powered_by_native_android)
-        findViewById<TextView>(R.id.tv_app_version).text = getString(R.string.app_version_format, BuildConfig.VERSION_NAME)
     }
 
     private fun bindClicks() {
