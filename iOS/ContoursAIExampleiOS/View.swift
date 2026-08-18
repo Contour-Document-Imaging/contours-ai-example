@@ -50,7 +50,6 @@ final class View {
             DocumentContent(type: .check, tabTag: 101, title: "Check Scan", description: "Capture the front or back side of the check.", frontLabel: "Front check", backLabel: "Rear check"),
             DocumentContent(type: .id, tabTag: 102, title: "ID Scan", description: "Capture the front and back side of the ID.", frontLabel: "Front ID", backLabel: "Rear ID"),
             DocumentContent(type: .passport, tabTag: 103, title: "Passport Scan", description: "Capture the passport front.", frontLabel: "Passport Front", backLabel: nil),
-            DocumentContent(type: .selfie, tabTag: 104, title: "Take Selfie", description: "Capture your selfie", frontLabel: "User Selfie", backLabel: nil)
         ]
     }
 
@@ -190,14 +189,12 @@ final class View {
         let checkButton = makeTabButton(title: "CHECK", tag: 101)
         let idButton = makeTabButton(title: "ID", tag: 102)
         let passportButton = makeTabButton(title: "PASSPORT", tag: 103)
-        let selfieButton = makeTabButton(title: "Selfie", tag: 104)
 
-        [checkButton, idButton, passportButton, selfieButton].forEach { stack.addArrangedSubview($0) }
+        [checkButton, idButton, passportButton].forEach { stack.addArrangedSubview($0) }
 
         buttonCheckScan = checkButton
         buttonIdScan = idButton
         self.passportButton = passportButton
-        self.selfieButton = selfieButton
 
         NSLayoutConstraint.activate([
             stack.topAnchor.constraint(equalTo: tabContainer.topAnchor, constant: 8),

@@ -104,8 +104,6 @@ class ViewController: UIViewController, CheckCaptureDelegate {
             uiController.applyDocumentUI(for: .id)
         case 103:
             uiController.applyDocumentUI(for: .passport)
-        case 104:
-            uiController.applyDocumentUI(for: .selfie)
         default:
             uiController.applyDocumentUI(for: .check)
         }

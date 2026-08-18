@@ -10,7 +10,6 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
     case check = 101
     case id = 102
     case passport = 103
-    case selfie = 104
 
     var id: Int { rawValue }
 
@@ -19,7 +18,6 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         case .check: return "CHECK"
         case .id: return "ID"
         case .passport: return "PASSPORT"
-        case .selfie: return "Selfie"
         }
     }
 
@@ -28,7 +26,6 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         case .check: return "Check Scan"
         case .id: return "ID Scan"
         case .passport: return "Passport Scan"
-        case .selfie: return "Take Selfie"
         }
     }
 
@@ -37,7 +34,6 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         case .check: return "Capture the front or back side of the check."
         case .id: return "Capture the front and back side of the ID."
         case .passport: return "Capture the passport front."
-        case .selfie: return "Capture your selfie"
         }
     }
 
@@ -46,7 +42,6 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         case .check: return "Front check"
         case .id: return "Front ID"
         case .passport: return "Passport Front"
-        case .selfie: return "User Selfie"
         }
     }
 
@@ -54,7 +49,7 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         switch self {
         case .check: return "Rear check"
         case .id: return "Rear ID"
-        case .passport, .selfie: return nil
+        case .passport: return nil
         }
     }
 
@@ -63,7 +58,6 @@ private enum CaptureTab: Int, CaseIterable, Identifiable {
         case .check: return "check"
         case .id: return "id"
         case .passport: return "passport"
-        case .selfie: return "selfie"
         }
     }
 }
@@ -201,7 +195,7 @@ struct ContentView: View {
 
     private func openScanner(for side: ContoursAI_SDK.DocumentSide) {
         viewModel.docType = selectedTab.documentCaptureType
-        viewModel.captureSide = selectedTab == .selfie ? "" : side.rawValue
+        viewModel.captureSide = side.rawValue
         isShowingSDK = true
     }
 
