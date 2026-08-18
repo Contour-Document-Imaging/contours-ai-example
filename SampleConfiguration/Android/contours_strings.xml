@@ -15,7 +15,6 @@
     <!--Loading UI-->
     <string name="contours_oops">Oops!</string>
     <string name="contours_something_went_wrong">Something went wrong. Please try again.</string>
-    <string name="contours_warning_storage">You do not have enough storage to continue scanning.</string>
     <string name="contours_got_it_loading">Got it</string>
     <string name="contours_loading_hang_tight">Loading… Hang tight</string>
     <!--END-->
@@ -169,6 +168,27 @@
     <string name="contours_selfie_tips_begin">Begin</string>
     <string name="contours_selfie_tips_don_t_show_again">@string/contours_don_t_show_again</string>
     <!--selfie end-->
-
+    
+  
+  <!--ErrorCode messages-->
+  <string name="contours_failure_message_1001">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1002">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1003">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1004">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1005">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1006">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1007">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1008">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1009">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1010">You do not have enough storage to continue scanning.</string>
+  <string name="contours_failure_message_1012">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1013">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1014">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1015">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1016">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1017">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1018">Something went wrong. Please try again.</string>
+  <string name="contours_failure_message_1019">Something went wrong. Please try again.</string>
+  <!--END-->
 
 </resources>

@@ -145,4 +145,5 @@
 
     <!--Selfie END-->
 
+    <integer name="contours_minimum_storage_required_in_mb">400</integer>
 </resources>

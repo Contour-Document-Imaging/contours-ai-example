@@ -61,7 +61,19 @@
 "contoursMoveCheckCloser" = "Move camera closer to the check";
 "contoursEnsureCheck" = "Ensure the check is inside the frame";
 "contoursAdjustFrame" = "Adjust frame";
-"contoursInsufficientStorageError" = "You do not have enough storage to continue scanning.";
+"contoursFailureMessage1001" = "Something went wrong. Please try again.";
+"contoursFailureMessage1002" = "Something went wrong. Please try again.";
+"contoursFailureMessage1003" = "Something went wrong. Please try again.";
+"contoursFailureMessage1004" = "Something went wrong. Please try again.";
+"contoursFailureMessage1005" = "Something went wrong. Please try again.";
+"contoursFailureMessage1006" = "Something went wrong. Please try again.";
+"contoursFailureMessage1007" = "Something went wrong. Please try again.";
+"contoursFailureMessage1008" = "Something went wrong. Please try again.";
+"contoursFailureMessage1009" = "Something went wrong. Please try again.";
+"contoursFailureMessage1010" = "You do not have enough storage to continue scanning.";
+"contoursFailureMessage1011" = "Something went wrong. Please try again.";
+"contoursFailureMessage1012" = "Something went wrong. Please try again.";
+"contoursFailureMessage1013" = "Something went wrong. Please try again.";
 
 // ID
 "contoursFlipIDOver" = "Flip the ID over";

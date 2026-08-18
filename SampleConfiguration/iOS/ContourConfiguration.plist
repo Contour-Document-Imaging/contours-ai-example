@@ -1321,6 +1321,8 @@
 		</dict>
 		<key>globalSDKConfig</key>
 		<dict>
+			<key>minimumStorageRequiredInMB</key>
+			<integer>400</integer>
 			<key>cornerRadius</key>
 			<integer>30</integer>
 			<key>contoursFIName</key>
